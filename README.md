@@ -16,7 +16,8 @@ public class Main{
 
 링크는 다음과 같이 작성할 수 있습니다.
 
-[다들 이거 보고 git 배우시면 됩니다](https://www.youtube.com/watch?v=MFJIOqxK6k8&list=PLRx0vPvlEmdD5FLIdwTM4mKBgyjv4no81&index=11)
+[다들 이거 보고 git 배우시면 됩니다 - 동빈나 채널](https://www.youtube.com/watch?v=MFJIOqxK6k8&list=PLRx0vPvlEmdD5FLIdwTM4mKBgyjv4no81&index=11)
+[다들 이거 보고 git 배우시면 됩니다 - 생활코딩 채널](https://www.youtube.com/watch?v=hFJZwOfme6w&list=PLuHgQVnccGMA8iwZwrGyNXCGy2LAAsTXk)
 
 순서 없는 목록은 다음과 같이 작성할 수 있습니다.
 
