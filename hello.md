@@ -1,5 +1,6 @@
 # EnvironmentProject-2021
 ## EnvironmentProject-7
+> '승민님! 나중에 터미널 키고 나서 바로 git pull로 업뎃(?) 한 번만 해주시면 됩니다!' - 한정수 -
 
 소스코드 블록
 
