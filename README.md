@@ -41,5 +41,5 @@ Name|Java|PHP|Javascript|Python|
 강조는 다음과 같이 할 수 있습니다.
 
 **이거 README.me파일** 있잖아요.  
-~~수정하셔도 돼요.~~
+~~수정하셔도 돼요. (예아 minseo)~~
 
