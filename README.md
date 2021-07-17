@@ -1,18 +1,8 @@
-# EnvironmentProject-2021
-## EnvironmentProject-7
+  # EnvironmentProject-2021
+  ## 재활용을 주제로 한 웹 사이트 개발 프로젝트입니다.
+  #### 제작 기간 : 4개월
 
-이 README.md에다가 잠시 git을 배우기 위해 몇 가지 테스트 내용을 추가했습니다.
 
-소스코드 블록은 다음과 같이 작성할 수 있습니다.
-
-```java
-public class Main{
-  public static main void(String []args) {
-    System.out.println("passion");
-  }
-}
-
-```
 
 링크는 다음과 같이 작성할 수 있습니다.
 
