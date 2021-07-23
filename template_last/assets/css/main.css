@@ -7884,7 +7884,7 @@ h6 {
 .testimonials-one__bg {
   position: absolute;
   left: 50%;
-  bottom: -115px;
+  bottom: -50px;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   opacity: 0.04;
