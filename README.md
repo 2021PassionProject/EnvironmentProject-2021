@@ -1,11 +1,11 @@
-# *EnvironmentProject-2021
+# #EnvironmentProject-2021
 가속화되는 환경오염을 줄이기 위해 만든 정보 제공 프로젝트
   
-# *page
+# #page
   
-# *개요
+# #개요
   
-# *주요기능
+# #주요기능
   
 * 메인화면
   * Changing Sources...
