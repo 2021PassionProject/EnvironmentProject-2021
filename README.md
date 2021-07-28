@@ -8,10 +8,10 @@
 # *주요기능
   
 * 메인화면
-  * ㅁㄴㅇㄹ
+  * Changing Sources...
 
 * 회원가입 및 로그인
-  * asdf
+  * Changing Sources...
   
 * 게시판
-  * qwer
+  * Changing Sources...
