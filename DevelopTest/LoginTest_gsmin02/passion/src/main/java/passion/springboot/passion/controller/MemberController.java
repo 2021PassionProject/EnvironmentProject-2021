@@ -41,7 +41,6 @@ public class MemberController {
     public String login() {
         return "member/login";
     }
-
     @PostMapping("/login")  // 정보추가 : PostMapping(보안에 좋음), 수정 : PutMapping, 삭제 : DeleteMapping
     public String loginMember(HttpServletRequest request, Model model) {
         session = request.getSession();
