@@ -2,6 +2,7 @@ package passion.springboot.passion.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -22,9 +23,9 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public int create(Member member) {
-        String query = "insert into member(id, email, pw, name, birth, phone, address, address2) values"+"(seq_member.nextval,?,?,?,?,?,?,?)";
+        String query1 = "insert into member(id, email, pw, name, birth, phone, address, address2) values"+"(seq_member.nextval,?,?,?,?,?,?,?)";
 
-        return jdbcTemplate.update(query,
+        return jdbcTemplate.update(query1,
                 member.getEmail(), member.getPw(), member.getName(), member.getBirth(), member.getPhone(), member.getAddress(),member.getAddress2());
     }
 
@@ -35,23 +36,10 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public Member readByEmail(Member member) {
-        String query = "select * from Member where email=?";
-        Object[] email = new Object[]{member.getEmail()}; //id
+        String query = "select * from member where email=?";
+        Object[] email = new Object[]{member.getEmail()}; // email -> id
         try {
-            return jdbcTemplate.queryForObject(query, new RowMapper<Member>() {
-                        @Override
-                        public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-                            Member member = new Member();
-                            member.setId(rs.getLong("id"));
-                            member.setEmail(rs.getString("email"));
-                            member.setPw(rs.getString("pw"));
-                            member.setName(rs.getString("name"));
-                            member.setPhone(rs.getString("phone"));
-                            member.setAddress(rs.getString("address"));
-                            return member;
-                        }
-                    }
-                    , email);
+            return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<Member>(Member.class), email);
         } catch(EmptyResultDataAccessException e) {
             return null;
         }
