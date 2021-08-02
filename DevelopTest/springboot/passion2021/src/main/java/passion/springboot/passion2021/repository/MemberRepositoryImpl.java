@@ -74,16 +74,37 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public List<Member> readMembers() {
-        return null;
+        String query = "select * from member";
+        try {
+            return jdbcTemplate.query(query, new RowMapper<Member>() {
+                @Override
+                public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+                    Member member = new Member();
+                    member.setId(rs.getLong("id"));
+                    member.setEmail(rs.getString("email"));
+                    member.setPw(rs.getString("pw"));
+                    member.setName(rs.getString("name"));
+                    member.setPhone(rs.getString("phone"));
+                    member.setAddress(rs.getString("address"));
+                    return member;
+                }
+            });
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
     public int update(Member member) {
-        return 0;
+        String query = "update member set email=?, pw=?, name=?, phone=?, address=?, address2=? where id=MEMBER.ID";
+        return jdbcTemplate.update(query, member.getEmail(), member.getPw(), member.getName(), member.getPhone(), member.getAddress(), member.getId());
     }
 
     @Override
     public int delete(Member member) {
-        return 0;
+        return jdbcTemplate.update(
+                "delete from member where id = ?",
+                member.getId()
+        );
     }
 }
