@@ -8,28 +8,31 @@ import passion.springboot.passion.repository.MemberRepository;
 import java.util.List;
 
 @Service
-public class MemberServiceImpl implements  MemberService {
+public class MemberServiceImpl implements MemberService {
     private MemberRepository memberRepository;
-    @Autowired
+
+    @Autowired  // MemberRepository 유형으로 등록된 객체를 Spring Framework 가 자동 주입
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
     @Override
     public Member getMember(long id) {
-        return null;
+        Member member = new Member();
+        member.setId(id);
+        return memberRepository.readById(member);
     }
 
     @Override
     public Member getMemberByEmail(String email) {
         Member member = new Member();
-        member.setEmail(email); // email -> id
+        member.setEmail(email);
         return memberRepository.readByEmail(member);
     }
 
     @Override
     public List<Member> getMembers() {
-        return null;
+        return memberRepository.readMembers();
     }
 
     @Override
@@ -39,16 +42,16 @@ public class MemberServiceImpl implements  MemberService {
 
     @Override
     public int postMember(Member member) {
-        return 0;
+        return memberRepository.create(member);
     }
 
     @Override
     public int putMember(Member member) {
-        return 0;
+        return memberRepository.update(member);
     }
 
     @Override
     public int deleteMember(Member member) {
-        return 0;
+        return memberRepository.delete(member);
     }
 }
