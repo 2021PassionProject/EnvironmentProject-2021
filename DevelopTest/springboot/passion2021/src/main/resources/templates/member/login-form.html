@@ -43,7 +43,7 @@
         <div class="title" aria-live="assertive">
             <p></p>
         </div>
-        <form target="_top" AUTOCOMPLETE="on" th:action="@{'./login'}"method="POST" name="login" id="login" novalidate>
+        <form target="_top" AUTOCOMPLETE="on" th:action="@{'./signin'}"method="POST" name="login" id="signin" novalidate>
             <!--<form id="frmNIDLogin" name="frmNIDLogin" target="_top" AUTOCOMPLETE="off" action="https://nid.naver.com/nidlogin.login" method="POST">-->
             <input type="hidden" id="localechange" name="localechange" value="">
             <input type="hidden" name="dynamicKey" id="dynamicKey" value="">
@@ -66,7 +66,7 @@
                                 <h1 style="color: #1C354F">로그인</h1>
                                 <div class="int-area">
                                     <input type="text" name="email" id="id" autocomplete="off" required>
-                                    <!--<form th:action="@{'./login'}"method="post" name="login" id="login" novalidate>-->
+                                    <!--<form th:action="@{'./signin'}"method="post" name="signin" id="signin" novalidate>-->
                                     <!--<th:block th:if="$(cookie_id=null)">-->
                                     <label for="email">아이디</label>
                                 </div>
@@ -83,7 +83,7 @@
                                     <a class="btn" href="#none">카카오로 로그인</a>
                                 </div>
                                 <div class="login-footer">
-                                    <a href="signupPage">회원가입</a>
+                                    <a href="signup">회원가입</a>
                                     </p>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                                 <h1 style="color: #1C354F">로그인</h1>
                                 <div class="int-area">
                                     <input type="text" name="email" id="email" autocomplete="off" required>
-                                    <!--<form th:action="@{'./login'}"method="post" name="login" id="login" novalidate>-->
+                                    <!--<form th:action="@{'./signin'}"method="post" name="signin" id="signin" novalidate>-->
                                     <!--<th:block th:if="$(cookie_id=null)">-->
                                     <label for="email">아이디</label>
                                 </div>
@@ -115,7 +115,7 @@
                                     <a class="btn" href="#none">카카오로 로그인</a>
                                 </div>
                                 <div class="login-footer">
-                                    <a href="signupPage">회원가입</a>
+                                    <a href="signup">회원가입</a>
                                     </p>
                                 </div>
                             </div>
