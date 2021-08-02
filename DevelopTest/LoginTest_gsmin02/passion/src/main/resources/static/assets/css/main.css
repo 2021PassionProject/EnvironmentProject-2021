@@ -3151,14 +3151,14 @@ h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--thm-black);
+  background-color: #CDDDED;
   opacity: 0.8;
   cursor: pointer;
 }
 
 .mobile-nav__content {
   width: 300px;
-  background-color: #1f4e3d;
+  background-color: #a5c8ea;
   z-index: 10;
   position: relative;
   height: 100%;
@@ -3187,7 +3187,7 @@ h6 {
   top: 20px;
   right: 15px;
   font-size: 18px;
-  color: #b5c3be;
+  color: white;
   cursor: pointer;
 }
 
@@ -3317,7 +3317,7 @@ h6 {
   border-radius: 0;
   border: none;
   outline: none;
-  color: #b5c3be;
+  color: white;
   font-size: 14px;
 }
 
@@ -3332,7 +3332,7 @@ h6 {
 
 .mobile-nav__social a {
   font-size: 16px;
-  color: #b5c3be;
+  color: white;
   -webkit-transition: 500ms;
   transition: 500ms;
 }
@@ -3352,7 +3352,7 @@ h6 {
 }
 
 .mobile-nav__contact li {
-  color: #b5c3be;
+  color: white;
   font-size: 14px;
   font-weight: 500;
   position: relative;

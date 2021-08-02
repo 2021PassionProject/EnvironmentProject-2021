@@ -12,6 +12,9 @@ import passion.springboot.passion.service.MemberServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.io.IOException;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/")
@@ -37,11 +40,25 @@ public class MemberController {
         return "member/signup";
     }
 
+    @PostMapping("/join")
+    public String joinMember(@Valid Member member, HttpServletRequest request, Model model) {
+        session = request.getSession();
+        model.addAttribute("member", session);
+
+        if(memberService.postMember(member) > 0) {
+            return "member/login";
+        }
+        else {
+            return "member/signup";
+        }
+    }
+
     @GetMapping("/login")
     public String login() {
         return "member/login";
     }
-    @PostMapping("/login")  // 정보추가 : PostMapping(보안에 좋음), 수정 : PutMapping, 삭제 : DeleteMapping
+
+    @PostMapping("/signin")  // 정보추가 : PostMapping(보안에 좋음), 수정 : PutMapping, 삭제 : DeleteMapping
     public String loginMember(HttpServletRequest request, Model model) {
         session = request.getSession();
         String email = request.getParameter("email");
@@ -56,16 +73,20 @@ public class MemberController {
             return "main/index";
         } else {
             model.addAttribute("message", "계정 정보를 확인하세요");
-            return "member/login";
+            return "member/signup";
         }
     }
 
-//    @GetMapping("/logout")
-//    public String logoutMember(HttpServletRequest request) {
-//        if (session != null)
-//            session.invalidate();   // 현재 session 객체를 무효화
-//        return "main/index";
-//    }
+    @GetMapping("/logout")
+    public String logoutMember(HttpServletRequest request) {
+        if (session != null) {
+            session.setAttribute("id", null);
+            session.setAttribute("email", null);
+            session.setAttribute("name", null);
+            session.invalidate();   // 현재 session 객체를 무효화
+        }
+        return "main/index";
+    }
 
 
 }

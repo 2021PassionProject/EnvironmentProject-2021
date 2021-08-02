@@ -10,8 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 public class Member {
     private Long id;
-    //  @NotBlank
-    //  @Email
     private String email;
     private String pw;
     private String name;
