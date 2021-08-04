@@ -34,6 +34,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="assets/js/DaumPostCode.js"></script>
 <script src="assets/js/passwordCheck.js"></script>
+
 </head>
 <body>
 
@@ -45,7 +46,7 @@
 <!-- wrapper -->
 <form role="form" name="form1" method="post" action="signup" th:action="${'/signup'}">
     <th:block th:object="${member}">
-        <input type="hidden" id="address" name="address" th:value="${address}" />
+        <input type="hidden" id="address" name="address" th:value="${address}"/>
         <div id="wrapper" style="margin-bottom:150px;">
             <!-- content-->
             <div id="content">
@@ -103,8 +104,8 @@
                 <div>
                     <h3 class="join_title"><label for="birth">생년월일</label></h3>
                     <span class="box int_bir">
-                        <input type="text" th:text="${birth}" id="birth" name="birth" class="int" maxlength="20"
-                               placeholder="yyyyMMdd"/>
+                        <input type="text" th:text="${birth}" id="birth" name="birth" class="int" maxlength="8"
+                               placeholder="예 : 2021년 8월 13일 -> 20210813"/>
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -113,8 +114,9 @@
                 <div>
                     <h3 class="join_title"><label for="phone">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" id="phone" name="phone" th:text="${phone}"
-                               class="int" maxlength="13" placeholder="전화번호 입력"/>
+                        <input type="text" id="phone" name="phone" th:text="${phone}"
+                               class="int" maxlength="13" placeholder="전화번호 입력">
+                        <script src="assets/js/autoPhoneHypen.js"></script>
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -158,7 +160,7 @@
 </form>
 <script type="text/javascript">
     function addressInput() {
-        document.getElementById('address').value= (document.getElementById('postcode').value.concat(" ", document.getElementById('address1').value));
+        document.getElementById('address').value = (document.getElementById('postcode').value.concat(" ", document.getElementById('address1').value));
         return document.getElementById('address').value;
     }
 </script>

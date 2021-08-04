@@ -48,12 +48,12 @@
                 <a class="main-header__cart-btn" href="#"></a>
                 <span class="main-header__info-phone-content">
                     <th:block th:if="${session.id == null}">
-                                <a th:href="@{'/loginPage'}" class=" thm-btn" >
+                                <a href="/loginPage" th:href="@{'/loginPage'}" class=" thm-btn" >
                                     로그인
                                 </a>
                         </th:block>
                     <th:block th:unless="${session.id == null}">
-                                <a th:href="@{'/logout'}" class=" thm-btn" >
+                                <a href="/logout" th:href="@{'/logout'}" class=" thm-btn">
                                     로그아웃
                                 </a>
                         </th:block>

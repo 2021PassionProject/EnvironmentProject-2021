@@ -3,19 +3,15 @@ package passion.spring.environment.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import passion.spring.environment.domain.Member;
 import passion.spring.environment.service.MemberService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 @Controller
 @RequestMapping("/")
@@ -41,16 +37,15 @@ public class MemberController {
     public String signupPage() {
         return "member/signupPage";
     }   // member 디렉토리에 있는 signup 접근
+
     @PostMapping("/signup") // 정보추가 : PostMapping(보안에 좋음), 수정은 PutMapping, 삭제는 DeleteMapping
-    public String signup(@Valid Member member, HttpServletRequest request, Model model) {
+    public String signup(@Valid @ModelAttribute("") Member member, HttpServletRequest request, Model model) {
         session = request.getSession();
         model.addAttribute("member", session);
 
         if (memberService.postMember(member) > 0) {
-            //model.addAttribute("member", session);
             return "member/loginPage";
-        }
-        else {
+        } else {
             return "member/signupPage";
         }
     }
@@ -66,13 +61,13 @@ public class MemberController {
         String email = request.getParameter("email");
         String pw = request.getParameter("pw");
         // 입력한 email/pw가 서버 쪽에 존재하면 해당 레코드를 객체로 변환, 그렇지 않은 경우 null
-        Member retMember = memberService.getMemberByEmail(email);
+        Member retMember = null;
 
-        if (retMember != null && pw.equals(retMember.getPw())) {    // 로그인 성공
+        if ((retMember = memberService.getMemberByEmail(email)) != null && pw.equals(retMember.getPw())) {    // 로그인 성공
             session.setAttribute("id", retMember.getId());
             session.setAttribute("email", retMember.getEmail());
             session.setAttribute("name", retMember.getName());
-            model.addAttribute("member", session);
+            //model.addAttribute("member", session.getId());
             return "main/index";
         } else {    // 로그인 실패하면 다시 로그인 창으로 이동
             return "member/loginPage";
@@ -108,11 +103,15 @@ public class MemberController {
     }
 
     @GetMapping("/logout")
-    public String logoutMember(HttpServletRequest request) {    // 로그아웃
-        HttpSession session = request.getSession();
-        if (session != null)
+    public String logoutMember() throws IOException {    // 로그아웃
+        if (session != null) {
+//            session.setAttribute("id", "");
+//            session.setAttribute("email", "");
+//            session.setAttribute("name", "");
+//            session.setAttribute("member", "");
             session.invalidate(); //현재 session 객체를 무효화
-        return "main/index";
+        }
+        return "redirect:/";
     }
 
 //    @GetMapping("")

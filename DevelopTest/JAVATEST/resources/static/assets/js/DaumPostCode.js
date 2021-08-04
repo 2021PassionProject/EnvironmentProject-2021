@@ -1,8 +1,9 @@
-// 출처 https://postcode.map.daum.net/guide
+
 /*
         다음 우편번호 구현
         최종수정일 : 2021.08.03
         작성자 : 한정수(Intrager)
+        // 출처 https://postcode.map.daum.net/guide
  */
 function sample6_execDaumPostcode() {
     new daum.Postcode({

@@ -39,7 +39,6 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Override
     public int create(Member member) {
         String query = "insert into member(id, email, pw, name, birth, phone, address, address2) values"+"(seq_member.nextval,?,?,?,?,?,?,?)";
-
         return jdbcTemplate.update(query,
                 member.getEmail(), member.getPw(), member.getName(), member.getBirth(), member.getPhone(), member.getAddress(),member.getAddress2());
     }
