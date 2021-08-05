@@ -52,14 +52,14 @@
 <div class="page-wrapper">
 
     <th:block th:replace="~{main/index-head::header}"></th:block>
-<!--    <th:block th:unless="${session.name == null}">-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" th:href="@{'/member/{id}'(id=${session.name})}">Detail</a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--            <a class="nav-link" th:href="@{'/member/signout'}">Sign Out</a>-->
-<!--        </li>-->
-<!--    </th:block>-->
+    <th:block th:unless="${session.name == null}">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{'/member/{id}'(id=${session.name})}">Detail</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{'/member/signout'}">Sign Out</a>
+        </li>
+    </th:block>
     <!-- /헤더끝 -->
 
     <div class="stricky-header stricked-menu main-menu">

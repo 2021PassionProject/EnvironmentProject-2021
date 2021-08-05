@@ -17,14 +17,11 @@ public class MemberRepositoryImpl implements MemberRepository{
     private JdbcTemplate jdbcTemplate;
     @Autowired
     public MemberRepositoryImpl(DataSource dataSource){
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
-
     @Override
-    public int create(Member member){
-        String query = "insert into member(id, email, pw, name, phone, address) values(seq_m200412000.nextval,?,?,?,?,?)";
-        return jdbcTemplate.update(query,
-                member.getEmail(), member.getPw(), member.getName(), member.getPhone(), member.getAddress());
+    public int create(Member member) {
+        return 0;
     }
 
     @Override

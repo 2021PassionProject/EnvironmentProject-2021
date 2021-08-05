@@ -47,21 +47,7 @@
                     <a href="#" class="search-toggler main-header__search-btn"><i class="agrikon-icon-magnifying-glass"></i></a>
                     <a class="main-header__cart-btn" href="#"></a>
                     <span class="main-header__info-phone-content">
-                                <th:block th:if="${session.name == null}">
-                                <a th:href="@{'/loginPage'}" class=" thm-btn" >
-                                    로그인
-                                </a>
-                        </th:block>
-                          <th:block th:unless="${session.name == null}">
-                                <a th:href="@{'/logout'}" class=" thm-btn" >
-                                    로그아웃
-                                </a>
-                        </th:block>
-<!--                    <th:block th:unless="${session.id == null}">-->
-<!--                                <a th:href="@{'/logout'}" class=" thm-btn" >-->
-<!--                                    로그아웃-->
-<!--                                </a>-->
-<!--                        </th:block>-->
+                                <a href="login" class=" thm-btn">로그인</a>
                             </span><!-- /.main-header__info-phone-content -->
                 </div><!-- /.main-header__info -->
             </div><!-- /.container -->

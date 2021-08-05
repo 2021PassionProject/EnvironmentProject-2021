@@ -2,13 +2,11 @@ package passion.springboot.environment.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 import passion.springboot.environment.domain.Member;
 import passion.springboot.environment.repository.MemberRepository;
 
-
 import java.util.List;
-@Validated
+
 @Service
 public class MemberServiceImpl implements MemberService{
     private MemberRepository memberRepository;
@@ -47,11 +45,11 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public int putMember(Member member) {
-        return memberRepository.update(member);
+        return 0;
     }
 
     @Override
     public int deleteMember(Member member) {
-        return memberRepository.delete(member);
+        return 0;
     }
 }
