@@ -10,7 +10,9 @@ import passion.springboot.passion.domain.Member;
 import passion.springboot.passion.service.MemberService;
 import passion.springboot.passion.service.MemberServiceImpl;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -72,21 +74,19 @@ public class MemberController {
             session.setAttribute("name", retMember.getName());
             return "main/index";
         } else {
-            model.addAttribute("message", "계정 정보를 확인하세요");
             return "member/signup";
         }
     }
 
     @GetMapping("/logout")
     public String logoutMember(HttpServletRequest request) {
-        if (session != null) {
-            session.setAttribute("id", null);
-            session.setAttribute("email", null);
-            session.setAttribute("name", null);
-            session.invalidate();   // 현재 session 객체를 무효화
+        session = request.getSession();
+        session.invalidate();   // 현재 session 객체를 무효화
+
+        Cookie[] cookies = request.getCookies();
+        for(int i = 0; i < cookies.length; i++) {
+            cookies[i].setMaxAge(0);
         }
         return "main/index";
     }
-
-
 }

@@ -2,6 +2,7 @@ package passion.springboot.passion.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import passion.springboot.passion.domain.Board;
 import passion.springboot.passion.domain.Member;
 import passion.springboot.passion.repository.MemberRepository;
 
@@ -43,6 +44,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int postMember(Member member) {
         return memberRepository.create(member);
+    }
+
+    @Override
+    public int postBoard(Board board) {
+        return memberRepository.upload(board);
     }
 
     @Override

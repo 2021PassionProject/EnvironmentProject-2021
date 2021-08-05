@@ -1,3 +1,4 @@
+<html xmlns:th="http://www.thymeleaf.org/" xmlns: lang="ko">
 <link rel="stylesheet" href="assets/css/postwrite.css">
 <style>
     a:hover{
@@ -67,19 +68,20 @@
     <div class="row">
         <div class="col-md-7 offset-3 mt-4">
             <div class="card-body">
-                <label for="title"><div class="post-title">게시판 글쓰기</div></label>
+                <label for="title">
+                    <div class="post-title">게시판 글쓰기</div>
+                </label>
                 <hr>
-                <input type="text" class="form-control" id="title" name="title" maxlength="100" placeholder="제목을 입력해 주세요.">
-                <form method="POST" action="">
+                <form method="POST" th:action="upload" AUTOCOMPLETE="off">
+                    <input type="text" class="form-control" id="title" th:text="${title}" name="title" maxlength="100" placeholder="제목을 입력해 주세요." AUTOCOMPLETE="off">
                     <div class="form-group">
-                        <textarea class="form-control" name="summernote" id="summernote"></textarea>
+                        <input class="form-control" id="summernote" th:text="${content}" name="summernote" maxlength="100" AUTOCOMPLETE="off">
                     </div>
                     <div class="post-btn-line">
-                        <a href="#" class="post-btn" style=:"margin-right:30px">올리기</a>
-                        <a href="#" class="post-btn">뒤로가기</a>
+                        <input type="submit" value="올리기" class="post-btn" style=:"margin-right:30px">
+                        <a href="post" class="post-btn">뒤로가기</a>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
