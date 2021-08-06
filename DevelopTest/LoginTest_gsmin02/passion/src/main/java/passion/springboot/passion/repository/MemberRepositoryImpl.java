@@ -4,13 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import passion.springboot.passion.domain.Member;
+import passion.springboot.passion.domain.Board;
+
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -21,12 +20,18 @@ public class MemberRepositoryImpl implements MemberRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+
     @Override
     public int create(Member member) {
-        String query1 = "insert into member(id, email, pw, name, birth, phone, address, address2) values"+"(seq_member.nextval,?,?,?,?,?,?,?)";
+        String query = "insert into member(id, email, pw, name, birth, phone, address, address2) values"+"(seq_member.nextval,?,?,?,?,?,?,?)";
 
-        return jdbcTemplate.update(query1,
+        return jdbcTemplate.update(query,
                 member.getEmail(), member.getPw(), member.getName(), member.getBirth(), member.getPhone(), member.getAddress(),member.getAddress2());
+    }
+
+    @Override
+    public int upload(Board board) {
+        return this.jdbcTemplate.update("INSERT INTO board(board_id, title, content) VALUES(seq_member.nextval,?,?)",board.getTitle(),board.getContent());
     }
 
     @Override
