@@ -31,7 +31,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public int upload(Board board) {
-        return this.jdbcTemplate.update("INSERT INTO board(board_id, title, content) VALUES(seq_member.nextval,?,?)",board.getTitle(),board.getContent());
+        return this.jdbcTemplate.update("INSERT INTO board VALUES(seq_member.nextval,?,?)",board.getTitle(),board.getContent());
     }
 
     @Override

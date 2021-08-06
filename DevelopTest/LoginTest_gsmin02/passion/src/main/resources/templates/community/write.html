@@ -72,10 +72,10 @@
                     <div class="post-title">게시판 글쓰기</div>
                 </label>
                 <hr>
-                <form method="POST" th:action="upload" AUTOCOMPLETE="off">
+                <form method="POST" th:action="upload">
                     <input type="text" class="form-control" id="title" th:text="${title}" name="title" maxlength="100" placeholder="제목을 입력해 주세요." AUTOCOMPLETE="off">
                     <div class="form-group">
-                        <input class="form-control" id="summernote" th:text="${content}" name="summernote" maxlength="100" AUTOCOMPLETE="off">
+                        <textarea class="form-control" th:text="${content}" name="content" id="summernote"></textarea>
                     </div>
                     <div class="post-btn-line">
                         <input type="submit" value="올리기" class="post-btn" style=:"margin-right:30px">
