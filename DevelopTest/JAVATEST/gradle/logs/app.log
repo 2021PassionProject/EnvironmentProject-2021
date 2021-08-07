@@ -1,0 +1,57 @@
+2021-08-07 13:11:16:960 [INFO ] [o.h.v.i.u.Version] [background-preinit] - HV000001: Hibernate Validator 6.2.0.Final
+2021-08-07 13:11:17:035 [INFO ] [o.s.b.StartupInfoLogger] [restartedMain] - Starting EnvironmentApplication using Java 11.0.10 on DESKTOP-SCCD9HU with PID 32664 (C:\environment\build\classes\java\main started by IntegralHan in C:\environment)
+2021-08-07 13:11:17:042 [INFO ] [o.s.b.SpringApplication] [restartedMain] - No active profile set, falling back to default profiles: default
+2021-08-07 13:11:17:155 [INFO ] [o.s.b.l.DeferredLog] [restartedMain] - The Class-Path manifest attribute in C:\Users\IntegralHan\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc8\21.1.0.0\50044485aea10afd7defeee8109c5195b4d3cae2\ojdbc8-21.1.0.0.jar referenced one or more files that do not exist: file:/C:/Users/IntegralHan/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc8/21.1.0.0/50044485aea10afd7defeee8109c5195b4d3cae2/oraclepki.jar
+2021-08-07 13:11:17:161 [INFO ] [o.s.b.l.DeferredLog] [restartedMain] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-08-07 13:11:17:162 [INFO ] [o.s.b.l.DeferredLog] [restartedMain] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-08-07 13:11:18:481 [INFO ] [o.s.d.r.c.RepositoryConfigurationDelegate] [restartedMain] - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-08-07 13:11:18:512 [INFO ] [o.s.d.r.c.RepositoryConfigurationDelegate] [restartedMain] - Finished Spring Data repository scanning in 23 ms. Found 0 JDBC repository interfaces.
+2021-08-07 13:11:18:835 [WARN ] [o.m.l.Logger] [restartedMain] - No MyBatis mapper was found in '[passion.spring.environment]' package. Please check your configuration.
+2021-08-07 13:11:20:162 [INFO ] [o.s.b.w.e.t.TomcatWebServer] [restartedMain] - Tomcat initialized with port(s): 8888 (http)
+2021-08-07 13:11:20:184 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Initializing ProtocolHandler ["http-nio-8888"]
+2021-08-07 13:11:20:186 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Starting service [Tomcat]
+2021-08-07 13:11:20:187 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-07 13:11:20:394 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Initializing Spring embedded WebApplicationContext
+2021-08-07 13:11:20:395 [INFO ] [o.s.b.w.s.c.ServletWebServerApplicationContext] [restartedMain] - Root WebApplicationContext: initialization completed in 3232 ms
+2021-08-07 13:11:20:455 [INFO ] [p.s.e.a.LogAspectConfig] [restartedMain] - confStart - passion.spring.environment.config.AppConfig
+2021-08-07 13:11:20:481 [INFO ] [p.s.e.a.LogAspectConfig] [restartedMain] - confEnd - hiddenHttpMethodFilter
+2021-08-07 13:11:20:647 [INFO ] [p.s.e.a.LogAspectConfig] [restartedMain] - confStart - passion.spring.environment.config.DBConfig
+2021-08-07 13:11:20:753 [INFO ] [p.s.e.a.LogAspectConfig] [restartedMain] - confEnd - getDriverManagerDataSource
+2021-08-07 13:11:23:713 [INFO ] [o.s.b.d.a.OptionalLiveReloadServer] [restartedMain] - LiveReload server is running on port 35729
+2021-08-07 13:11:23:750 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Starting ProtocolHandler ["http-nio-8888"]
+2021-08-07 13:11:23:783 [INFO ] [o.s.b.w.e.t.TomcatWebServer] [restartedMain] - Tomcat started on port(s): 8888 (http) with context path ''
+2021-08-07 13:11:23:815 [INFO ] [o.s.b.StartupInfoLogger] [restartedMain] - Started EnvironmentApplication in 7.395 seconds (JVM running for 10.815)
+2021-08-07 13:11:29:616 [INFO ] [o.a.j.l.DirectJDKLog] [http-nio-8888-exec-1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-07 13:11:29:616 [INFO ] [o.s.w.s.FrameworkServlet] [http-nio-8888-exec-1] - Initializing Servlet 'dispatcherServlet'
+2021-08-07 13:11:29:620 [INFO ] [o.s.w.s.FrameworkServlet] [http-nio-8888-exec-1] - Completed initialization in 2 ms
+2021-08-07 13:11:29:753 [WARN ] [o.s.w.s.h.AbstractHandlerExceptionResolver] [http-nio-8888-exec-1] - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "login"]
+2021-08-07 13:11:30:026 [WARN ] [o.s.w.s.h.AbstractHandlerExceptionResolver] [http-nio-8888-exec-2] - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "favicon.ico"]
+2021-08-07 13:11:33:735 [WARN ] [o.s.w.s.h.AbstractHandlerExceptionResolver] [http-nio-8888-exec-2] - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "login"]
+2021-08-07 13:11:33:854 [WARN ] [o.s.w.s.h.AbstractHandlerExceptionResolver] [http-nio-8888-exec-7] - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "favicon.ico"]
+2021-08-07 13:13:55:162 [INFO ] [o.h.v.i.u.Version] [background-preinit] - HV000001: Hibernate Validator 6.2.0.Final
+2021-08-07 13:13:55:213 [INFO ] [o.s.b.StartupInfoLogger] [restartedMain] - Starting EnvironmentApplication using Java 11.0.10 on DESKTOP-SCCD9HU with PID 16708 (C:\environment\build\classes\java\main started by IntegralHan in C:\environment)
+2021-08-07 13:13:55:217 [INFO ] [o.s.b.SpringApplication] [restartedMain] - No active profile set, falling back to default profiles: default
+2021-08-07 13:13:55:277 [INFO ] [o.s.b.l.DeferredLog] [restartedMain] - The Class-Path manifest attribute in C:\Users\IntegralHan\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc8\21.1.0.0\50044485aea10afd7defeee8109c5195b4d3cae2\ojdbc8-21.1.0.0.jar referenced one or more files that do not exist: file:/C:/Users/IntegralHan/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc8/21.1.0.0/50044485aea10afd7defeee8109c5195b4d3cae2/oraclepki.jar
+2021-08-07 13:13:55:277 [INFO ] [o.s.b.l.DeferredLog] [restartedMain] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-08-07 13:13:55:278 [INFO ] [o.s.b.l.DeferredLog] [restartedMain] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-08-07 13:13:56:812 [INFO ] [o.s.d.r.c.RepositoryConfigurationDelegate] [restartedMain] - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2021-08-07 13:13:56:840 [INFO ] [o.s.d.r.c.RepositoryConfigurationDelegate] [restartedMain] - Finished Spring Data repository scanning in 21 ms. Found 0 JDBC repository interfaces.
+2021-08-07 13:13:57:052 [WARN ] [o.m.l.Logger] [restartedMain] - No MyBatis mapper was found in '[passion.spring.environment]' package. Please check your configuration.
+2021-08-07 13:13:58:452 [INFO ] [o.s.b.w.e.t.TomcatWebServer] [restartedMain] - Tomcat initialized with port(s): 8888 (http)
+2021-08-07 13:13:58:486 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Initializing ProtocolHandler ["http-nio-8888"]
+2021-08-07 13:13:58:488 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Starting service [Tomcat]
+2021-08-07 13:13:58:489 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-07 13:13:58:830 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Initializing Spring embedded WebApplicationContext
+2021-08-07 13:13:58:830 [INFO ] [o.s.b.w.s.c.ServletWebServerApplicationContext] [restartedMain] - Root WebApplicationContext: initialization completed in 3551 ms
+2021-08-07 13:13:58:891 [INFO ] [p.s.e.a.LogAspectConfig] [restartedMain] - confStart - passion.spring.environment.config.AppConfig
+2021-08-07 13:13:58:920 [INFO ] [p.s.e.a.LogAspectConfig] [restartedMain] - confEnd - hiddenHttpMethodFilter
+2021-08-07 13:13:59:083 [INFO ] [p.s.e.a.LogAspectConfig] [restartedMain] - confStart - passion.spring.environment.config.DBConfig
+2021-08-07 13:13:59:178 [INFO ] [p.s.e.a.LogAspectConfig] [restartedMain] - confEnd - getDriverManagerDataSource
+2021-08-07 13:14:02:051 [INFO ] [o.s.b.d.a.OptionalLiveReloadServer] [restartedMain] - LiveReload server is running on port 35729
+2021-08-07 13:14:02:083 [INFO ] [o.a.j.l.DirectJDKLog] [restartedMain] - Starting ProtocolHandler ["http-nio-8888"]
+2021-08-07 13:14:02:112 [INFO ] [o.s.b.w.e.t.TomcatWebServer] [restartedMain] - Tomcat started on port(s): 8888 (http) with context path ''
+2021-08-07 13:14:02:140 [INFO ] [o.s.b.StartupInfoLogger] [restartedMain] - Started EnvironmentApplication in 7.507 seconds (JVM running for 11.558)
+2021-08-07 13:14:02:560 [INFO ] [o.a.j.l.DirectJDKLog] [http-nio-8888-exec-1] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-07 13:14:02:561 [INFO ] [o.s.w.s.FrameworkServlet] [http-nio-8888-exec-1] - Initializing Servlet 'dispatcherServlet'
+2021-08-07 13:14:02:565 [INFO ] [o.s.w.s.FrameworkServlet] [http-nio-8888-exec-1] - Completed initialization in 3 ms
+2021-08-07 13:14:21:062 [WARN ] [o.a.j.l.DirectJDKLog] [http-nio-8888-exec-4] - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [2,487] milliseconds.

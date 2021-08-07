@@ -1,0 +1,14 @@
+.number{
+    text-align: center;
+}
+.viewclick{
+    color: black;
+}
+.a viewclick:hover{
+    color: #4b87c1;
+}
+.more{
+    border: none;
+    width: 100px;
+    border-radius: 3px;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+
+    <header class="main-header">
+        <nav class="main-menu">
+            <div class="container">
+                <div class="logo-box">
+                    <a href="/" aria-label="logo image"><img src="assets/images/logo-dark.png" width="153" alt=""></a>
+                    <span class="fa fa-bars mobile-nav__toggler"></span>
+                </div><!-- /.logo-box -->
+                <ul class="main-menu__list">
+                    <li class="dropdown">
+                        <a href="projects">행사</a>
+                        <ul>
+                            <li>
+                                <a href="">기념일</a>
+                            </li>
+                            <li><a href="">봉사</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="blog">뉴스</a>
+                    </li>
+                    <li class="dropdown"><a href="service">분리수거</a>
+                        <ul>
+                            <li><a href="">종이류</a></li>
+                            <li><a href="">캔류</a></li>
+                            <li><a href="">유리병류</a></li>
+                            <li><a href="">플라스틱류</a></li>
+                            <li><a href="">비닐류</a></li>
+                            <li><a href="">스티로폼</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="upcycling">업사이클링</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="map">지도</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="post">게시판</a>
+                    </li>
+                </ul>
+                <!-- /.main-menu__list -->
+
+                <div class="main-header__info">
+                    <a href="#" class="search-toggler main-header__search-btn"><i class="agrikon-icon-magnifying-glass"></i></a>
+                    <a class="main-header__cart-btn" href="#"></a>
+                    <span class="main-header__info-phone-content">
+                        <td th:if="${session.id} == null">
+                        <a th:href="@{'/loginPage'}" class="thm-btn">로그인</a>
+                        </td>
+                        <td th:unless="${session.id} == null">
+                        <a th:href="@{'/logout'}" class="thm-btn">로그아웃</a>
+                        </td>
+                    </span><!-- /.main-header__info-phone-content -->
+                </div><!-- /.main-header__info -->
+            </div><!-- /.container -->
+        </nav>
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+</div>
