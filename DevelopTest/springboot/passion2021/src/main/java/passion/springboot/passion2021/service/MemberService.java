@@ -13,4 +13,6 @@ public interface MemberService {
     int postMember(Member member);
     int putMember(Member member);
     int deleteMember(Member member);
+    public int idCheck(String email);
 }
+

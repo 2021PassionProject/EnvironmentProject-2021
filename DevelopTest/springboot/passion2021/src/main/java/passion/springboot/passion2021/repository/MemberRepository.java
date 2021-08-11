@@ -12,4 +12,5 @@ public interface MemberRepository {
     List<Member> readMembers();  //다수의 레코드 가져오기
     int update(Member member); // 레코드 수정
     int delete(Member member); // 레코드 삭제
+    public int idCheck(String email);
 }

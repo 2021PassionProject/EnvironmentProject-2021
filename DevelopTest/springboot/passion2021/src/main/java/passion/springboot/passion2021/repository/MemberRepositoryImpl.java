@@ -1,5 +1,6 @@
 package passion.springboot.passion2021.repository;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,6 +22,14 @@ public class MemberRepositoryImpl implements MemberRepository {
     public MemberRepositoryImpl(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
+    @Override //아이디 중복체크
+    public int idCheck(String email) {
+        String query = "SELECT COUNT(email) FROM member WHERE email='" + email +"'";
+
+        return jdbcTemplate.queryForObject(query, Integer.class);
+
+    }
     @Override
     public int create(Member member) {
 
@@ -32,7 +41,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public Member readById(Member member) {
-        String query = "select * from m201912058 where id=?";
+        String query = "select * from member where id=?";
         Object[] id = new Object[] {member.getId()};
         try {
             return jdbcTemplate.queryForObject(query,

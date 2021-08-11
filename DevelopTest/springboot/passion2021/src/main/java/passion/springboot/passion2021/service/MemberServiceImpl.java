@@ -54,4 +54,10 @@ public class MemberServiceImpl implements MemberService {
     public int deleteMember(Member member) {
         return memberRepository.delete(member);
     }
+
+    @Override
+    public int idCheck(String email) {
+        int cnt = memberRepository.idCheck(email);
+        return cnt;
+    }
 }

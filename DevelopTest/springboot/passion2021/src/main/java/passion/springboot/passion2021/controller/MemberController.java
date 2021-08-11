@@ -2,6 +2,7 @@ package passion.springboot.passion2021.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +55,16 @@ public class MemberController {
             return "member/signupPage";
         }
     }
+    @PostMapping("/idCheck") //아이디 중복 체크
+    @ResponseBody
+    public int idCheck(@RequestParam("email") String email){
+        //logger.info("userIdCheck 진입");
+       // logger.info("전달받은 id:"+email);
+        int cnt = memberService.idCheck(email); //전달 받은 email을 가지고 memberService의 idCheck로 이동하여 리턴받은 결과를 int cnt에 저장
+       // logger.info("확인 결과:"+cnt);
+        return cnt;
+    }
+
 
     @GetMapping("/login-form")   // url에는 loginPage 이라는 이름으로 접속
     public String loginform() {
