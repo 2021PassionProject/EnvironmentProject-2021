@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org/" xmlns: lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,41 +145,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                <tr>
-                    <td><div class="number">5</div></td>
-                    <td><a href="view" class="viewclick"> 파테크 하는 방법!</a></td>
-                    <td>고</td>
+                <tr th:each="board : ${board}">
+                    <div class="number"><td th:text="${board.board_id}"></div>
+                    <td th:text="${board.title}" >
+                    <td th:text="${board.content}" >
                     <td>2020.05.05</td>
                     <td>27</td>
-                </tr>
-                <tr>
-                    <td><div class="number">4</div></td>
-                    <td><a href="view" class="viewclick">절약하는법</a></td>
-                    <td>인버</td>
-                    <td>2020.05.05</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td><div class="number">3</div></td>
-                    <td><a href="view" class="viewclick">재활용에 도움되는 팁</a></td>
-                    <td>김효은</td>
-                    <td>2020.05.05</td>
-                    <td>7</td>
-                </tr>
-                <tr>
-                    <td><div class="number">2</div></td>
-                    <td><a href="view" class="viewclick">페트병 화분으로 재활용했어요~</a></td>
-                    <td>킹</td>
-                    <td>2020.05.05</td>
-                    <td>15</td>
-                </tr>
-                <tr>
-                    <td><div class="number">1</div></td>
-                    <td><a href="view" class="viewclick">종이 재활용하는 영상</a></td>
-                    <td>창</td>
-                    <td>2020.05.05</td>
-                    <td>12</td>
                 </tr>
                 </tbody><!-- 테이블 끝-->
             </table>

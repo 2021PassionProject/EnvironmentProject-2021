@@ -32,6 +32,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public List<Board> getBoards() {
+        return memberRepository.readBoards();
+    }
+
+    @Override
     public List<Member> getMembers() {
         return memberRepository.readMembers();
     }

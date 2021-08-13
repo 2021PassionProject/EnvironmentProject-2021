@@ -4,17 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import passion.springboot.passion.domain.Member;
 import passion.springboot.passion.domain.Board;
 
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.DayOfWeek;
 import java.util.List;
 
 @Repository
 public class MemberRepositoryImpl implements MemberRepository {
-    private JdbcTemplate jdbcTemplate;
+    public static JdbcTemplate jdbcTemplate;
     @Autowired
     public MemberRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -31,7 +35,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public int upload(Board board) {
-        return this.jdbcTemplate.update("INSERT INTO board VALUES(seq_member.nextval,?,?)",board.getTitle(),board.getContent());
+        return this.jdbcTemplate.update("INSERT INTO board VALUES(seq_board.nextval,?,?)",board.getTitle(),board.getContent());
     }
 
     @Override
@@ -48,6 +52,11 @@ public class MemberRepositoryImpl implements MemberRepository {
         } catch(EmptyResultDataAccessException e) {
             return null;
         }
+    }
+
+    @Override
+    public List<Board> readBoards() {
+        return null;
     }
 
     @Override
