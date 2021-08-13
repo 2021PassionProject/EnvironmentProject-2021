@@ -75,18 +75,35 @@ public class MemberController {
     }
 
     @RequestMapping("/login-kakao") //카카오톡 로그인
-    public String loginkakao(@RequestParam(value = "code", required = false) String code) throws Exception{
-        System.out.println("#########" + code);
+    public String loginkakao(@RequestParam("code") String code, HttpSession session) {
+        System.out.println("code : " + code);
         String access_Token = kakaoService.getAccessToken(code);
+        System.out.println("access_Token : " + access_Token);
         HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
-        System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###userInfo#### : " + userInfo.get("email"));
-        System.out.println("###nickname#### : " + userInfo.get("nickname"));
-        System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
-        System.out.println("###birthday#### : " + userInfo.get("birthday"));
+        System.out.println("login Controller : " + userInfo);
+        if (userInfo.get("email") != null) {
+            session.setAttribute("userId", userInfo.get("email"));
+            session.setAttribute("access_Token", access_Token);
+        }
 
         return "main/index";
     }
+    @RequestMapping(value="/logout2") //카카오 로그아웃
+    public String logout(HttpSession session) {
+        String access_Token = (String)session.getAttribute("access_Token");
+
+        if(access_Token != null && !"".equals(access_Token)){
+            kakaoService.kakaoLogout(access_Token);
+            session.removeAttribute("access_Token");
+            session.removeAttribute("userId");
+            session.invalidate();
+        }else{
+            System.out.println("access_Token is null");
+
+        }
+        return "redirect:/";
+    }
+
     @PostMapping("/login")  // 정보추가 : PostMapping(보안에 좋음), 수정 : PutMapping, 삭제 : DeleteMapping
     public String login(HttpServletRequest request, Model model) {
         session = request.getSession();
