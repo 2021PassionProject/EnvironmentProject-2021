@@ -1,5 +1,6 @@
 package passion.springboot.passion2021.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -7,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import passion.springboot.passion2021.domain.Member;
+import passion.springboot.passion2021.service.KakaoService;
 import passion.springboot.passion2021.service.MemberService;
 
 import javax.servlet.ServletException;
@@ -29,6 +31,7 @@ public class MemberController {
     MemberService memberService;
 
     @Autowired  // Spring Framework 가 주입함
+    private KakaoService kakaoService;
     public MemberController(MemberService memberService) {
         this.memberService = memberService; // 오른쪽 memberService 객체는 등록된 객체를 주입
     }
@@ -66,11 +69,19 @@ public class MemberController {
     }
 
 
-    @GetMapping("/login-form")   // url에는 loginPage 이라는 이름으로 접속
-    public String loginform() {
-        return "member/login-form";
-    }  // member 디렉토리에 있는 loginPage 접근
+    @RequestMapping("/login-form") //카카오톡 로그인
+    public String loginform(@RequestParam(value = "code", required = false) String code) throws Exception{
+        System.out.println("#########" + code);
+        String access_Token = kakaoService.getAccessToken(code);
+        HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
+        System.out.println("###access_Token#### : " + access_Token);
+        System.out.println("###userInfo#### : " + userInfo.get("email"));
+        System.out.println("###nickname#### : " + userInfo.get("nickname"));
+        System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
+        System.out.println("###birthday#### : " + userInfo.get("birthday"));
 
+        return "member/login-form";
+    }
     @PostMapping("/login")  // 정보추가 : PostMapping(보안에 좋음), 수정 : PutMapping, 삭제 : DeleteMapping
     public String login(HttpServletRequest request, Model model) {
         session = request.getSession();
