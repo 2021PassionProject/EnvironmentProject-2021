@@ -69,8 +69,13 @@ public class MemberController {
     }
 
 
-    @RequestMapping("/login-form") //카카오톡 로그인
-    public String loginform(@RequestParam(value = "code", required = false) String code) throws Exception{
+    @RequestMapping("/login-form")
+    public String loginform() {
+        return "member/login-form"; //로그인폼
+    }
+
+    @RequestMapping("/login-kakao") //카카오톡 로그인
+    public String loginkakao(@RequestParam(value = "code", required = false) String code) throws Exception{
         System.out.println("#########" + code);
         String access_Token = kakaoService.getAccessToken(code);
         HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
@@ -80,7 +85,7 @@ public class MemberController {
         System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
         System.out.println("###birthday#### : " + userInfo.get("birthday"));
 
-        return "member/login-form";
+        return "main/index";
     }
     @PostMapping("/login")  // 정보추가 : PostMapping(보안에 좋음), 수정 : PutMapping, 삭제 : DeleteMapping
     public String login(HttpServletRequest request, Model model) {
