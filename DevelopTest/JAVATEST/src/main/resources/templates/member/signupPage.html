@@ -36,6 +36,31 @@
 <script src="assets/js/passwordCheck.js"></script>
 
 </head>
+<style>
+    .email_ok{color:#006400; display: none;}
+    .email_already{color:#FF0000; display: none;}
+</style>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    function checkId() {
+        var email = $('#email').val();  // "email"인 입력란의 값을 저장
+        $.ajax({
+            url:'/idCheck', // Controller에서 인식할 주소
+            type:'post',    // POST 방식으로 전달
+            data:{email:email},
+            success:function(cnt) {
+                if(cnt != 1) {  // cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
+                    $('.email_ok').css("display","inline-block");
+                    $('.email_already').css("display","none");
+                }else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                    $('.email_already').css("display","inline-block");
+                    $('.email_ok').css("display","none");
+                }
+            },
+            error:function() { alert("에러입니다."); }
+        });
+    };
+</script>
 <body>
 
 <!-- header -->
@@ -68,7 +93,9 @@
                     </h3>
                     <span class="box int_email">
                         <input type="text" th:text="${email}" id="email" name="email"
-                               class="int" maxlength="30"/>
+                               class="int" maxlength="30" required oninput="checkId()" />
+                        <span class = "email_ok">사용 가능한 아이디입니다.</span>
+                        <span class = "email_already">사용 불가능한 아이디입니다.</span>
                     </span>
                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
                 </div>

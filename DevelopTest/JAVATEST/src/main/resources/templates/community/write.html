@@ -58,17 +58,26 @@
 </head>
 
 <body>
+<div class="page-wrapper">
+<div class="preloader">
+    <img class="preloader__image" width="55" src="assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
 <th:block th:replace="~{main/index-head::header}"></th:block>
+<div class="stricky-header stricked-menu main-menu">
+    <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+</div><!-- /.stricky-header -->
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-7 offset-3 mt-4">
             <div class="card-body">
                 <label for="title"><div class="post-title">게시판 글쓰기</div></label>
                 <hr>
-                <input type="text" class="form-control" id="title" name="title" maxlength="100" placeholder="제목을 입력해 주세요.">
-                <form method="POST" action="">
+
+                <form method="POST" th:action="@{/upload}">
+                    <input type="text" class="form-control" id="title" th:text="${title}" name="title" maxlength="100" placeholder="제목을 입력해 주세요.">
                     <div class="form-group">
-                        <textarea class="form-control" name="summernote" id="summernote"></textarea>
+                        <textarea class="form-control" th:text="${content}" name="summernote" id="summernote"></textarea>
                     </div>
                     <div class="post-btn-line">
                         <a href="#" class="post-btn" style=:"margin-right:30px">올리기</a>

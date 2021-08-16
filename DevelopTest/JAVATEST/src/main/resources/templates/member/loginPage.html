@@ -45,12 +45,41 @@
         <div class="title" aria-live="assertive">
             <p></p>
         </div>
-        <form id="frmNIDLogin" name="frmNIDLogin" target="_top" AUTOCOMPLETE="off" th:action="@{/login}" method="POST">
+        <form target="_top" AUTOCOMPLETE="on" th:action="@{'./login'}"method="POST" name="login" id="login" novalidate>
             <!--<th:block th:if="${cookie_id == null}"></th:block>-->
 
             <fieldset class="login_form">
                 <br><br><br>
-
+                <th:block th:if="${session.name == 'name'}">
+                    <section>
+                        <div class="login">
+                            <div class="login-type">
+                                <br><br>
+                                <h1 style="color: #1C354F">로그인</h1>
+                                <div class="int-area">
+                                    <input type="text" name="email" id="id" autocomplete="on" required>
+                                    <label for="email">아이디(이메일)</label>
+                                </div>
+                                <div class="int-area">
+                                    <input type="password" name="pw" id="pwd" autocomplete="off" required>
+                                    <label for="pw">비밀번호</label>
+                                </div>
+                                <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" th:id="${session.id}" style="width: 360px">
+                                <div class="login-type">
+                                    <hr>
+                                    <a class="btn" href="#none">휴대폰 번호로 로그인</a>
+                                    <a class="btn" href="#">네이버로 로그인</a>
+                                    <a class="btn" href="#">카카오로 로그인</a>
+                                </div>
+                                <div class="login-footer">
+                                    <a th:href="@{'./signupPage'}">회원가입</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </th:block>
+                <th:block th:unless="${session.name == 'name'}">
                 <section>
                     <div class="login">
                         <div class="login-type">
@@ -64,20 +93,21 @@
                                 <input type="password" name="pw" id="pw" autocomplete="off" required>
                                 <label for="pw">비밀번호</label>
                             </div>
-                            <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" th:id="${session.id}" style="width: 360px">
+                            <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" id="log.login" style="width: 360px">
                             <div class="login-type">
                                 <hr>
                                 <a class="btn" href="#none">휴대폰 번호로 로그인</a>
-                                <a class="btn" href="#" th:href="@{'/naverLogin'}">네이버로 로그인</a>
-                                <a class="btn" href="#none">카카오로 로그인</a>
+                                <a class="btn" href="https://nid.naver.com/oauth2.0/authorize?client_id=21Q2VD9txfpkGj8TyYof&response_type=code&redirect_uri=http://localhost:8888/member/callback&state=authorization_code">네이버로 로그인</a>
+                                <a class="btn" href="https://kauth.kakao.com/oauth/authorize?client_id=1155672dcd0d8d43e1e3fbdc8ea08f7a&redirect_uri=http://localhost:8888/login-kakao&response_type=code">카카오로 로그인</a>
                             </div>
                             <div class="login-footer">
-                                <a th:href="@{'/signupPage'}">회원가입</a>
+                                <a th:href="@{'./signupPage'}">회원가입</a>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </section>
+                </th:block>
                 <br><br>
                 <th:block th:replace="main/index-footer::footer"></th:block>
                 <div class="bottom-footer">
