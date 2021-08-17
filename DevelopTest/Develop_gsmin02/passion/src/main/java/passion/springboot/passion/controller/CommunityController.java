@@ -50,7 +50,11 @@ public class CommunityController {
                         Board board = new Board();
                         board.setBoard_id(rs.getLong("board_id"));
                         board.setTitle(rs.getString("title"));
+                        board.setWriter(rs.getString("writer"));
+                        board.setWrite_time(rs.getString("write_time"));
+                        board.setViews(rs.getLong("views"));
                         board.setContent(rs.getString("content"));
+
                         return board;
                     }
                 }
@@ -72,28 +76,30 @@ public class CommunityController {
             return "community/write";
         }
         else {
-            return "member/login";
+            return "member/move_login";
         }
     }
     @PostMapping("/upload")
-    public String upload(@Valid Board board, HttpServletRequest request) {
+    public String upload(@Valid Board board, Member member, HttpServletRequest request) {
         session = request.getSession();
         String title = request.getParameter("title");
         String content = request.getParameter("content");
+        String writer = (String) session.getAttribute("name");
 
         board.setTitle(title);
+        board.setWriter(writer);
         board.setContent(content);
 
         if(session.getAttribute("id") != null) {
-            if(memberService.postBoard(board) > 0) {
-                return "community/post";
+            if(memberService.postBoard(board, member) > 0) {
+                return "community/move_post";
             }
             else {
-                return "member/login";
+                return "member/move_login";
             }
         }
         else {
-            return "member/login";
+            return "member/move_login";
         }
 
     }

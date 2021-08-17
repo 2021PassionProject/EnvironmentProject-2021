@@ -14,7 +14,7 @@ public interface MemberService {
     List<Member> getMembers();
     List<Member> getMembersByPage(int index, int size);
     int postMember(Member member);
-    int postBoard(Board board);
+    int postBoard(Board board, Member member);
     int putMember(Member member);
     int deleteMember(Member member);
 }

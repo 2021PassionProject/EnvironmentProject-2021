@@ -68,7 +68,7 @@
                         </label>
                         </h3>
                         <span class="box int_email">
-                        <input type="text" th:text="${email}" id="email" name="email"
+                        <input type="text" th:value="${email}" id="email" name="email"
                                class="int" maxlength="20"/>
                     </span>
                         <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
@@ -77,7 +77,7 @@
                     <div>
                         <h3 class="join_title"><label for="pw">비밀번호</label></h3>
                         <span class="box int_pass">
-                        <input type="password" th:text="${pw}" id="pw" name="pw"
+                        <input type="password" th:value="${pw}" id="pw" name="pw"
                                class="int" maxlength="20"/>
                         <span id="alertTxt">사용불가</span>
                     </span>
@@ -97,7 +97,7 @@
                     <div>
                         <h3 class="join_title"><label for="name">이름</label></h3>
                         <span class="box int_name">
-                        <input type="text" th:text="${name}" id="name" name="name"
+                        <input type="text" th:value="${name}" id="name" name="name"
                                class="int" maxlength="20"/>
                     </span>
                         <span class="error_next_box"></span>
@@ -107,7 +107,7 @@
                     <div>
                         <h3 class="join_title"><label for="birth">생년월일</label></h3>
                         <span class="box int_bir">
-                        <input type="text" th:text="${birth}" id="birth" name="birth" class="int" maxlength="20"
+                        <input type="text" th:value="${birth}" id="birth" name="birth" class="int" maxlength="20"
                                placeholder="yyMMdd"/>
                     </span>
                         <span class="error_next_box"></span>
@@ -117,7 +117,7 @@
                     <div>
                         <h3 class="join_title"><label for="phone">휴대전화</label></h3>
                         <span class="box int_mobile">
-                        <input type="tel" id="phone" name="phone" th:text="${phone}"
+                        <input type="tel" id="phone" name="phone" th:value="${phone}"
                                class="int" maxlength="13" placeholder="전화번호 입력"/>
                     </span>
                         <span class="error_next_box"></span>
@@ -134,14 +134,14 @@
 
                     <div>
                         <span class="box int_Detailed_Address">
-                            <input type="text" th:text="${address}" id="address" name="address"  class="address" maxlength="25"
+                            <input type="text" th:value="${address}" id="address" name="address"  class="address" maxlength="25"
                                    placeholder="주소"/>
                         </span>
                     </div>
 
                     <div>
                         <span class="box int_Detailed_Address">
-                            <input type="text" th:text="${address2}" id="address2" name="address2"  class="int" maxlength="25"
+                            <input type="text" th:value="${address2}" id="address2" name="address2"  class="int" maxlength="25"
                                    placeholder="상세주소"/>
                         </span>
                     </div>
