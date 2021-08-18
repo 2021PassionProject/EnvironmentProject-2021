@@ -701,7 +701,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항</title>
+    <title>게시판 상세보기</title>
     <link rel="stylesheet" href="assets/css/css.css">
 
     <!-- favicons Icons -->
@@ -739,40 +739,30 @@
             <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
         </div><!-- /.stricky-header -->
     </div>
-
     <div class="board_wrap">
         <div class="board_view_wrap">
-            <div class="board_view">
-                <div class="title">
-                    파 테크하는 방법!
+            <div class="board_view" th:each="board : ${data}">
+                <div class="title" th:text="${board.title}">
                 </div>
                 <div class="info">
                     <dl>
                         <dt>번호</dt>
-                        <dd>1</dd>
+                        <dd th:text="${board.board_id}">
                     </dl>
                     <dl>
                         <dt>글쓴이</dt>
-                        <dd>권오준</dd>
+                        <dd th:text="${board.writer}">
                     </dl>
                     <dl>
                         <dt>작성일</dt>
-                        <dd>2021.1.16</dd>
+                        <dd th:text="${board.write_time}">
                     </dl>
                     <dl>
                         <dt>조회</dt>
-                        <dd>33</dd>
+                        <dd th:text="${views}">
                     </dl>
                 </div>
-                <div class="cont">
-                    201912019<br>
-                    권오준<br>
-                    2021-05-12<br>
-                    19:53분경<br>
-                    만들었습니다<br>
-                    O<br>
-                    ㅣ<br>
-                    ㅅ
+                <div class="cont" th:text="${board.content}">
                 </div>
             </div>
 

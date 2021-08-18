@@ -146,9 +146,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="board : ${board}">
-                    <div class="number"><td th:text="${board.board_id}"></div>
+                    <div class="number">
+                        <td th:text="${board.board_id}">
+                    </div>
                     <td th:text="${board.writer}" >
-                    <td th:text="${board.title}" >
+                    <td><a th:href="@{view(id=${board.board_id})}" th:text="${board.title}"></a></td>
                     <td th:text="${board.write_time}">
                     <td th:text="${board.views}">
                 </tr>
@@ -156,6 +158,7 @@
             </table>
         </div>
 </div>
+
     <hr/>
     <ul class="pagination justify-content-center">
         <li class="page-item"><a class="page-link" href="#"><</a></li>
