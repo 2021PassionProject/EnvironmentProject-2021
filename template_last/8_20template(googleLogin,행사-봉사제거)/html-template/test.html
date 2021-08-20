@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import
+        url('https://fonts.googleapis.com/css?family=Raleway&display=sway');
+        body{
+            font-family: 'Raleway', sans-serif;
+            color: #222;
+            line-height: 1.5em;
+            font-weight: 300;
+            margin :0;
+        }
+        a{
+            color: #222;
+            text-decoration: none;
+        }
+        .items{
+            text-align: center;
+            float: left;
+            margin: 25px;
+        }
+        .item{
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            position: relative;
+        }
+        img{
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+        }
+        .caption{
+            width: 150px;
+            height: 150px;
+            background-color: #000;
+            position: absolute;
+            top:0;
+            left:0;
+            color: #fff;
+            padding: 15px;
+            box-sizing: border-box;
+            padding-top: 2px;
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .caption a{
+            color: #fff;
+            background-color: #6AA1D7;
+            padding: 7px;
+            border-radius: 3px;
+        }
+        .caption a:hover{
+            background-color: #fff;
+            color:#000;
+        }
+        .item:hover .caption{
+            opacity: 1;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>이미지 텍스트 호버</title>
+</head>
+<body>
+    <div class="items">
+        <div class="item">
+            <img src="assets/images/resources/119reo.jpg" alt="">
+                <div class="caption">
+                    <h2>sdfsfd</h2>
+                    <p>
+                        qwe
+                    </p>
+                    <a href="">자세히보기</a>
+                </div>
+        </div>
+    </div>
+    <div class="items">
+        <div class="item">
+            <img src="assets/images/resources/119reo.jpg" alt="">
+            <div class="caption">
+                <h2>sdfsfd</h2>
+                <p>
+                    qwe
+                </p>
+                <a href="">자세히보기</a>
+            </div>
+        </div>
+    </div>
+    <div class="items">
+        <div class="item">
+            <img src="assets/images/resources/119reo.jpg" alt="">
+            <div class="caption">
+                <h2>sdfsfd</h2>
+                <p>
+                    qwe
+                </p>
+                <a href="">자세히보기</a>
+            </div>
+        </div>
+    </div>
+    <div class="items">
+        <div class="item">
+            <img src="assets/images/resources/119reo.jpg" alt="">
+            <div class="caption">
+                <h2>sdfsfd</h2>
+                <p>
+                    qwe
+                </p>
+                <a href="">자세히보기</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
