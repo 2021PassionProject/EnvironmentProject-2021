@@ -1,6 +1,8 @@
 package passion.springboot.passion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import passion.springboot.passion.domain.Board;
 import passion.springboot.passion.domain.Member;
 import passion.springboot.passion.repository.MemberRepositoryImpl;
@@ -50,7 +53,11 @@ public class CommunityController {
                         Board board = new Board();
                         board.setBoard_id(rs.getLong("board_id"));
                         board.setTitle(rs.getString("title"));
+                        board.setWriter(rs.getString("writer"));
+                        board.setWrite_time(rs.getString("write_time"));
+                        board.setViews(rs.getLong("views"));
                         board.setContent(rs.getString("content"));
+
                         return board;
                     }
                 }
@@ -61,7 +68,25 @@ public class CommunityController {
     }
 
     @GetMapping("/view")
-    public String view() {
+    public String view(@RequestParam("id") int id, Model model) {
+        model.addAttribute("num_id", id);
+        model.addAttribute("data", MemberRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
+                new RowMapper<Board>() {
+                    public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Board board = new Board();
+                        board.setBoard_id(rs.getLong("board_id"));
+                        board.setTitle(rs.getString("title"));
+                        board.setWriter(rs.getString("writer"));
+                        board.setWrite_time(rs.getString("write_time"));
+                        board.setViews(rs.getLong("views"));
+                        board.setContent(rs.getString("content"));
+
+                        return board;
+                    }
+                }
+            )
+        );
+
         return "community/view";
     }
 
@@ -72,28 +97,30 @@ public class CommunityController {
             return "community/write";
         }
         else {
-            return "member/login";
+            return "member/move_login";
         }
     }
     @PostMapping("/upload")
-    public String upload(@Valid Board board, HttpServletRequest request) {
+    public String upload(@Valid Board board, Member member, HttpServletRequest request) {
         session = request.getSession();
         String title = request.getParameter("title");
         String content = request.getParameter("content");
+        String writer = (String) session.getAttribute("name");
 
         board.setTitle(title);
+        board.setWriter(writer);
         board.setContent(content);
 
         if(session.getAttribute("id") != null) {
-            if(memberService.postBoard(board) > 0) {
-                return "community/post";
+            if(memberService.postBoard(board, member) > 0) {
+                return "community/move_post";
             }
             else {
-                return "member/login";
+                return "member/move_login";
             }
         }
         else {
-            return "member/login";
+            return "member/move_login";
         }
 
     }

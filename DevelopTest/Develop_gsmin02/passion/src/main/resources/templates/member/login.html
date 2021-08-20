@@ -53,11 +53,11 @@
                             <form id="frmNIDLogin" name="frmNIDLogin" target="_top" AUTOCOMPLETE="off" th:action="signin" method="POST">
                                 <h1 style="color: #1C354F">로그인</h1>
                                 <div class="int-area">
-                                    <input type="text" th:text="${email}" name="email" id="email" autocomplete="off" required>
+                                    <input type="text" th:value="${email}" name="email" id="email" autocomplete="off" required>
                                     <label for="email">아이디(이메일)</label>
                                 </div>
                                 <div class="int-area">
-                                    <input type="password" th:text="${pw}" name="pw" id="pw" autocomplete="off" required>
+                                    <input type="password" th:value="${pw}" name="pw" id="pw" autocomplete="off" required>
                                     <label for="pw">비밀번호</label>
                                 </div>
                                 <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" id="log.login" style="width: 360px">

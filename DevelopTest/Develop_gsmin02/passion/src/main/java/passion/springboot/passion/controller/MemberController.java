@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import passion.springboot.passion.domain.Member;
@@ -51,7 +52,7 @@ public class MemberController {
             return "member/login";
         }
         else {
-            return "member/signup";
+            return "member/move_signup";
         }
     }
 
@@ -61,7 +62,7 @@ public class MemberController {
     }
 
     @PostMapping("/signin")  // 정보추가 : PostMapping(보안에 좋음), 수정 : PutMapping, 삭제 : DeleteMapping
-    public String loginMember(HttpServletRequest request, Model model) {
+    public String loginMember(HttpServletRequest request) {
         session = request.getSession();
         String email = request.getParameter("email");
         String pw = request.getParameter("pw");
@@ -72,9 +73,9 @@ public class MemberController {
             session.setAttribute("id", retMember.getId());
             session.setAttribute("email", retMember.getEmail());
             session.setAttribute("name", retMember.getName());
-            return "main/index";
+            return "main/move_index";
         } else {
-            return "member/signup";
+            return "member/move_signup";
         }
     }
 
@@ -87,6 +88,6 @@ public class MemberController {
         for(int i = 0; i < cookies.length; i++) {
             cookies[i].setMaxAge(0);
         }
-        return "main/index";
+        return "main/move_index";
     }
 }

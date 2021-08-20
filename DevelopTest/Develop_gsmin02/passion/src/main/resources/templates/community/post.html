@@ -138,24 +138,27 @@
                 <thead>
                 <tr>
                     <th>번호</th>
-                    <th>제목</th>
                     <th>작성자</th>
+                    <th>제목</th>
                     <th>날짜</th>
                     <th>조회수</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="board : ${board}">
-                    <div class="number"><td th:text="${board.board_id}"></div>
-                    <td th:text="${board.title}" >
-                    <td th:text="${board.content}" >
-                    <td>2020.05.05</td>
-                    <td>27</td>
+                    <div class="number">
+                        <td th:text="${board.board_id}">
+                    </div>
+                    <td th:text="${board.writer}" >
+                    <td><a th:href="@{view(id=${board.board_id})}" th:text="${board.title}"></a></td>
+                    <td th:text="${board.write_time}">
+                    <td th:text="${board.views}">
                 </tr>
                 </tbody><!-- 테이블 끝-->
             </table>
         </div>
 </div>
+
     <hr/>
     <ul class="pagination justify-content-center">
         <li class="page-item"><a class="page-link" href="#"><</a></li>

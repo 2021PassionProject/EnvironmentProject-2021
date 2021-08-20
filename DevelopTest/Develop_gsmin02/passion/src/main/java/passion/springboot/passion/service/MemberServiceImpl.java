@@ -52,8 +52,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int postBoard(Board board) {
-        return memberRepository.upload(board);
+    public int postBoard(Board board, Member member) {
+        return memberRepository.upload(board, member);
     }
 
     @Override
