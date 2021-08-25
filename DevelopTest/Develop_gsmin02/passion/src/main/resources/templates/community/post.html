@@ -145,7 +145,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="board : ${board}">
+                <tr th:each="board : ${board}" th:if="(${board.board_id} >= 1 + (${list} - 1)* 10) and (${board.board_id} <= 10 * ${list})">
                     <div class="number">
                         <td th:text="${board.board_id}">
                     </div>
@@ -161,12 +161,10 @@
 
     <hr/>
     <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#"><</a></li>
+        <li class="page-item"><a class="page-link" href=""><</a></li>
         <!-- DataBase 에서 5단위로 끊어 목록 표시 -->
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">></a></li>
+        <li class="page-item" th:each="board : ${board}" th:if="(${board.board_id} % 10) == 1"><a class="page-link" th:href="@{post(list=${num} + 1 + (${board.board_id} - 1) / 10)}" th:text="${num} + 1 + (${board.board_id} - 1) / 10"></a></li>
+        <li class="page-item"><a class="page-link" href="">></a></li>
     </ul>
     <br><br>
     <th:block th:replace="main/index-footer::footer"></th:block>

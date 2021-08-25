@@ -32,6 +32,18 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Board getBoard(long id) {
+        Board board = new Board();
+        board.setBoard_id(id);
+        return memberRepository.readByBoard_Id(board);
+    }
+
+    @Override
+    public int riseView(Long id) {
+        return memberRepository.riseByView(id);
+    }
+
+    @Override
     public List<Board> getBoards() {
         return memberRepository.readBoards();
     }

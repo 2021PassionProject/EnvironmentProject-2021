@@ -4,16 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import passion.springboot.passion.domain.Member;
 import passion.springboot.passion.domain.Board;
 
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.DayOfWeek;
 import java.util.List;
 
 @Repository
@@ -35,7 +31,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public int upload(Board board, Member member) {
-        return this.jdbcTemplate.update("INSERT INTO board VALUES(seq_board.nextval,?,?,TO_CHAR(SYSDATE,'yyyy/mm/dd'),?,?)",board.getWriter(),board.getTitle(),board.getViews(),board.getContent());
+        return jdbcTemplate.update("INSERT INTO board VALUES(seq_board.nextval,?,?,TO_CHAR(SYSDATE,'yyyy/mm/dd'),0,?)",board.getWriter(),board.getTitle(),board.getContent());
     }
 
     @Override
@@ -51,6 +47,26 @@ public class MemberRepositoryImpl implements MemberRepository {
             return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<Member>(Member.class), email);
         } catch(EmptyResultDataAccessException e) {
             return null;
+        }
+    }
+
+    @Override
+    public Board readByBoard_Id(Board board) {
+        String query = "select * from board where BOARD_ID=?";
+        Object[] id = new Object[]{board.getBoard_id()}; // email -> id
+        try {
+            return jdbcTemplate.queryForObject(query, new BeanPropertyRowMapper<Board>(Board.class), id);
+        } catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public int riseByView(Long id) {
+        try {
+            return jdbcTemplate.update("UPDATE BOARD SET views = NVL(TO_NUMBER(views), 0) + 1 where board_id = ?", id);
+        } catch (EmptyResultDataAccessException e) {
+            return 0;
         }
     }
 

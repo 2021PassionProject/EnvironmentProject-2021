@@ -1,7 +1,6 @@
 package passion.springboot.passion.repository;
 
-import passion.springboot.passion.domain.Board;
-import passion.springboot.passion.domain.Member;
+import passion.springboot.passion.domain.*;
 
 import java.util.List;
 
@@ -11,6 +10,10 @@ public interface MemberRepository {
 
     Member readById(Member member); // 하나 레코드 생성
     Member readByEmail(Member member); // 하나 레코드 생성
+
+    Board readByBoard_Id(Board board);
+    int riseByView(Long id);
+
     List<Board> readBoards();
 
     List<Member> readMembers(); // 다수의 레코드

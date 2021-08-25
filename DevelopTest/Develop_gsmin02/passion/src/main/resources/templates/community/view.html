@@ -734,39 +734,39 @@
         <div class="preloader">
             <img class="preloader__image" width="55" src="assets/images/loader.png" alt="">
         </div><!-- /.preloader -->
-        <th:block th:replace="~{/main/index-head::header}"></th:block>
+        <block th:replace="~{/main/index-head::header}"></block>
         <div class="stricky-header stricked-menu main-menu">
             <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
         </div><!-- /.stricky-header -->
     </div>
     <div class="board_wrap">
         <div class="board_view_wrap">
-            <div class="board_view" th:each="board : ${data}">
-                <div class="title" th:text="${board.title}">
-                </div>
-                <div class="info">
-                    <dl>
-                        <dt>번호</dt>
-                        <dd th:text="${board.board_id}">
-                    </dl>
-                    <dl>
-                        <dt>글쓴이</dt>
-                        <dd th:text="${board.writer}">
-                    </dl>
-                    <dl>
-                        <dt>작성일</dt>
-                        <dd th:text="${board.write_time}">
-                    </dl>
-                    <dl>
-                        <dt>조회</dt>
-                        <dd th:text="${views}">
-                    </dl>
-                </div>
-                <div class="cont" th:text="${board.content}">
-                </div>
+            <div class="board_view">
+                <span th:each="data : ${data}" th:if="${data.board_id} == ${num_id}">
+                    <div class="title" th:text="${data.title}">
+                    </div>
+                    <div class="info">
+                        <dl>
+                            <dt>번호</dt>
+                            <dd th:text="${data.board_id}">
+                        </dl>
+                        <dl>
+                            <dt>글쓴이</dt>
+                            <dd th:text="${data.writer}">
+                        </dl>
+                        <dl>
+                            <dt>작성일</dt>
+                            <dd th:text="${data.write_time}">
+                        </dl>
+                        <dl>
+                            <dt>조회</dt>
+                            <dd th:text="${data.views}">
+                        </dl>
+                    </div>
+                    <div class="cont" th:utext="${data.content}">
+                    </div>
+                </span>
             </div>
-
-            <input type="hidden" id="board_id" name="board_id" value="${boardView.id}" />
             <div align="center">
                 </br>
                 </br>
@@ -797,13 +797,13 @@
             </div>
 
             <div class="bt_wrap">
-                <a href="list.html" class="on">목록</a>
+                <a href="post" class="on">목록</a>
                 <a href="edit.html">수정</a>
             </div>
         </div>
     </div>
 </div>
-    <th:block th:replace="main/index-footer::footer"></th:block>
+    <block th:replace="main/index-footer::footer"></block>
     <div class="bottom-footer">
         <div class="container">
             <p>© Copyright 2020 by Company.com</p>

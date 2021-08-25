@@ -2,10 +2,9 @@ package passion.springboot.passion.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +20,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.AttributedString;
-import java.time.DayOfWeek;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -38,15 +33,16 @@ public class CommunityController {
         this.memberService = memberService;
     }
 
-
     @GetMapping("/edit")
     public String edit() {
         return "community/edit";
     }
 
     @GetMapping("/post")
-    public String post(Model model) {
-
+    public String post(@RequestParam("list") long list, Model model) {
+        int num = 0;
+        model.addAttribute("num", num);
+        model.addAttribute("list", list);
         model.addAttribute("board", MemberRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
                 new RowMapper<Board>() {
                     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -56,7 +52,6 @@ public class CommunityController {
                         board.setWriter(rs.getString("writer"));
                         board.setWrite_time(rs.getString("write_time"));
                         board.setViews(rs.getLong("views"));
-                        board.setContent(rs.getString("content"));
 
                         return board;
                     }
@@ -68,8 +63,8 @@ public class CommunityController {
     }
 
     @GetMapping("/view")
-    public String view(@RequestParam("id") int id, Model model) {
-        model.addAttribute("num_id", id);
+    public String view(@RequestParam("id") long id, Model model) {
+        model.addAttribute("num_id", (int)id);
         model.addAttribute("data", MemberRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
                 new RowMapper<Board>() {
                     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -86,6 +81,8 @@ public class CommunityController {
                 }
             )
         );
+
+        // memberService.riseView(id);
 
         return "community/view";
     }

@@ -1,13 +1,15 @@
 package passion.springboot.passion.service;
 
-import passion.springboot.passion.domain.Member;
-import passion.springboot.passion.domain.Board;
+import passion.springboot.passion.domain.*;
 
 import java.util.List;
 
 public interface MemberService {
     Member getMember(long id);
     Member getMemberByEmail(String email);
+
+    Board getBoard(long id);
+    int riseView(Long id);
 
     List<Board> getBoards();
 
