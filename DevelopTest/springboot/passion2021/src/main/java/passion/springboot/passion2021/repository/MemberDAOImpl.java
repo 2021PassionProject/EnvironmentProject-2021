@@ -55,10 +55,10 @@ public class MemberDAOImpl {
                 ret.setEmail(rs.getString("email"));
                 ret.setPw(rs.getString("pw"));
                 ret.setName(rs.getString("name"));
-                ret.setAddress(rs.getString("birth"));
+                ret.setBirth(rs.getString("birth"));
                 ret.setPhone(rs.getString("phone"));
                 ret.setAddress(rs.getString("address"));
-                ret.setAddress(rs.getString("address2"));
+                ret.setAddress2(rs.getString("address2"));
             }
             return ret;
         } catch(SQLException e) {

@@ -11,8 +11,10 @@ create table member (
                          address2 varchar2(50)
 );
 
-INSERT INTO member VALUES(seq_member.nextval,'root@induk.ac.kr', 'cometrue','관리자','19400221','01012341234','서울','');
-INSERT INTO member VALUES(seq_member.nextval,'jms@induk.ac.kr', 'cometrue','전민서', '19940104', '01054394939', '경기도','102호');
+INSERT INTO member
+VALUES(seq_member.nextval,'root@induk.ac.kr', 'cometrue','관리자','19400221','01012341234','서울','');
+INSERT INTO member
+VALUES(seq_member.nextval,'jms@induk.ac.kr', 'cometrue','전민서', '19940104', '01054394939', '경기도','102호');
 
 select * from member;
 

@@ -60,4 +60,5 @@ public class MemberServiceImpl implements MemberService {
         int cnt = memberRepository.idCheck(email);
         return cnt;
     }
+
 }

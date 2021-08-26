@@ -53,7 +53,8 @@
                     </th:block>
                     <th:block th:unless="${session.name == null}">
                          <span class="main-header__info-phone-content">
-                                <a th:href="@{'/logout'}" class=" thm-btn">로그아웃</a>
+                             <a th:href="@{'/logout'}" class=" thm-btn">로그아웃</a>
+                             <a th:href="@{'/mypage{id}'(id=${session.id})}" class="thm-btn" >마이페이지</a>
                             </span>
                     </th:block>
                     <th:block th:unless="${session.userId == null}">

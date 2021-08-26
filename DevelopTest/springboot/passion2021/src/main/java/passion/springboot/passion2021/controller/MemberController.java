@@ -3,14 +3,12 @@ package passion.springboot.passion2021.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import passion.springboot.passion2021.domain.Member;
 import passion.springboot.passion2021.service.KakaoService;
 import passion.springboot.passion2021.service.MemberService;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,10 +34,33 @@ public class MemberController {
         this.memberService = memberService; // 오른쪽 memberService 객체는 등록된 객체를 주입
     }
 
-    @GetMapping("/mypage")      // url에는 mypage라는 이름으로 접속
-    public String myPage() {
+    @GetMapping("/mypage{id}") //마이페이지
+    public String getMember(@PathVariable("id") Long id, Model model) {
+        Member member = memberService.getMember(id);
+        model.addAttribute("member", member);
         return "member/mypage";
-    }   // member 디렉토리에 있는 mypage 접근
+    }
+
+    @PutMapping("/mypage{id}")//마이페이지 수정
+    public String putMember(@PathVariable("id") Long id, @Valid Member member, Model model) {
+        if(memberService.putMember(member) > 0) {
+            model.addAttribute("member", member);
+            return "redirect:/mypage" + id;  //@GetMapping("/mypage{id}") 호출
+        } else {
+            model.addAttribute("message", "업데이트를 실패하였습니다.");
+            return  "main/index";
+        }
+    }
+    @DeleteMapping("/mypage{id}")
+    public String deleteMember(@Valid Member member, Model model) {
+        if(memberService.deleteMember(member) > 0) {
+            return "redirect:/logout";
+        } else {
+            model.addAttribute("message", "탈퇴를 실패하였습니다.");
+            return "main/index";
+        }
+    }
+
 
     @GetMapping("/signupPage")      // url에는 signupPage 라는 이름으로 접속
     public String signupPage() {
@@ -61,10 +82,7 @@ public class MemberController {
     @PostMapping("/idCheck") //아이디 중복 체크
     @ResponseBody
     public int idCheck(@RequestParam("email") String email){
-        //logger.info("userIdCheck 진입");
-       // logger.info("전달받은 id:"+email);
         int cnt = memberService.idCheck(email); //전달 받은 email을 가지고 memberService의 idCheck로 이동하여 리턴받은 결과를 int cnt에 저장
-       // logger.info("확인 결과:"+cnt);
         return cnt;
     }
 
@@ -123,33 +141,6 @@ public class MemberController {
         }
     }
 
-    @GetMapping("/{id}")
-    public String getMember(@PathVariable("id") Long id, Model model) {
-        Member member = memberService.getMember(id);
-        model.addAttribute("member", member);
-        return "member/mypage";
-    }
-
-    @PutMapping("/{id}")
-    public String putMember(@PathVariable("id") Long id, @Valid Member member, Model model) {
-        if (memberService.putMember(member) > 0) {
-            model.addAttribute("member", member);
-            return "redirect:/" + id;   // GetMapping 호출
-        } else {
-            model.addAttribute("cookie_id", "업데이트 실패하였습니다.");
-            return "member/mypage";
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteMember(@Valid Member member, Model model) {
-        if (memberService.deleteMember(member) > 0) {
-            return "redirect:/main/index";
-        } else {
-            model.addAttribute("message", "탈퇴 실패하였습니다.");
-            return "member/mypage";
-        }
-    }
 
     @GetMapping("/logout")
     public String logoutMember(HttpServletRequest request) {    // 로그아웃
@@ -158,6 +149,5 @@ public class MemberController {
             session.invalidate(); //현재 session 객체를 무효화
         return "main/index";
     }
-
 
 }
