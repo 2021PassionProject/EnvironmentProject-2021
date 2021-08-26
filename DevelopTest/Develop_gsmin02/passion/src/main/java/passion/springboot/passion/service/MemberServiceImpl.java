@@ -69,6 +69,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public int editBoard(Board board) {
+        return memberRepository.modify(board);
+    }
+
+    @Override
     public int putMember(Member member) {
         return memberRepository.update(member);
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns: lang="ko">
 
 <head>
     <link rel="stylesheet" href="assets/css/postwrite.css">
@@ -76,33 +76,30 @@
     <div class="page-wrapper">
 
         <th:block th:replace="~{/main/index-head::header}"></th:block>
+            <div class="stricky-header stricked-menu main-menu">
+                <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+            </div><!-- /.stricky-header -->
 
-        <div class="stricky-header stricked-menu main-menu">
-            <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
-        </div><!-- /.stricky-header -->
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7 offset-3 mt-4">
-                    <div class="card-body">
-                        <label for="title"><div class="post-title">게시판 수정</div></label>
-                        <hr>
-                        <input type="text" class="form-control" id="title" name="title" maxlength="100" placeholder="제목을 입력해 주세요.">
-                        <form method="POST" action="">
-                            <div class="form-group">
-                                <textarea class="form-control" name="summernote" id="summernote"></textarea>
-                            </div>
-                            <div class="post-btn-line">
-                                <a href="#" class="post-btn" style=:"margin-right:30px">수정하기</a>
-                                <a href="#" class="post-btn">뒤로가기</a>
-                            </div>
-                        </form>
-
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 offset-3 mt-4">
+                        <div class="card-body">
+                            <label for="title"><div class="post-title">게시판 수정</div></label>
+                            <hr>
+                            <form method="POST" th:action="@{modify(id=${num_id})}">
+                                <input type="text" class="form-control" id="title" th:value="${title}" name="title" maxlength="100" placeholder="제목을 입력해 주세요." AUTOCOMPLETE="off">
+                                <div class="form-group">
+                                    <textarea class="form-control" th:value="${content}" name="content" id="summernote"></textarea>
+                                </div>
+                                <div class="post-btn-line">
+                                    <input type="submit" value="수정하기" class="post-btn" style=:"margin-right:30px">
+                                    <a th:href="@{view(id=${num_id})}" class="post-btn">뒤로가기</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
         <th:block th:replace="main/index-footer::footer"></th:block>
 
         <div class="bottom-footer">

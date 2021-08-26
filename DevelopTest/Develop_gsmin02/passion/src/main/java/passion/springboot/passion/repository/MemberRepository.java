@@ -7,6 +7,7 @@ import java.util.List;
 public interface MemberRepository {
     int create(Member member); // 레코드 생성
     int upload(Board board, Member member);
+    int modify(Board board);
 
     Member readById(Member member); // 하나 레코드 생성
     Member readByEmail(Member member); // 하나 레코드 생성

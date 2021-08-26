@@ -31,7 +31,12 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public int upload(Board board, Member member) {
-        return jdbcTemplate.update("INSERT INTO board VALUES(seq_board.nextval,?,?,TO_CHAR(SYSDATE,'yyyy/mm/dd'),0,?)",board.getWriter(),board.getTitle(),board.getContent());
+        return jdbcTemplate.update("INSERT INTO board VALUES(seq_board.nextval,?,?,?,TO_CHAR(SYSDATE,'yyyy/mm/dd'),0,?)",board.getWriter(),board.getWriter_email(),board.getTitle(),board.getContent());
+    }
+
+    @Override
+    public int modify(Board board) {
+        return jdbcTemplate.update("UPDATE BOARD SET title=?, content=? where board_id=?", board.getTitle(), board.getContent(), board.getBoard_id());
     }
 
     @Override
@@ -64,7 +69,7 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Override
     public int riseByView(Long id) {
         try {
-            return jdbcTemplate.update("UPDATE BOARD SET views = NVL(TO_NUMBER(views), 0) + 1 where board_id = ?", id);
+            return jdbcTemplate.update("UPDATE BOARD SET views = views + 1 where board_id = ?", id);
         } catch (EmptyResultDataAccessException e) {
             return 0;
         }

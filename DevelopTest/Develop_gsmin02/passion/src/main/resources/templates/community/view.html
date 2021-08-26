@@ -795,10 +795,9 @@
 
                 </table>
             </div>
-
             <div class="bt_wrap">
-                <a href="post" class="on">목록</a>
-                <a href="edit.html">수정</a>
+                <a th:href="@{post(list=1)}" class="on">목록</a>
+                <a th:href="@{edit(id=${data.board_id})}" th:each="data : ${data}" th:if="${data.board_id} == ${num_id} and ${session.email} == ${data.writer_email}">수정</a>
             </div>
         </div>
     </div>

@@ -71,7 +71,7 @@ public class MemberController {
 
         if ((retMember = memberService.getMemberByEmail(email)) != null && pw.equals(retMember.getPw())) {
             session.setAttribute("id", retMember.getId());
-            session.setAttribute("email", retMember.getEmail());
+            session.setAttribute("email", email);
             session.setAttribute("name", retMember.getName());
             return "main/move_index";
         } else {
