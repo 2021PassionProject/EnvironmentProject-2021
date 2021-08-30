@@ -80,33 +80,33 @@
                     </section>
                 </th:block>
                 <th:block th:unless="${session.name == 'name'}">
-                <section>
-                    <div class="login">
-                        <div class="login-type">
-                            <br><br>
-                            <h1 style="color: #1C354F">로그인</h1>
-                            <div class="int-area">
-                                <input type="text" name="email" id="email" autocomplete="on" required>
-                                <label for="email">아이디(이메일)</label>
-                            </div>
-                            <div class="int-area">
-                                <input type="password" name="pw" id="pw" autocomplete="off" required>
-                                <label for="pw">비밀번호</label>
-                            </div>
-                            <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" id="log.login" style="width: 360px">
+                    <section>
+                        <div class="login">
                             <div class="login-type">
-                                <hr>
-                                <a class="btn" href="#none">휴대폰 번호로 로그인</a>
-                                <a class="btn" href="https://nid.naver.com/oauth2.0/authorize?client_id=21Q2VD9txfpkGj8TyYof&response_type=code&redirect_uri=http://localhost:8888/member/callback&state=authorization_code">네이버로 로그인</a>
-                                <a class="btn" href="https://kauth.kakao.com/oauth/authorize?client_id=1155672dcd0d8d43e1e3fbdc8ea08f7a&redirect_uri=http://localhost:8888/login-kakao&response_type=code">카카오로 로그인</a>
-                            </div>
-                            <div class="login-footer">
-                                <a th:href="@{'./signupPage'}">회원가입</a>
-                                </p>
+                                <br><br>
+                                <h1 style="color: #1C354F">로그인</h1>
+                                <div class="int-area">
+                                    <input type="text" name="email" id="email" autocomplete="on" required>
+                                    <label for="email">아이디(이메일)</label>
+                                </div>
+                                <div class="int-area">
+                                    <input type="password" name="pw" id="pw" autocomplete="off" required>
+                                    <label for="pw">비밀번호</label>
+                                </div>
+                                <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" id="log.login" style="width: 360px">
+                                <div class="login-type">
+                                    <hr>
+                                    <a class="btn" href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=681230920409-v1n946gmsl1d3l6h4c700mnkdc50duba.apps.googleusercontent.com&scope=openid%20email%20profile&redirect_uri=http://localhost:8888/auth/GOOGLE/callback">구글로 로그인</a>
+                                    <a class="btn" href="https://nid.naver.com/oauth2.0/authorize?client_id=21Q2VD9txfpkGj8TyYof&response_type=code&redirect_uri=http://localhost:8888/member/callback&state=authorization_code">네이버로 로그인</a>
+                                    <a class="btn" href="https://kauth.kakao.com/oauth/authorize?client_id=0b2c407f60699eec5ec6b7bc89e81947&redirect_uri=http://localhost:8888/login-kakao&response_type=code">카카오로 로그인</a>
+                                </div>
+                                <div class="login-footer">
+                                    <a th:href="@{'./signupPage'}">회원가입</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
                 </th:block>
                 <br><br>
                 <th:block th:replace="main/index-footer::footer"></th:block>

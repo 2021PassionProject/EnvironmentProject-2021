@@ -56,16 +56,16 @@
                     <th:block>
                     <span class="main-header__info-phone-content">
                         <td th:if="${session.name == null && session.userId == null && session.currentAT == null}">
-                        <a th:href="@{'/loginPage'}" class="thm-btn">로그인</a>
+                        <a th:href="@{'./loginPage'}" class="thm-btn">로그인</a>
                         </td>
                         <td th:unless="${session.name} == null">
-                        <a th:href="@{'/logout'}" class="thm-btn">로그아웃</a>
+                        <a th:href="@{'./logout'}" class="thm-btn">로그아웃</a>
                         </td>
                         <td th:unless="${session.userId} == null">
-                        <a th:href="@{'/logout2'}" class="thm-btn">로그아웃</a>
+                        <a th:href="@{'./logout2'}" class="thm-btn">로그아웃</a>
                         </td>
                         <td th:unless="${session.currentAT} == null">
-                        <a th:href="@{'/member/naverLogout'}" class="thm-btn">로그아웃</a>
+                        <a th:href="@{'./member/naverLogout'}" class="thm-btn">로그아웃</a>
                         </td>
 <!--                        <td th:unless="${session.currentAT == null}">-->
 <!--                        <a th:href=class="thm-btn">로그아웃</a>-->

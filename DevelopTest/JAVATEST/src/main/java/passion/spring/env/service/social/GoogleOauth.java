@@ -5,8 +5,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,10 +36,12 @@ public class GoogleOauth implements SocialOauth{
     @Value("${sns.google.token.url}")
     private String GOOGLE_SNS_TOKEN_BASE_URL;
 
+    HttpSession session = null;
+
     @Override
     public String getOauthRedirectURL() {
         Map<String, Object> params = new HashMap<>();
-        params.put("scope","openid email");
+        params.put("scope","openid email profile");
         params.put("response_type","code");
         params.put("client_id",GOOGLE_SNS_CLIENT_ID);
         params.put("redirect_uri",GOOGLE_SNS_CALLBACK_URL);
@@ -53,8 +60,8 @@ public class GoogleOauth implements SocialOauth{
      * @param code API Server에서 받아온 code
      * @return API 서버로부터 응답받은 json형태의 결과를 string으로 반영
      */
-   // @Override
-    public String requestAccessTokenUsingURL(String code) {
+    @Override
+    public String requestAccessToken(String code) {
         RestTemplate restTemplate = new RestTemplate();
 
         Map<String, Object> params = new HashMap<>();
@@ -72,8 +79,8 @@ public class GoogleOauth implements SocialOauth{
         }
         return "구글 로그인 요청 처리 실패";
     }
-    @Override
-    public String requestAccessToken(String code) {
+
+    public String requestAccessTokenUsingURL(String code) {
         try {
             URL url = new URL(GOOGLE_SNS_TOKEN_BASE_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -116,5 +123,10 @@ public class GoogleOauth implements SocialOauth{
         }
     }
 
-
+//    public String getCallback(HttpServletRequest request, HttpServletResponse response, Model model) {
+//        session = request.getSession();
+//        String code = request.getParameter("code");
+//        String state = request.getParameter("state");
+//
+//    }
 }

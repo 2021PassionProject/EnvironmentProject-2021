@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import passion.spring.env.domain.Member;
 import passion.spring.env.service.KakaoService;
 import passion.spring.env.service.MemberService;
+import passion.spring.env.service.social.GoogleOauth;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -109,7 +110,10 @@ public class MemberController {
         return "main/index";
     }
 
-
+//    @PostMapping("/auth/GOOGLE/callback")
+//    public String loginGoogle() {
+//
+//    }
 
     @GetMapping("/{id}")
     public String getMember(@PathVariable("id") Long id, Model model) {
