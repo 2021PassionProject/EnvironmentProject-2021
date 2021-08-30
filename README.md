@@ -1,4 +1,4 @@
-# 🌏EnvironmentProject-2021🌏
+# 🌏EnvironmentProject-202🌎
 가속화되는 환경오염을 줄이기 위해 만든 정보 제공 프로젝트
 
 **쓰레기 처리 웹**
