@@ -9,7 +9,7 @@
 # 🛤개요
   * It's under construction...
   
-# 🛣주요기능
+# 🏔주요기능
   
   🏜 메인화면
   * It's under construction...
