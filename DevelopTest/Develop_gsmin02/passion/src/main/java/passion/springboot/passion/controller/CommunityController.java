@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import passion.springboot.passion.domain.Board;
+import passion.springboot.passion.domain.Comment;
 import passion.springboot.passion.domain.Member;
 import passion.springboot.passion.repository.MemberRepositoryImpl;
 import passion.springboot.passion.service.MemberService;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLRecoverableException;
 
 @Controller
 @RequestMapping("/")
@@ -120,10 +122,53 @@ public class CommunityController {
                 }
             )
         );
+        model.addAttribute("comment", MemberRepositoryImpl.jdbcTemplate.query("SELECT * FROM reply_comment",
+                new RowMapper<Comment>() {
+                    public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Comment comment = new Comment();
+                        comment.setComment_id(rs.getLong("comment_id"));
+                        comment.setBoard_id(rs.getLong("board_id"));
+                        comment.setMember_name(rs.getString("member_name"));
+                        comment.setContent(rs.getString("content"));
+                        comment.setWrite_time(rs.getString("write_time"));
+
+                        return comment;
+                    }
+                }
+            )
+        );
 
         memberService.riseView(id);
 
         return "community/view";
+    }
+
+    @PostMapping("/reply")
+    public String reply(@Valid Model model, Comment comment, HttpServletRequest request) {
+        session = request.getSession();
+        String member_name = (String) session.getAttribute("name");
+        String content = request.getParameter("content");
+        String id = request.getParameter("id");
+
+        int num_id = Integer.parseInt(id);
+        model.addAttribute("num_id", num_id);
+        Long long_id = (long) num_id;
+
+        comment.setBoard_id(long_id);
+        comment.setMember_name(member_name);
+        comment.setContent(content);
+
+        if(session.getAttribute("id") != null) {
+            if(memberService.postComment(comment) > 0) {
+                return "community/move_view";
+            }
+            else {
+                return "member/move_login";
+            }
+        }
+        else {
+            return "member/move_login";
+        }
     }
 
     @GetMapping("/write")
