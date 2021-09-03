@@ -54,7 +54,7 @@ public class NaverController {
         session.setAttribute("state",state);
         model.addAttribute("apiURL",apiURL);
 
-        return "redirect:/";
+        return "http://localhost:8888/member/callback";
     }
 
     @GetMapping("/callback")

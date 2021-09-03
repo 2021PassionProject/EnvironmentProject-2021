@@ -47,11 +47,14 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    //implementation group: 'com.github.scribejava', name: 'scribejava-core', version: '2.8.1'
-    //implementation group: 'com.github.scribejava', name: 'scribejava-apis', version: '2.8.1'
+//    implementation group: 'com.github.scribejava', name: 'scribejava-core', version: '5.6.0'
+//    implementation group: 'com.github.scribejava', name: 'scribejava-apis', version: '5.6.0'
+//
+//    implementation group: 'org.springframework.social', name: 'spring-social-google', version: '1.0.0.RELEASE'
 
     implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
     implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+
 }
 
 test {

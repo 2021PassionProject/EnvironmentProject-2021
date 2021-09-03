@@ -3,7 +3,6 @@ package passion.spring.env.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import passion.spring.env.helper.constants.SocialLoginType;
-
 import passion.spring.env.service.social.SocialOauth;
 
 import javax.servlet.http.HttpServletResponse;
