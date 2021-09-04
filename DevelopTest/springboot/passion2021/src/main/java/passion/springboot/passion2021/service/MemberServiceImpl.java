@@ -55,9 +55,10 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.delete(member);
     }
 
-    @Override
+    @Override //아이디 중복
     public int idCheck(String email) {
         int cnt = memberRepository.idCheck(email);
         return cnt;
     }
+
 }

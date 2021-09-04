@@ -23,6 +23,7 @@ public class Member {
     private String name;
     private String birth;
     private String phone;
+    private String postcode;
     private String address;
     private String address2;
 
