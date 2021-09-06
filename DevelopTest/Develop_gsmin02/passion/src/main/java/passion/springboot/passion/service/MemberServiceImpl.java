@@ -3,6 +3,7 @@ package passion.springboot.passion.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import passion.springboot.passion.domain.Board;
+import passion.springboot.passion.domain.Comment;
 import passion.springboot.passion.domain.Member;
 import passion.springboot.passion.repository.MemberRepository;
 
@@ -56,6 +57,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<Member> getMembersByPage(int index, int size) {
         return null;
+    }
+
+    @Override
+    public int postComment(Comment comment) {
+        return memberRepository.replyComment(comment);
     }
 
     @Override

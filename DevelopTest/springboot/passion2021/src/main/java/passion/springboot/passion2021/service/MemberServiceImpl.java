@@ -2,6 +2,8 @@ package passion.springboot.passion2021.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import passion.springboot.passion2021.domain.Board;
+import passion.springboot.passion2021.domain.Comment;
 import passion.springboot.passion2021.domain.Member;
 import passion.springboot.passion2021.repository.MemberRepository;
 
@@ -34,10 +36,41 @@ public class MemberServiceImpl implements MemberService {
     public List<Member> getMembers() {
         return memberRepository.readMembers();
     }
+    @Override
+    public Board getBoard(long id) {
+        Board board = new Board();
+        board.setBoard_id(id);
+        return memberRepository.readByBoard_Id(board);
+    }
+    @Override
+    public int riseView(Long id) {
+        return memberRepository.riseByView(id);
+    }
+
+    @Override
+    public List<Board> getBoards() {
+        return memberRepository.readBoards();
+    }
+
 
     @Override
     public List<Member> getMembersByPage(int index, int size) {
         return null;
+    }
+
+    @Override
+    public int postComment(Comment comment) {
+        return memberRepository.replyComment(comment);
+    }
+
+    @Override
+    public int postBoard(Board board, Member member) {
+        return memberRepository.upload(board, member);
+    }
+
+    @Override
+    public int editBoard(Board board) {
+        return memberRepository.modify(board);
     }
 
     @Override
@@ -55,7 +88,7 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.delete(member);
     }
 
-    @Override
+    @Override //아이디 중복
     public int idCheck(String email) {
         int cnt = memberRepository.idCheck(email);
         return cnt;

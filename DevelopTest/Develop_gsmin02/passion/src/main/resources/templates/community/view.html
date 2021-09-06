@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/" xmlns: lang="ko">
+<html xmlns:th="http://www.thymeleaf.org/" xmlns: xmlns="http://www.w3.org/1999/html" lang="ko">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
 <script type="text/javascript">
 
@@ -767,31 +767,37 @@
                     </div>
                 </span>
             </div>
-            <div align="center">
-                </br>
-                </br>
 
-                <table border="1" width="1200px" id="reply_area">
-                    <tr reply_type="all"><!-- 뒤에 댓글 붙이기 쉽게 선언 -->
-                        <td colspan="4"></td>
-                    </tr>
-                    <!-- 댓글이 들어갈 공간 -->
-                </table>
-                <table border="1" width="1200px" bordercolor="#46AA46">
-                    <tr>
-                        <td width="500px">
-                            이름: <input type="text" id="reply_writer" name="reply_writer" style="width:170px;" maxlength="10" placeholder="작성자"/>
-                            패스워드: <input type="password" id="reply_password" name="reply_password" style="width:170px;" maxlength="10" placeholder="패스워드"/>
-                            <button id="reply_save" name="reply_save">댓글 등록</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <textarea id="reply_content" name="reply_content" rows="4" cols="50" placeholder="댓글을 입력하세요."></textarea>
-                        </td>
-                    </tr>
-                </table>
-                <table width="1200px">
+            <div>
+                <br>
+                <div th:each="comment : ${comment}" th:if="${comment.board_id} == ${num_id}">
+                    <dl>
+                        <dt th:text="${comment.member_name}">이름</dt>
+                        <dt><h5 th:text="${comment.write_time}">[작성일]</h5></dt>
+                        <dd th:text="${comment.content}">내용</dd>
+                    </dl>
+                    <hr>
+                </div>
+                <br>
+                <div th:if="${session.id} == null" align="center">
+                    <h3 align="center">
+                        댓글을 작성하려면 <a th:href="login">로그인</a>을 해주세요.
+                    </h3>
+                </div>
+                <form th:method="post" th:action="reply">
+                    <input type="hidden" name="id" th:value="${num_id}">
+                    <table border="1" width="1000px" bordercolor="#46AA46" th:unless="${session.id} == null">
+                        <tr>
+                            <td>
+                                <textarea th:value="${content}" name="content" rows="2" cols="80" id="summernote" placeholder="댓글을 입력하세요."></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <div align="right" class="writebutton" th:unless="${session.id} == null">
+                        <input th:type="submit" class="btn btn-primary pull-right" value="등록">
+                    </div>
+                </form>
+                <table width="1000px">
 
                 </table>
             </div>
@@ -801,8 +807,7 @@
             </div>
         </div>
     </div>
-</div>
-    <block th:replace="main/index-footer::footer"></block>
+    <th:block th:replace="main/index-footer::footer"></th:block>
     <div class="bottom-footer">
         <div class="container">
             <p>© Copyright 2020 by Company.com</p>
@@ -813,22 +818,22 @@
             </div><!-- /.bottom-footer__links -->
         </div><!-- /.container -->
     </div><!-- /.bottom-footer -->
-<script src="assets/js/jquery-3.5.1.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/swiper.min.js"></script>
-<script src="assets/js/jquery.ajaxchimp.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/jquery.validate.min.js"></script>
-<script src="assets/js/bootstrap-select.min.js"></script>
-<script src="assets/js/wow.js"></script>
-<script src="assets/js/odometer.min.js"></script>
-<script src="assets/js/jquery.appear.min.js"></script>
-<script src="assets/js/jarallax.min.js"></script>
-<script src="assets/js/circle-progress.min.js"></script>
-<script src="assets/js/wNumb.min.js"></script>
-<script src="assets/js/nouislider.min.js"></script>
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/swiper.min.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
+    <script src="assets/js/wow.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/jquery.appear.min.js"></script>
+    <script src="assets/js/jarallax.min.js"></script>
+    <script src="assets/js/circle-progress.min.js"></script>
+    <script src="assets/js/wNumb.min.js"></script>
+    <script src="assets/js/nouislider.min.js"></script>
 
-<!-- template js -->
-<script src="assets/js/theme.js"></script>
+    <!-- template js -->
+    <script src="assets/js/theme.js"></script>
 </body>
 </html>

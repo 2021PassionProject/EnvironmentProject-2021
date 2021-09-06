@@ -5,6 +5,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import passion.springboot.passion.domain.Comment;
 import passion.springboot.passion.domain.Member;
 import passion.springboot.passion.domain.Board;
 
@@ -37,6 +38,11 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Override
     public int modify(Board board) {
         return jdbcTemplate.update("UPDATE BOARD SET title=?, content=? where board_id=?", board.getTitle(), board.getContent(), board.getBoard_id());
+    }
+
+    @Override
+    public int replyComment(Comment comment) {
+        return jdbcTemplate.update("INSERT INTO REPLY_COMMENT VALUES(SEQ_COMMENT.nextval, ?, ?, ?, TO_CHAR(SYSDATE, 'yyyy/mm/dd'))", comment.getBoard_id(), comment.getMember_name(), comment.getContent());
     }
 
     @Override

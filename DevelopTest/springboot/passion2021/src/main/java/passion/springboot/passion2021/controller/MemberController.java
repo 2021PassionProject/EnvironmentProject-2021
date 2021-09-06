@@ -45,7 +45,7 @@ public class MemberController {
     public String putMember(@PathVariable("id") Long id, @Valid Member member, Model model) {
         if(memberService.putMember(member) > 0) {
             model.addAttribute("member", member);
-            return "redirect:/mypage" + id;  //@GetMapping("/mypage{id}") 호출
+            return "redirect:/index";  //@GetMapping("/mypage{id}") 호출
         } else {
             model.addAttribute("message", "업데이트를 실패하였습니다.");
             return  "main/index";

@@ -2,6 +2,7 @@ package passion.spring.env.controller;
 
 import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,29 +25,36 @@ import java.util.Map;
 @Controller
 @RequestMapping("/member")
 public class NaverController {
-    String CLIENT_ID = "21Q2VD9txfpkGj8TyYof";
-    String CLIENT_SECRET = "o1Fjw_DuHK";
-    String CALLBACK_URL = "http://localhost:8888/member/callback";
+    @Value("${sns.naver.url}")
+    private String NAVER_SNS_BASE_URL;
+    @Value("${sns.naver.client.id}")
+    private String NAVER_SNS_CLIENT_ID;
+    @Value("${sns.naver.callback.url}")
+    private String NAVER_SNS_CALLBACK_URL;
+    @Value("${sns.naver.client.secret}")
+    private String NAVER_SNS_CLIENT_SECRET;
+    @Value("${sns.naver.token.url}")
+    private String NAVER_SNS_TOKEN_URL;
 
     HttpSession session = null;
-    @GetMapping("/naverlogin")
-    public String getNaverlogin(HttpServletRequest request, HttpServletResponse response, Model model) {
+    @GetMapping("/naverLogin")
+    public String getNaverLogin(HttpServletRequest request, HttpServletResponse response, Model model) {
         session = request.getSession();
         String redirectURI = null;
         try {
-            redirectURI = URLEncoder.encode(CALLBACK_URL, "UTF-8");
+            redirectURI = URLEncoder.encode(NAVER_SNS_CALLBACK_URL, "UTF-8");
         }catch(UnsupportedEncodingException e) {
             System.out.println("UnsupportedEncodingException : " + e.getMessage());
         }
         SecureRandom random = new SecureRandom();
         String state = new BigInteger(130, random).toString();
-        String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+        String apiURL = NAVER_SNS_BASE_URL + "?response_type=code";
         apiURL += String.format("&client_id=%s&redirect_uri=%s&state=%s",
-                CLIENT_ID, redirectURI, state);
+                NAVER_SNS_CLIENT_ID, redirectURI, state);
         session.setAttribute("state",state);
         model.addAttribute("apiURL",apiURL);
 
-        return "redirect:/";
+        return "http://localhost:8888/member/callback";
     }
 
     @GetMapping("/callback")
@@ -56,14 +64,14 @@ public class NaverController {
         String state = request.getParameter("state");
         String redirectURI = null;
         try {
-            redirectURI = URLEncoder.encode(CALLBACK_URL, "UTF-8");
+            redirectURI = URLEncoder.encode(NAVER_SNS_CALLBACK_URL, "UTF-8");
         }catch(UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         String apiURL;
-        apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
-        apiURL += "client_id=" + CLIENT_ID;
-        apiURL += "&client_secret=" + CLIENT_SECRET;
+        apiURL = NAVER_SNS_TOKEN_URL + "?grant_type=authorization_code&";
+        apiURL += "client_id=" + NAVER_SNS_CLIENT_ID;
+        apiURL += "&client_secret=" + NAVER_SNS_CLIENT_SECRET;
         apiURL += "&redirect_uri=" + redirectURI;
         apiURL += "&code=" + code;
         apiURL += "&state=" + state;

@@ -60,9 +60,9 @@
     <div class="page-wrapper">
         <!-- content-->
         <div id="content">
-
             <!-- ID -->
             <div>
+
                 <h3 class="join_title">
                     <label for="email">아이디(이메일)</label>
                 </h3>
@@ -92,21 +92,11 @@
             <div>
                 <h3 class="join_title"><label for="pw">비밀번호</label></h3>
                 <span class="box int_pass">
-                        <input type="password" id="pw" onchange="check_pw()"
+                        <input type="password" id="pw"  onchange="check_pw()"
                                class="int" maxlength="20"/>
                     </span>
             </div>
 
-            <!-- PW2 -->
-            <div>
-                <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
-                <span class="box int_pass_check">
-                        <input type="password" id="pswd2" class="int" maxlength="20"  onchange="check_pw()">
-                        &nbsp;<span id="check"></span>
-                    </span>
-
-            </div>
-            <br>
 
             <!-- MOBILE -->
             <div>
@@ -121,7 +111,7 @@
             <!-- ADRESS -->
             <div>
                 <h3 class="join_title"><label for="postcode">주소</label></h3>
-                <input type="text" id="postcode" name="postcode" placeholder="우편번호">
+                <input type="text" id="postcode"  th:value="${member.postcode}" name="postcode" placeholder="우편번호">
                 <input type="button" onclick="sample6_execDaumPostcode()" style="height: 37.6px"
                        value="우편번호 찾기"><br>
                 <span class="error_next_box"></span>
@@ -142,7 +132,7 @@
             <!-- JOIN BTN-->
 
             <div class="btn_page">
-                <form th:action="@{'/mypage{id}'(id=${member.id})}" th:method="post">
+                <form th:action="@{'/mypage' + ${member.id}}" th:method="post">
                     <input type="hidden" name="_method" value="put"/>
                 <button class="thm-bznn">
                     <span>수정</span>
@@ -156,6 +146,7 @@
                 </form>
             </div>
         </div>
+
         </div>
 
         <div class="stricky-header stricked-menu main-menu">

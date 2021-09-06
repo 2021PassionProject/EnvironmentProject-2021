@@ -57,6 +57,7 @@ public class MemberDAOImpl {
                 ret.setName(rs.getString("name"));
                 ret.setBirth(rs.getString("birth"));
                 ret.setPhone(rs.getString("phone"));
+                ret.setPostcode(rs.getString("postcode"));
                 ret.setAddress(rs.getString("address"));
                 ret.setAddress2(rs.getString("address2"));
             }

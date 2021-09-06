@@ -1,0 +1,48 @@
+create sequence seq_member increment by 1 start with 1;
+create sequence seq_board increment by 1 start with 1;
+create sequence seq_comment increment by 1 start with 1;
+
+create table member (
+    id number(11) not null primary key,
+    email varchar2(30) not null unique,
+    pw varchar2(20) not null,
+    name varchar2(30) not null,
+    birth number(8) not null,
+    phone varchar2(13)not null,
+    address varchar2(50)not null,
+    address2 varchar2(50)
+);
+
+create table board (
+    board_id number(11) not null  primary key,
+    writer varchar(20),
+    writer_email varchar2(30),
+    title varchar(100),
+    write_time varchar(20),
+    views number(11),
+    content varchar(2000)
+);
+
+create table reply_comment (
+    comment_id number(11) not null primary key,
+    board_id number(11),
+    member_name varchar(20),
+    content varchar2(500),
+    write_time varchar(20)
+);
+
+select * from member;
+select * from board;
+select * from reply_comment;
+
+SELECT board_id, REGEXP_REPLACE(title, '<[^>]*>|\&([^;])*;', ''), REGEXP_REPLACE(content, '<[^>]*>|\&([^;])*;', '') FROM board;
+
+drop sequence seq_member;
+drop sequence seq_board;
+drop sequence seq_comment;
+
+drop table member;
+drop table board;
+drop table reply_comment;
+
+commit;
