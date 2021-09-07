@@ -110,7 +110,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public int update(Member member) {
-        String query = "update member set email=?, pw=?, name=?, birth=?, phone=?, postcode=? ,address=?, address2=? where id=MEMBER.ID";
+        String query = "update member set email=?, pw=?, name=?, birth=?, phone=?, postcode=?, address=?, address2=? where id=?";
         return jdbcTemplate.update(query, member.getEmail(), member.getPw(), member.getName(), member.getBirth(), member.getPhone(), member.getPostcode(), member.getAddress(), member.getAddress2(), member.getId());
     }
 
