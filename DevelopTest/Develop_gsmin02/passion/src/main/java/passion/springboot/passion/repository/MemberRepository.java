@@ -14,8 +14,10 @@ public interface MemberRepository {
     Member readById(Member member); // 하나 레코드 생성
     Member readByEmail(Member member); // 하나 레코드 생성
 
-       Board readByBoard_Id(Board board);
+    Board readByBoard_Id(Board board);
     int riseByView(Long id);
+    int deleteBoard(long id);
+    int deleteComment(long id);
 
     List<Board> readBoards();
 

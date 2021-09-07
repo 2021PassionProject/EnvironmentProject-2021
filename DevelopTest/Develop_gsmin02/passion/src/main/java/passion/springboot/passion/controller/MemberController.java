@@ -75,7 +75,7 @@ public class MemberController {
             session.setAttribute("name", retMember.getName());
             return "main/move_index";
         } else {
-            return "member/move_signup";
+            return "member/move_login";
         }
     }
 

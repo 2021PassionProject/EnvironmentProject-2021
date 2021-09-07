@@ -42,7 +42,7 @@ public class MemberRepositoryImpl implements MemberRepository {
 
     @Override
     public int replyComment(Comment comment) {
-        return jdbcTemplate.update("INSERT INTO REPLY_COMMENT VALUES(SEQ_COMMENT.nextval, ?, ?, ?, TO_CHAR(SYSDATE, 'yyyy/mm/dd'))", comment.getBoard_id(), comment.getMember_name(), comment.getContent());
+        return jdbcTemplate.update("INSERT INTO REPLY_COMMENT VALUES(SEQ_COMMENT.nextval,?,?,?,?,TO_CHAR(SYSDATE,'yyyy/mm/dd'))", comment.getBoard_id(), comment.getMember_id(), comment.getMember_name(), comment.getContent());
     }
 
     @Override
@@ -76,6 +76,24 @@ public class MemberRepositoryImpl implements MemberRepository {
     public int riseByView(Long id) {
         try {
             return jdbcTemplate.update("UPDATE BOARD SET views = views + 1 where board_id = ?", id);
+        } catch (EmptyResultDataAccessException e) {
+            return 0;
+        }
+    }
+
+    @Override
+    public int deleteBoard(long id) {
+        try {
+            return jdbcTemplate.update("DELETE FROM BOARD WHERE BOARD_ID = ?", id);
+        } catch (EmptyResultDataAccessException e) {
+            return 0;
+        }
+    }
+
+    @Override
+    public int deleteComment(long id) {
+        try {
+            return jdbcTemplate.update("DELETE FROM REPLY_COMMENT WHERE COMMENT_ID = ?", id);
         } catch (EmptyResultDataAccessException e) {
             return 0;
         }

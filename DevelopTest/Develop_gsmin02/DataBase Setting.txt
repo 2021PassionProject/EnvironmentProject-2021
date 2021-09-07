@@ -26,6 +26,7 @@ create table board (
 create table reply_comment (
     comment_id number(11) not null primary key,
     board_id number(11),
+    member_id number(11),
     member_name varchar(20),
     content varchar2(500),
     write_time varchar(20)

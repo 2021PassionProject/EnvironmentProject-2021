@@ -773,7 +773,9 @@
                 <div th:each="comment : ${comment}" th:if="${comment.board_id} == ${num_id}">
                     <dl>
                         <dt th:text="${comment.member_name}">이름</dt>
-                        <dt><h5 th:text="${comment.write_time}">[작성일]</h5></dt>
+                        <dt><h5 th:text="${comment.write_time}">[작성일]</h5>
+                            <h5 th:each="data : ${data}" th:if="${data.board_id} == ${num_id} and ${session.email} == ${data.writer_email}">
+                                <a th:href="@{comment_delete(id=${comment.comment_id})}">삭제</a></h5></dt>
                         <dd th:text="${comment.content}">내용</dd>
                     </dl>
                     <hr>
@@ -804,6 +806,7 @@
             <div class="bt_wrap">
                 <a th:href="@{post(list=1)}" class="on">목록</a>
                 <a th:href="@{edit(id=${data.board_id})}" th:each="data : ${data}" th:if="${data.board_id} == ${num_id} and ${session.email} == ${data.writer_email}">수정</a>
+                <a th:href="@{delete(id=${data.board_id})}" th:each="data : ${data}" th:if="${data.board_id} == ${num_id} and ${session.email} == ${data.writer_email}">삭제</a>
             </div>
         </div>
     </div>

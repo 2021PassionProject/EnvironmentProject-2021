@@ -40,8 +40,18 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int riseView(Long id) {
+    public int riseView(long id) {
         return memberRepository.riseByView(id);
+    }
+
+    @Override
+    public int deleteBoard(long id) {
+        return memberRepository.deleteBoard(id);
+    }
+
+    @Override
+    public int deleteComment(long id) {
+        return memberRepository.deleteComment(id);
     }
 
     @Override

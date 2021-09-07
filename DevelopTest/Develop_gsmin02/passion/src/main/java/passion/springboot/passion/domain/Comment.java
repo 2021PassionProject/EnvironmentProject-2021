@@ -11,6 +11,7 @@ import lombok.*;
 public class Comment {
     private Long comment_id;
     private Long board_id;
+    private Long member_id;
     private String member_name;
     private String content;
     private String write_time;

@@ -9,7 +9,9 @@ public interface MemberService {
     Member getMemberByEmail(String email);
 
     Board getBoard(long id);
-    int riseView(Long id);
+    int riseView(long id);
+    int deleteBoard(long id);
+    int deleteComment(long id);
 
     List<Board> getBoards();
 

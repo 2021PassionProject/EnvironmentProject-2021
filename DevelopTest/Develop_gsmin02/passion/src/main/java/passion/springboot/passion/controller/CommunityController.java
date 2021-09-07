@@ -76,6 +76,12 @@ public class CommunityController {
         }
     }
 
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") long id) {
+        memberService.deleteBoard(id);
+        return "community/move_post";
+    }
+
     @GetMapping("/post")
     public String post(@RequestParam("list") int list, Model model) {
         int num = 0;
@@ -147,6 +153,7 @@ public class CommunityController {
     public String reply(@Valid Model model, Comment comment, HttpServletRequest request) {
         session = request.getSession();
         String member_name = (String) session.getAttribute("name");
+        Long member_id = (long) session.getAttribute("id");
         String content = request.getParameter("content");
         String id = request.getParameter("id");
 
@@ -154,6 +161,7 @@ public class CommunityController {
         model.addAttribute("num_id", num_id);
         Long long_id = (long) num_id;
 
+        comment.setMember_id(member_id);
         comment.setBoard_id(long_id);
         comment.setMember_name(member_name);
         comment.setContent(content);
@@ -169,6 +177,12 @@ public class CommunityController {
         else {
             return "member/move_login";
         }
+    }
+
+    @GetMapping("comment_delete")
+    public String comment_delete(@RequestParam("id") long id) {
+        memberService.deleteComment(id);
+        return "community/move_post";
     }
 
     @GetMapping("/write")

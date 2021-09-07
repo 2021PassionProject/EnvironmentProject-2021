@@ -164,7 +164,7 @@
         <li class="page-item"><a class="page-link" th:if="${list} - 1 != 0" th:href="@{post(list=${list} - 1)}"><</a></li>
         <!-- DataBase 에서 5단위로 끊어 목록 표시 -->
         <li class="page-item" th:each="board : ${board}" th:if="(${board.board_id} % 10) == 1"><a class="page-link" th:href="@{post(list=${num} + 1 + (${board.board_id} - 1) / 10)}" th:text="${num} + 1 + (${board.board_id} - 1) / 10"></a></li>
-        <li class="page-item"><a class="page-link" th:each="board : ${board}" th:if="${list} <= ((${board.board_id} - 1) / 10)" th:href="@{post(list=${list} + 1)}">></a></li>
+        <li class="page-item"><a class="page-link" th:each="board : ${board}" th:if="${board.board_id} == (${list} * 10 + 1)" th:href="@{post(list=${list} + 1)}">></a></li>
     </ul>
     <br><br>
     <th:block th:replace="main/index-footer::footer"></th:block>
