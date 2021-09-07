@@ -36,41 +36,10 @@ public class MemberServiceImpl implements MemberService {
     public List<Member> getMembers() {
         return memberRepository.readMembers();
     }
-    @Override
-    public Board getBoard(long id) {
-        Board board = new Board();
-        board.setBoard_id(id);
-        return memberRepository.readByBoard_Id(board);
-    }
-    @Override
-    public int riseView(Long id) {
-        return memberRepository.riseByView(id);
-    }
-
-    @Override
-    public List<Board> getBoards() {
-        return memberRepository.readBoards();
-    }
-
 
     @Override
     public List<Member> getMembersByPage(int index, int size) {
         return null;
-    }
-
-    @Override
-    public int postComment(Comment comment) {
-        return memberRepository.replyComment(comment);
-    }
-
-    @Override
-    public int postBoard(Board board, Member member) {
-        return memberRepository.upload(board, member);
-    }
-
-    @Override
-    public int editBoard(Board board) {
-        return memberRepository.modify(board);
     }
 
     @Override

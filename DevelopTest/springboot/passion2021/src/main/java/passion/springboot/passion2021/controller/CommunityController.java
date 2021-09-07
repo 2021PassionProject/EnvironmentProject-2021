@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import passion.springboot.passion2021.domain.Board;
 import passion.springboot.passion2021.domain.Comment;
 import passion.springboot.passion2021.domain.Member;
-import passion.springboot.passion2021.repository.MemberRepositoryImpl;
-import passion.springboot.passion2021.service.MemberService;
+import passion.springboot.passion2021.repository.BoardRepositoryImpl;
+import passion.springboot.passion2021.service.BoardService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,18 +27,18 @@ import java.sql.SQLRecoverableException;
 @RequestMapping("/")
 public class CommunityController {
 
-    MemberService memberService;
+    BoardService boardService;
     HttpSession session = null;
 
     @Autowired
-    public CommunityController(MemberService memberService) {
-        this.memberService = memberService;
+    public CommunityController(BoardService boardService) {
+        this.boardService = boardService;
     }
 
     @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
         model.addAttribute("num_id", id);
-        model.addAttribute("data", MemberRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
+        model.addAttribute("data", BoardRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
                 new RowMapper<Board>() {
                     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Board board = new Board();
@@ -68,7 +68,7 @@ public class CommunityController {
         new_board.setTitle(title);
         new_board.setContent(content);
 
-        if(memberService.editBoard(new_board) > 0) {
+        if(boardService.editBoard(new_board) > 0) {
             return "community/move_post";
         }
         else {
@@ -81,7 +81,7 @@ public class CommunityController {
         int num = 0;
         model.addAttribute("num", num);
         model.addAttribute("list", list);
-        model.addAttribute("board", MemberRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
+        model.addAttribute("board", BoardRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
                 new RowMapper<Board>() {
                     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Board board = new Board();
@@ -105,7 +105,7 @@ public class CommunityController {
         session = request.getSession();
         model.addAttribute("email", session.getAttribute("email"));
         model.addAttribute("num_id", (int)id);
-        model.addAttribute("data", MemberRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
+        model.addAttribute("data", BoardRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
                 new RowMapper<Board>() {
                     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Board board = new Board();
@@ -122,7 +122,7 @@ public class CommunityController {
                 }
                 )
         );
-        model.addAttribute("comment", MemberRepositoryImpl.jdbcTemplate.query("SELECT * FROM reply_comment",
+        model.addAttribute("comment", BoardRepositoryImpl.jdbcTemplate.query("SELECT * FROM reply_comment",
                 new RowMapper<Comment>() {
                     public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Comment comment = new Comment();
@@ -138,7 +138,7 @@ public class CommunityController {
                 )
         );
 
-        memberService.riseView(id);
+        boardService.riseView(id);
 
         return "community/view";
     }
@@ -159,7 +159,7 @@ public class CommunityController {
         comment.setContent(content);
 
         if(session.getAttribute("id") != null) {
-            if(memberService.postComment(comment) > 0) {
+            if(boardService.postComment(comment) > 0) {
                 return "community/move_view";
             }
             else {
@@ -196,7 +196,7 @@ public class CommunityController {
         board.setContent(content);
 
         if(session.getAttribute("id") != null) {
-            if(memberService.postBoard(board, member) > 0) {
+            if(boardService.postBoard(board, member) > 0) {
                 return "community/move_post";
             }
             else {
