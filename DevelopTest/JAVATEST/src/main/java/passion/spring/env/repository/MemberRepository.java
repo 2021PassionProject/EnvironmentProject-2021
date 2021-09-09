@@ -1,16 +1,23 @@
 package passion.spring.env.repository;
 
 import passion.spring.env.domain.Board;
+import passion.spring.env.domain.Comment;
 import passion.spring.env.domain.Member;
 
 import java.util.List;
 
 public interface MemberRepository {
     int create(Member member);  // 레코드 생성
-    int upload(Board board);    // 게시물 생성
+    int upload(Board board, Member member);    // 게시물 생성
+    int modify(Board board);    // 게시물 수정
+
+    int replyComment(Comment comment);
 
     Member readById(Member member); // 레코드 한 개 가져오기, 유일키 사용
     Member readByEmail(Member member);  // 하나 레코드 가져오기
+
+    Board readByBoard_Id(Board board);
+    int riseByView(Long id);
 
     List<Board> readBoards();
     List<Member> readMembers(); // 다수의 레코드 가져오기

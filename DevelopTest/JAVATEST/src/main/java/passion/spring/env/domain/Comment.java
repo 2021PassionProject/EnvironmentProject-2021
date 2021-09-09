@@ -8,12 +8,10 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Board {
+public class Comment {
+    private Long comment_id;
     private Long board_id;
-    private String writer;
-    private String writer_email;
-    private String title;
-    private String write_time;
-    private Long views;
+    private String member_name;
     private String content;
+    private String write_time;
 }

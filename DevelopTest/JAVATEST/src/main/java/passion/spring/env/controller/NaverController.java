@@ -1,6 +1,7 @@
 package passion.spring.env.controller;
 
 import org.apache.tomcat.util.json.JSONParser;
+import org.apache.tomcat.util.json.JSONParserTokenManager;
 import org.apache.tomcat.util.json.ParseException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -11,15 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Controller
@@ -35,6 +34,8 @@ public class NaverController {
     private String NAVER_SNS_CLIENT_SECRET;
     @Value("${sns.naver.token.url}")
     private String NAVER_SNS_TOKEN_URL;
+    @Value("${sns.naver.profile.url}")
+    private String NAVER_SNS_USERINFO_URL;
 
     HttpSession session = null;
     @GetMapping("/naverLogin")
@@ -54,11 +55,11 @@ public class NaverController {
         session.setAttribute("state",state);
         model.addAttribute("apiURL",apiURL);
 
-        return "http://localhost:8888/member/callback";
+        return "member/callback";
     }
 
     @GetMapping("/callback")
-    public String getCallback(HttpServletRequest request, HttpServletResponse response, Model model) {
+    public String getCallback(HttpServletRequest request, Model model) {
         session = request.getSession();
         String code = request.getParameter("code");
         String state = request.getParameter("state");
@@ -92,7 +93,29 @@ public class NaverController {
             }catch(ParseException e) {
                 e.printStackTrace();
             }
-            System.out.println(parsedJson);
+
+            String access_token = (String) parsedJson.get("access_token");
+            String profileURL;
+            String profiles = null;
+            profileURL = NAVER_SNS_USERINFO_URL + "?access_token=" + access_token;
+            try {
+                profiles = requestToServer(profileURL);
+            }catch(IOException e) {
+                e.printStackTrace();
+            }
+            Map<String, Object> profileJson = null;
+                model.addAttribute("profiles",profiles);
+                try {
+                    profileJson = new JSONParser(profiles).parseObject();
+                }catch(ParseException e) {
+                    e.printStackTrace();
+                }
+            Map<String, Object> response = (Map<String, Object>) profileJson.get("response");
+
+                session.setAttribute("naverName",response.get("name"));
+                session.setAttribute("naverEmail",response.get("email"));
+                System.out.println(response);
+            System.out.println(profiles);
             session.setAttribute("currentUser",res);
             session.setAttribute("currentAT",parsedJson.get("access_token"));
             session.setAttribute("currentRT",parsedJson.get("refresh_token"));
@@ -160,4 +183,6 @@ public class NaverController {
 
         return "redirect:/";
     }
+
+
 }

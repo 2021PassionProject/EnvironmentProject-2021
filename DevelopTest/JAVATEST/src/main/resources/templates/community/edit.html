@@ -37,6 +37,7 @@
 
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="assets/css/postwrite.css">
     <style>
         a:hover {
@@ -81,22 +82,18 @@
         <div class="row">
             <div class="col-md-7 offset-3 mt-4">
                 <div class="card-body">
-                    <label for="title">
-                        <div class="post-title">게시판 수정</div>
-                    </label>
+                    <label for="title"><div class="post-title">게시판 수정</div></label>
                     <hr>
-                    <input type="text" class="form-control" id="title" name="title" maxlength="100"
-                           placeholder="제목을 입력해 주세요.">
-                    <form method="POST" action="">
+                    <form method="POST" th:action="@{modify(id=${num_id})}">
+                        <input type="text" class="form-control" id="title" th:value="${title}" name="title" maxlength="100" placeholder="제목을 입력해 주세요.">
                         <div class="form-group">
-                            <textarea class="form-control" name="summernote" id="summernote"></textarea>
+                            <textarea class="form-control" th:value="${content}" name="content" id="summernote"></textarea>
                         </div>
                         <div class="post-btn-line">
-                            <a href="#" class="post-btn" style=:"margin-right:30px">수정하기</a>
-                            <a href="#" class="post-btn">뒤로가기</a>
+                            <input type="submit" value="수정하기" class="post-btn" style=:"margin-right:30px">
+                            <a th:href="@{view(id=${num_id})}" class="post-btn">뒤로가기</a>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

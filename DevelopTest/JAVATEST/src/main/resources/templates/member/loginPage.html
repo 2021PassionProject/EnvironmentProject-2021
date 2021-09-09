@@ -57,17 +57,17 @@
                                 <br><br>
                                 <h1 style="color: #1C354F">로그인</h1>
                                 <div class="int-area">
-                                    <input type="text" name="email" id="id" autocomplete="on" required>
+                                    <input type="text" name="email" id="email" autocomplete="on" required>
                                     <label for="email">아이디(이메일)</label>
                                 </div>
                                 <div class="int-area">
-                                    <input type="password" name="pw" id="pwd" autocomplete="off" required>
+                                    <input type="password" name="pw" id="pw" autocomplete="off" required>
                                     <label for="pw">비밀번호</label>
                                 </div>
-                                <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" th:id="${session.id}" style="width: 360px">
+                                <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" id="login" style="width: 360px">
                                 <div class="login-type">
                                     <hr>
-                                    <a class="btn" href="#none">휴대폰 번호로 로그인</a>
+                                    <a class="btn" href="#">구글로 로그인</a>
                                     <a class="btn" href="#">네이버로 로그인</a>
                                     <a class="btn" href="#">카카오로 로그인</a>
                                 </div>
@@ -98,7 +98,7 @@
                                     <hr>
                                     <a class="btn" href="https://accounts.google.com/o/oauth2/v2/auth?client_id=681230920409-v1n946gmsl1d3l6h4c700mnkdc50duba.apps.googleusercontent.com&redirect_uri=http://localhost:8888/member/google/auth&response_type=code&scope=openid%20email%20profile&access_type=offline">구글로 로그인</a>
                                     <a class="btn" href="https://nid.naver.com/oauth2.0/authorize?client_id=21Q2VD9txfpkGj8TyYof&response_type=code&redirect_uri=http://localhost:8888/member/callback&state=authorization_code">네이버로 로그인</a>
-                                    <a class="btn" href="https://kauth.kakao.com/oauth/authorize?client_id=c34c9b0b74f8394309ca8e4fcdeef949&redirect_uri=http://localhost:8888/login-kakao&response_type=code">카카오로 로그인</a>
+                                    <a class="btn" href="https://kauth.kakao.com/oauth/authorize?client_id=932e0399341e52a98429e54d8fa728a8&redirect_uri=http://localhost:8888/login-kakao&response_type=code">카카오로 로그인</a>
                                 </div>
                                 <div class="login-footer">
                                     <a th:href="@{'./signupPage'}">회원가입</a>
@@ -161,8 +161,6 @@
                                 <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
                             </div><!-- /.mobile-nav__social -->
                         </div><!-- /.mobile-nav__top -->
-
-
 
                     </div>
                     <!-- /.mobile-nav__content -->

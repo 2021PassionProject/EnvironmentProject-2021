@@ -73,18 +73,16 @@
             <div class="card-body">
                 <label for="title"><div class="post-title">게시판 글쓰기</div></label>
                 <hr>
-
-                <form method="POST" th:action="@{/upload}">
-                    <input type="text" class="form-control" id="title" th:text="${title}" name="title" maxlength="100" placeholder="제목을 입력해 주세요.">
+                <form method="POST" th:action="@{'./upload'}">
+                    <input type="text" class="form-control" id="title" th:value="${title}" name="title" maxlength="100" placeholder="제목을 입력해 주세요.">
                     <div class="form-group">
-                        <textarea class="form-control" th:text="${content}" name="summernote" id="summernote"></textarea>
+                        <textarea class="form-control" th:value="${content}" name="content" id="summernote"></textarea>
                     </div>
                     <div class="post-btn-line">
-                        <a href="#" class="post-btn" style=:"margin-right:30px">올리기</a>
-                        <a href="#" class="post-btn">뒤로가기</a>
+                        <input type="submit" value="올리기" class="post-btn" style=:"margin-right:30px" />
+                        <a th:href="@{'./post'}" class="post-btn">뒤로가기</a>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
@@ -110,3 +108,21 @@
         height: 400
     });
 </script>
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/swiper.min.js"></script>
+<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/jquery.validate.min.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<script src="assets/js/wow.js"></script>
+<script src="assets/js/odometer.min.js"></script>
+<script src="assets/js/jquery.appear.min.js"></script>
+<script src="assets/js/jarallax.min.js"></script>
+<script src="assets/js/circle-progress.min.js"></script>
+<script src="assets/js/wNumb.min.js"></script>
+<script src="assets/js/nouislider.min.js"></script>
+
+<!-- template js -->
+<script src="assets/js/theme.js"></script>
+</html>

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,18 +19,17 @@ import passion.spring.env.model.GoogleOAuthRequest;
 import passion.spring.env.model.GoogleOAuthResponse;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
+
 import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
 public class GoogleController {
-    final static String GOOGLE_AUTH_BASE_URL = "https://accounts.google.com/o/oauth2/v2/auth";
 
     @Value("${sns.google.callback.url}")
     private String GOOGLE_SNS_CALLBACK_URL;
-    @Value("${sns.google.revoke.url}")
-    private String GOOGLE_SNS_REVOKE_URL;
+    @Value("${sns.google.url}")
+    private String GOOGLE_SNS_BASE_URL;
     @Value("${sns.google.token.url}")
     private String GOOGLE_SNS_TOKEN_URL;
     @Value("${sns.google.client.id}")
@@ -56,7 +56,6 @@ public class GoogleController {
                 .redirectUri(GOOGLE_SNS_CALLBACK_URL)
                 .grantType("authorization_code").build();
 
-
         //JSON 파싱을 위한 기본값 세팅
         //요청시 파라미터는 스네이크 케이스로 세팅되므로 Object mapper에 미리 설정해준다.
         ObjectMapper mapper = new ObjectMapper();
@@ -80,6 +79,9 @@ public class GoogleController {
         String resultJson = restTemplate.getForObject(requestUrl, String.class);
 
         Map<String,String> userInfo = mapper.readValue(resultJson, new TypeReference<Map<String, String>>(){});
+
+        session.setAttribute("googleName", userInfo.get("name"));
+        session.setAttribute("googleEmail", userInfo.get("email"));
         session.setAttribute("userInfo", userInfo);
         session.setAttribute("access_token", result.getAccessToken());
         System.out.println(userInfo);

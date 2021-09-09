@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.servlet.ModelAndView;
 import passion.spring.env.domain.Member;
+// import passion.spring.env.service.KakaoService;
 import passion.spring.env.service.KakaoService;
 import passion.spring.env.service.MemberService;
 
@@ -28,9 +30,8 @@ public class MemberController {
 
     MemberService memberService;
 
-    @Autowired  // Spring Framework 가 주입함
+    @Autowired
     private KakaoService kakaoService;
-
 
     public MemberController(MemberService memberService) {
         this.memberService = memberService; // 오른쪽 memberService 객체는 등록된 객체를 주입
@@ -57,7 +58,7 @@ public class MemberController {
         if (memberService.postMember(member) > 0) {
             return "member/loginPage";
         } else {
-            return "member/signupPage";
+            return "member/move_signup";
         }
     }
 
@@ -102,44 +103,47 @@ public class MemberController {
     public String loginKakao(@RequestParam("code") String code, HttpSession session) {
         System.out.println("code : " + code);
         String access_Token = kakaoService.getAccessToken(code);
-
         System.out.println("access_Token : " + access_Token);
         HashMap<String, Object> userInfo = kakaoService.getUserInfo(access_Token);
 
         System.out.println("login Controller : " + userInfo);
         if (userInfo.get("email") != null) {
-            session.setAttribute("userId", userInfo.get("email"));
+            session.setAttribute("nickname",userInfo.get("nickname"));
+            session.setAttribute("userEmail", userInfo.get("email"));
             session.setAttribute("access_Token",access_Token);
+
         }
-        return "main/index";
+        return "redirect:/";
     }
 
-
-    @GetMapping("/{id}")
+    // 마이 페이지
+    @GetMapping("/mypage{id}")
     public String getMember(@PathVariable("id") Long id, Model model) {
         Member member = memberService.getMember(id);
         model.addAttribute("member", member);
         return "member/mypage";
     }
 
-    @PutMapping("/{id}")
+    // 마이페이지 수정
+    @PutMapping("/mypage{id}")
     public String putMember(@PathVariable("id") Long id, @Valid Member member, Model model) {
         if (memberService.putMember(member) > 0) {
             model.addAttribute("member", member);
-            return "redirect:/" + id;   // GetMapping 호출
+            return "redirect:/mypage" + id;   // GetMapping("/mypage{id}") 호출
         } else {
-            model.addAttribute("cookie_id", "업데이트 실패하였습니다.");
+            model.addAttribute("message", "업데이트 실패하였습니다.");
             return "member/mypage";
         }
     }
 
-    @DeleteMapping("/{id}")
+    // 회원 탈퇴
+    @DeleteMapping("/mypage{id}")
     public String deleteMember(@Valid Member member, Model model) {
         if (memberService.deleteMember(member) > 0) {
-            return "redirect:/main/index";
+            return "redirect:/logout";
         } else {
             model.addAttribute("message", "탈퇴 실패하였습니다.");
-            return "member/mypage";
+            return "main/index";
         }
     }
 
@@ -154,20 +158,20 @@ public class MemberController {
             cookies[i].setMaxAge(0);
         }
 
-        return "redirect:/";
+        return "main/move_index";
     }
 
     // 카카오 로그아웃
-    @RequestMapping(value = "/logout2")
+    @RequestMapping(value="/logout2") //카카오 로그아웃
     public String logout(HttpSession session) {
-        String access_Token = (String) session.getAttribute("access_Token");
+        String access_Token = (String)session.getAttribute("access_Token");
 
-        if (access_Token != null && !"".equals(access_Token)) {
+        if(access_Token != null && !"".equals(access_Token)){
             kakaoService.kakaoLogout(access_Token);
             session.removeAttribute("access_Token");
-            session.removeAttribute("userId");
+            session.removeAttribute("userEmail");
             session.invalidate();
-        } else {
+        }else{
             System.out.println("access_Token is null");
         }
         return "redirect:/";
