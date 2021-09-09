@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,91 +49,98 @@
     <img class="preloader__image" width="55" src="assets/images/loader.png" alt="">
 </div><!-- /.preloader -->
 <div class="page-wrapper">
-
     <th:block th:replace="~{main/index-head::header}"></th:block>
     <!-- /헤더끝 -->
     <br><br><br>
 
-    <p style="text-align: center">제작 및 테스트중</p>
+    <p style="text-align: center"><nav class="main-menu">
+    <b style="color: #4b87c1; font-size: 25px"> 쓰레기처리 시설</b>
+    또는
+    <b style="color: #4b87c1; font-size: 25px">업사이클링</b>
+    시설이 어디있는지 궁금하다면?
+    </p>
+    <th:block th:replace="~{map/KakaoMapSearch.html}"></th:block>
+    <th:block th:replace="~{map/KakaoMap.html}"></th:block>
+</nav></p>
 
     <th:block th:replace="main/index-footer::footer"></th:block>
-    <div class="bottom-footer">
-        <div class="container">
-            <p>© Copyright 2020 by Company.com</p>
-            <div class="bottom-footer__links">
-                <a href="#">Terms & Conditions</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Sitemap</a>
-            </div><!-- /.bottom-footer__links -->
-        </div><!-- /.container -->
-    </div><!-- /.bottom-footer -->
+        <div class="bottom-footer">
+            <div class="container">
+                <p>© Copyright 2020 by Company.com</p>
+                <div class="bottom-footer__links">
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Sitemap</a>
+                </div><!-- /.bottom-footer__links -->
+            </div><!-- /.container -->
+        </div><!-- /.bottom-footer -->
 
-</div><!-- /.page-wrapper -->
+    </div><!-- /.page-wrapper -->
 
 
-<div class="mobile-nav__wrapper">
-    <div class="mobile-nav__overlay mobile-nav__toggler"></div>
-    <!-- /.mobile-nav__overlay -->
-    <div class="mobile-nav__content">
-        <span class="mobile-nav__close mobile-nav__toggler"><i class="far fa-times"></i></span>
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="far fa-times"></i></span>
 
-        <div class="logo-box">
-            <a href="index.html" aria-label="logo image"><img src="assets/images/logo-light.png" width="155" alt="" /></a>
+            <div class="logo-box">
+                <a href="../main/index.html" aria-label="logo image"><img src="assets/images/logo-light.png" width="155" alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="agrikon-icon-email"></i>
+                    <a href="mailto:needhelp@agrikon.com">needhelp@agrikon.com</a>
+                </li>
+                <li>
+                    <i class="agrikon-icon-telephone"></i>
+                    <a href="tel:666-888-0000">666 888 0000</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__top">
+                <div class="mobile-nav__language">
+                    <img src="assets/images/resources/flag-1-1.jpg" alt="">
+                    <label class="sr-only" for="language-select">select language</label>
+                    <!-- /#language-select.sr-only -->
+                    <select class="selectpicker" id="language-select">
+                        <option value="english">English</option>
+                        <option value="arabic">Arabic</option>
+                    </select>
+                </div><!-- /.mobile-nav__language -->
+                <div class="mobile-nav__social">
+                    <a href="#" aria-label="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="facebook"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#" aria-label="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+                </div><!-- /.mobile-nav__social -->
+            </div><!-- /.mobile-nav__top -->
+
+
+
         </div>
-        <!-- /.logo-box -->
-        <div class="mobile-nav__container"></div>
-        <!-- /.mobile-nav__container -->
-
-        <ul class="mobile-nav__contact list-unstyled">
-            <li>
-                <i class="agrikon-icon-email"></i>
-                <a href="mailto:needhelp@agrikon.com">needhelp@agrikon.com</a>
-            </li>
-            <li>
-                <i class="agrikon-icon-telephone"></i>
-                <a href="tel:666-888-0000">666 888 0000</a>
-            </li>
-        </ul><!-- /.mobile-nav__contact -->
-        <div class="mobile-nav__top">
-            <div class="mobile-nav__language">
-                <img src="assets/images/resources/flag-1-1.jpg" alt="">
-                <label class="sr-only" for="language-select">select language</label>
-                <!-- /#language-select.sr-only -->
-                <select class="selectpicker" id="language-select">
-                    <option value="english">English</option>
-                    <option value="arabic">Arabic</option>
-                </select>
-            </div><!-- /.mobile-nav__language -->
-            <div class="mobile-nav__social">
-                <a href="#" aria-label="twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="facebook"><i class="fab fa-facebook-square"></i></a>
-                <a href="#" aria-label="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
-            </div><!-- /.mobile-nav__social -->
-        </div><!-- /.mobile-nav__top -->
-
-
-
+        <!-- /.mobile-nav__content -->
     </div>
-    <!-- /.mobile-nav__content -->
-</div>
-<!-- /.mobile-nav__wrapper -->
+    <!-- /.mobile-nav__wrapper -->
 
-<div class="search-popup">
-    <div class="search-popup__overlay search-toggler"></div>
-    <!-- /.search-popup__overlay -->
-    <div class="search-popup__content">
-        <form action="#">
-            <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
-            <input type="text" id="search" placeholder="Search Here..." />
-            <button type="submit" aria-label="search submit" class="thm-btn">
-                <i class="fa fa-search"></i>
-            </button>
-        </form>
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
     </div>
-    <!-- /.search-popup__content -->
-</div>
-<!-- /.search-popup -->
+    <!-- /.search-popup -->
 </div>
 <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
 

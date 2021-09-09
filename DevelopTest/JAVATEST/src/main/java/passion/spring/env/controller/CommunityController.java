@@ -12,6 +12,7 @@ import passion.spring.env.domain.Board;
 import passion.spring.env.domain.Comment;
 import passion.spring.env.domain.Member;
 import passion.spring.env.repository.MemberRepositoryImpl;
+import passion.spring.env.service.BoardService;
 import passion.spring.env.service.MemberService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +26,13 @@ import java.sql.SQLException;
 public class CommunityController {
 
     MemberService memberService;
+    BoardService boardService;
     HttpSession session = null;
 
     @Autowired
-    public CommunityController(MemberService memberService) {
+    public CommunityController(MemberService memberService, BoardService boardService) {
         this.memberService = memberService;
+        this.boardService = boardService;
     }
 
     @GetMapping("/edit")
@@ -65,7 +68,7 @@ public class CommunityController {
         new_board.setTitle(title);
         new_board.setContent(content);
 
-        if (memberService.editBoard(new_board) > 0) {
+        if (boardService.editBoard(new_board) > 0) {
             return "community/move_post";
         } else {
             return "main/move_index";
@@ -132,7 +135,7 @@ public class CommunityController {
                 }
                 )
         );
-        memberService.riseView(id);
+        boardService.riseView(id);
 
         return "community/view";
     }
@@ -161,7 +164,7 @@ public class CommunityController {
         comment.setContent(content);
 
         if ((session.getAttribute("id") != null) || (session.getAttribute("userInfo") != null) || (session.getAttribute("currentAT") != null) || (session.getAttribute("userEmail") != null)) {
-            if (memberService.postComment(comment) > 0) {
+            if (boardService.postComment(comment) > 0) {
                 return "community/move_view";
             } else {
                 return "member/move_login";
@@ -208,7 +211,7 @@ public class CommunityController {
         board.setContent(content);
 
         if ((session.getAttribute("id") != null) || (session.getAttribute("userInfo") != null) || (session.getAttribute("currentAT") != null) || (session.getAttribute("userEmail") != null)) {
-            if (memberService.postBoard(board, member) > 0) {
+            if (boardService.postBoard(board, member) > 0) {
                 return "community/move_post";
             } else {
                 return "member/move_login";

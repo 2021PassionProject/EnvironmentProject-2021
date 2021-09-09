@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import passion.spring.env.domain.Board;
 import passion.spring.env.domain.Comment;
 import passion.spring.env.domain.Member;
+import passion.spring.env.repository.BoardRepository;
 import passion.spring.env.repository.MemberRepository;
 
 import java.util.List;
@@ -33,23 +34,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Board getBoard(long id) {
-        Board board = new Board();
-        board.setBoard_id(id);
-        return memberRepository.readByBoard_Id(board);
-    }
-
-    @Override
-    public int riseView(Long id) {
-        return memberRepository.riseByView(id);
-    }
-
-    @Override
-    public List<Board> getBoards() {
-        return memberRepository.readBoards();
-    }
-
-    @Override
     public List<Member> getMembers() {
         return memberRepository.readMembers();
     }
@@ -60,23 +44,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public int postComment(Comment comment) {
-        return memberRepository.replyComment(comment);
-    }
-
-    @Override
     public int postMember(Member member) {
         return memberRepository.create(member);
-    }
-
-    @Override
-    public int postBoard(Board board, Member member) {
-        return memberRepository.upload(board, member);
-    }
-
-    @Override
-    public int editBoard(Board board) {
-        return memberRepository.modify(board);
     }
 
     @Override
@@ -89,6 +58,7 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.delete(member);
     }
 
+    // 아이디 중복
     @Override
     public int idCheck(String email) {
         int cnt = memberRepository.idCheck(email);
