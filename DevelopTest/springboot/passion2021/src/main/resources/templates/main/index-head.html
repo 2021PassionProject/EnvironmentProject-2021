@@ -46,12 +46,12 @@
                 <div class="main-header__info">
                     <a href="#" class="search-toggler main-header__search-btn"><i class="agrikon-icon-magnifying-glass"></i></a>
                     <a class="main-header__cart-btn" href="#"></a>
-                    <th:block th:if="${session.name == null && session.userId == null}">
+                    <th:block th:if="${session.name == null && session.email != 'root@induk.ac.kr' && session.userId == null}">
                     <span class="main-header__info-phone-content">
                                  <a th:href="@{'/login-form'}" class=" thm-btn">로그인</a>
                             </span><!-- /.main-header__info-phone-content -->
                     </th:block>
-                    <th:block th:unless="${session.name == null}">
+                    <th:block th:if="${session.email != null && session.email != 'root@induk.ac.kr' }">
                          <span class="main-header__info-phone-content">
                              <a th:href="@{'/logout'}" class=" thm-btn">로그아웃</a>
                              <a th:href="@{'/mypage{id}'(id=${session.id})}" class="thm-btn" >마이페이지</a>
@@ -62,7 +62,10 @@
                                 <a th:href="@{'/logout2'}" class=" thm-btn">로그아웃</a>
                             </span>
                     </th:block>
-
+                    <th:block th:if="${session.email == 'root@induk.ac.kr'}">
+                        <a th:href="@{'/logout'}" class=" thm-btn">로그아웃</a>
+                        <a th:href="@{'/ad-index'}" class="thm-btn" >관리자</a>
+                    </th:block>
 
                 </div><!-- /.main-header__info -->
             </div><!-- /.container -->

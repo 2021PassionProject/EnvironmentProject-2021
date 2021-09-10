@@ -42,8 +42,8 @@
     <div id="content">
         <div class="title" aria-live="assertive">
             <p></p>
-        </div> <!-- 이거 맞는거 같은데 ㅎㅎㅎ;;;; -->
-        <form target="_top" AUTOCOMPLETE="on" th:action="@{'./signin'}"method="POST" name="login" id="signin" novalidate>
+        </div>
+        <form target="_top" AUTOCOMPLETE="on" th:action="@{'./login'}"method="POST" name="login" id="signin" novalidate>
         <!--<form id="frmNIDLogin" name="frmNIDLogin" target="_top" AUTOCOMPLETE="off" action="https://nid.naver.com/nidlogin.login" method="POST">-->
             <input type="hidden" id="localechange" name="localechange" value="">
             <input type="hidden" name="dynamicKey" id="dynamicKey" value="">
@@ -83,7 +83,7 @@
                     <a class="btn" href="#none">카카오로 로그인</a>
                 </div>
                 <div class="login-footer">
-                        <a href="signup">회원가입</a>
+                        <a href="signupPage">회원가입</a>
                     </p>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                                     <input type="password" name="pw" id="pw" autocomplete="off" required>
                                     <label for="pw">비밀번호</label>
                                 </div>
-                                <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" id="login"
+                                <input type="submit" title="로그인" alt="로그인" value="로그인" class="btnlogin" id="loginPage"
                                        style="width: 360px">
                                 <div class="login-type">
                                     <hr>
@@ -115,7 +115,7 @@
                                     <a class="btn" href="#none">카카오로 로그인</a>
                                 </div>
                                 <div class="login-footer">
-                                    <a href="signup">회원가입</a>
+                                    <a href="signupPage">회원가입</a>
                                     </p>
                                 </div>
                             </div>

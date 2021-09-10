@@ -4,11 +4,15 @@ plugins {
     id 'java'
 }
 
-group = 'passion.spring'
+group = 'passion.springboot'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
+    all {
+        // 다른 로깅 사용을 위한 spring-boot-starter-logging 제외
+        exclude group:'org.springframework.boot', module:'spring-boot-starter-logging'
+    }
     compileOnly {
         extendsFrom annotationProcessor
     }
@@ -19,16 +23,30 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '4.0.3'
+    implementation 'com.oracle.database.jdbc:ojdbc8'
+
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
+    // spring-boot-starter-web 라이브러리 의존성 해결시 함께 해결됨
+    //implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.aspectj:aspectjrt:1.9.6'
+    implementation 'org.aspectj:aspectjweaver:1.9.6'
+
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+    compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    //implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    //implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '7.0.1.Final'
+    testImplementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 
 test {
