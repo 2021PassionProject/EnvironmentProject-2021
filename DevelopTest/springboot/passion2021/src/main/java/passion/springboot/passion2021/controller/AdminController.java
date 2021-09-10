@@ -48,6 +48,23 @@ public class AdminController {
         model.addAttribute("memberList", memberList);
         return "admin/ad-member"; //회원정보 폼
     }
+    @GetMapping("/ad-mypage{id}") //어드민 마이페이지
+    public String getMember(@PathVariable("id") Long id, Model model) {
+        Member member = memberService.getMember(id);
+        model.addAttribute("member", member);
+        return "admin/ad-mypage";
+    }
+
+    @DeleteMapping("/ad-mypage{id}")
+    public String deleteMember(@Valid Member member, Model model) {
+        if(memberService.deleteMember(member) > 0) {
+            return "redirect:/ad-member";
+        } else {
+            model.addAttribute("message", "탈퇴를 실패하였습니다.");
+            return "admin/ad-member";
+        }
+    }
+
 
 
 }
