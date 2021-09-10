@@ -1,0 +1,20 @@
+.post-btn{
+    min-width: 120px;
+    padding: 0 10px;
+    position: relative;
+    text-align: center;
+    border: 2px solid;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: capitalize;
+    font: 400 14px/46px 'Poppins', Arial, Helvetica, sans-serif;
+    color: black;
+}
+.event_title{
+    margin-bottom: 10px;
+}
+.event_content{
+    width: 500px;
+    height: 300px;
+}
