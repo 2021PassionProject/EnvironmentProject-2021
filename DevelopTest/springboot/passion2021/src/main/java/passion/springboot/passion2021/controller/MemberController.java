@@ -141,7 +141,6 @@ public class MemberController {
         }
     }
 
-
     @GetMapping("/logout")
     public String logoutMember(HttpServletRequest request) {    // 로그아웃
         HttpSession session = request.getSession();
