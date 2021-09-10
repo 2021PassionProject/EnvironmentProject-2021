@@ -58,140 +58,94 @@
         <!-- content-->
         <div id="content">
             <!-- ID -->
+            <form th:action="@{'/mypage{id}'(id=${member.id})}" th:method="post">
+                <input type="hidden" name="_method" value="put" />
             <div>
                 <h3 class="join_title">
-                    <label for="id">아이디</label>
+                    <label for="email">아이디</label>
                 </h3>
-                <span class="box int_id">
-                        <input type="text" id="id" class="int" maxlength="20" readonly/>
+                <span class="box int_email">
+                        <input type="text" th:value="${member.email}" id="email" class="int" maxlength="20" readonly/>
                     </span>
             </div>
 
             <!-- NAME -->
-            <div>
-                <h3 class="join_title"><label for="nickname">닉네임</label></h3>
-                <span class="box int_name">
-                        <input type="text" id="nickname" class="int" maxlength="20" >
+                <div>
+                    <h3 class="join_title"><label for="name">이름</label></h3>
+                    <span class="box int_name">
+                        <input type="text" th:value="${member.name}" id="name" class="int" maxlength="20">
                     </span>
-                <span class="error_next_box"></span>
-            </div>
-
-            <!-- NICKNAME -->
-            <div>
-                <h3 class="join_title"><label for="name">이름</label></h3>
-                <span class="box int_name">
-                        <input type="text" id="name" class="int" maxlength="20" placeholder="이름 입력">
-                    </span>
-                <span class="error_next_box"></span>
-            </div>
+                    <span class="error_next_box"></span>
+                </div>
 
             <!-- BIRTH -->
-            <div>
-                <h3 class="join_title"><label for="yy">생년월일</label></h3>
 
-                <div id="bir_wrap">
-                    <!-- BIRTH_YY -->
-                    <div id="bir_yy">
-                            <span class="box1">
-                                <input type="text" id="yy" class="int1" maxlength="4" placeholder="년(4자)">
-                            </span>
-                    </div>
-
-                    <!-- BIRTH_MM -->
-                    <div id="bir_mm">
-                            <span class="box1">
-                                <select id="mm" class="sel">
-                                    <option>월</option>
-                                    <option value="01">1</option>
-                                    <option value="02">2</option>
-                                    <option value="03">3</option>
-                                    <option value="04">4</option>
-                                    <option value="05">5</option>
-                                    <option value="06">6</option>
-                                    <option value="07">7</option>
-                                    <option value="08">8</option>
-                                    <option value="09">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </span>
-                    </div>
-
-                    <!-- BIRTH_DD -->
-                    <div id="bir_dd">
-                            <span class="box1">
-                                <input type="text" id="dd" class="int1" maxlength="2" placeholder="일">
-                            </span>
-                    </div>
-
+                <div>
+                    <h3 class="join_title"><label for="birth">생년월일</label></h3>
+                    <span id="box int_bir">
+                    <input type="text" id="birth" th:value="${member.birth}" class="int" maxlength="20" placeholder="yyyyMMdd" />
+                </span>
+                    <span class="error_next_box"></span>
                 </div>
-                <span class="error_next_box"></span>
-            </div>
 
             <!-- PW1 -->
-            <input type="hidden" name="loginPwReal">
-            <div>
-                <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
-                <span class="box int_pass">
-                        <input type="password" name="password" class="int" maxlength="20" placeholder="특수문자 반드시 하나 포함">
+                <div>
+                    <h3 class="join_title"><label for="pw">비밀번호</label></h3>
+                    <span class="box int_pass">
+                        <input type="password" id="pw" onchange="check_pw()" class="int" maxlength="20" />
             </span>
-            </div>
-
-            <!-- PW2 -->
-            <div>
-                <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
-                <span class="box int_pass_check">
-                        <input type="password" name="password" class="int" maxlength="20" placeholder="비밀번호 재확인">
-                    </span>
-            </div>
+                </div>
 
 
-            <!-- EMAIL -->
-            <div>
-                <h3 class="join_title"><label for="email">본인확인 이메일(선택)</label></h3>
-                <span class="box int_email">
-                        <input type="text" id="email" class="int" maxlength="100" placeholder="선택입력">
-                    </span>
-            </div>
+
 
             <!-- MOBILE -->
-            <div>
-                <h3 class="join_title"><label for="mobile">휴대전화</label></h3>
-                <span class="box int_mobile">
-                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력">
+                <div>
+                    <h3 class="join_title"><label for="mobile">휴대전화</label></h3>
+                    <span class="box int_mobile">
+                        <input type="tel" id="mobile" th:value="${member.phone}" class="int" maxlength="16" placeholder="전화번호 입력" />
                     </span>
-                <span class="error_next_box"></span>
-            </div>
+                    <span class="error_next_box"></span>
+                </div>
 
             <!-- ADRESS -->
-            <div>
-                <h3 class="join_title"><label for="placeholder">주소</label></h3>
-                <input type="text" id="placeholder" placeholder="우편번호">
-                <input type="button" onclick="sample6_execDaumPostcode()" style="height: 37.6px" value="우편번호 찾기"><br>
-                <span class="error_next_box"></span>
-            </div>
+                <div>
+                    <h3 class="join_title"><label for="postcode">주소</label></h3>
+                    <input type="text" id="postcode" th:value="${member.postcode}" placeholder="우편번호">
+                    <input type="button" onclick="sample6_execDaumPostcode()" style="height: 37.6px" value="우편번호 찾기"><br>
+                    <span class="error_next_box"></span>
+                </div>
 
             <div>
         <span class="box int_address">
-            <input type="text" id="address" class="int" maxlength="25" placeholder="주소">
+           <input type="text" id="address" name="address" th:value="${member.address}" class="int" maxlength="25" placeholder="주소">
         </span>
             </div>
 
             <div>
         <span class="box int_Detailed_Address">
-            <input type="text" id="Detailed_Address" class="int" maxlength="25" placeholder="상세주소">
+             <input type="text" id="address2" name="address2" th:value="${member.address2}" class="int" maxlength="25" placeholder="상세주소">
         </span>
             </div>
 
             <!-- JOIN BTN-->
-            <div class="btn_page">
-                <button type="button" id="btnokay">
-                    <span>저장하기</span>
-                </button>
-            </div>
+                <div class="btn_page">
+                    <form th:action="@{'/mypage{id}'(id=${member.id})}" th:method="post">
+                        <input type="hidden" name="_method" value="put"/>
+                        <button class="thm-bznn">
+                            <span>수정</span>
+                        </button>
+                    </form>
+                    <form class="form-signin" th:action="@{'/mypage' + ${member.id}}" th:method="delete">
+                        <input type="hidden" name="_method" value="delete" />
+                        <button class="thm-btnn">
+                            <span>탈퇴</span>
+                        </button>
+                    </form>
+                </div>
+            </form>
         </div>
-
+    </div>
     <div class="stricky-header stricked-menu main-menu">
         <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
     </div><!-- /.stricky-header -->
@@ -295,6 +249,12 @@
 
 <!-- template js -->
 <script src="assets/js/theme.js"></script>
+<script type="text/javascript">
+    function addressInput() {
+        document.getElementById('address').value = (document.getElementById('postcode').value.concat(" ", document.getElementById('address').value));
+        return document.getElementById('address').value;
+    }
+</script>
 </body>
 
 </html>
