@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News Page || Agrikon || HTML Template For Agriculture Farm & Farmers</title>
+<!-- favicons Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
+<link rel="manifest" href="assets/images/favicons/site.webmanifest">
+<meta name="description" content="Agrikon HTML Template For Agriculture Farm & Farmers">
+
+<!-- fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Handlee&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="assets/css/swiper.min.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/css/odometer.min.css">
+<link rel="stylesheet" href="assets/css/jarallax.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="assets/css/agrikon-icons.css">
+<link rel="stylesheet" href="assets/css/nouislider.min.css">
+<link rel="stylesheet" href="assets/css/nouislider.pips.css">
+<Link rel="stylesheet" href="assets/css/signup.css">
+<!-- template styles -->
+<link rel="stylesheet" href="assets/css/main.css">
+
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="assets/js/DaumPostCode.js"></script>
+<script src="assets/js/passwordCheck.js"></script>
+
+</head>
+<style>
+    .email_ok{color:#006400; display: none;}
+    .email_already{color: #ff0000; display: none;}
+</style>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    function checkId() {
+        var email = $('#email').val();  // "email"인 입력란의 값을 저장
+        $.ajax({
+            url:'/idCheck', // Controller에서 인식할 주소
+            type:'post',    // POST 방식으로 전달
+            data:{email:email},
+            success:function(cnt) {
+                if(cnt != 1) {  // cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
+                    $('.email_ok').css("display","inline-block");
+                    $('.email_already').css("display","none");
+                }else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                    $('.email_already').css("display","inline-block");
+                    $('.email_ok').css("display","none");
+                }
+            },
+            error:function() { alert("에러입니다."); }
+        });
+    };
+</script>
+<body>
+
+<!-- header -->
+
+<div class="page-wrapper">
+    <th:block th:replace="main/index-head::header"></th:block>
+</div>
+<!-- wrapper -->
+<form role="form" name="form1" method="post" action="signup" th:action="${'/signup'}">
+    <th:block th:object="${member}">
+        <input type="hidden" id="address" name="address" th:value="${address}"/>
+        <div id="wrapper" style="margin-bottom:150px;">
+            <!-- content-->
+            <div id="content">
+                <h1>
+                    <div class="logo-box">
+                        <br>
+                        <center>
+                            <a href="index" aria-label="logo image"><img src="assets/images/logo-dark.png" width="200"
+                                                                         alt=""></a>
+                        </center>
+                        <br>
+                    </div><!-- /.logo-box -->
+                </h1>
+                <!-- ID(EMAIL) -->
+                <div>
+                    <h3 class="join_title"><label for="email">
+                        아이디(이메일)
+                    </label>
+                    </h3>
+                    <span class="box int_email">
+                        <input type="text" th:text="${email}" id="email" name="email"
+                               class="int" maxlength="30" required oninput="checkId()" />
+                        <span class = "email_ok">사용 가능한 아이디입니다.</span>
+                        <span class = "email_already">사용 불가능한 아이디입니다.</span>
+                    </span>
+                    <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
+                </div>
+                <!-- PW1 -->
+                <div>
+                    <h3 class="join_title"><label for="pw">비밀번호</label></h3>
+                    <span class="box int_pass">
+                        <input type="password" th:text="${pw}" id="pw" name="pw" onchange="check_pw()"
+                               class="int" maxlength="20"/>
+                    </span>
+                </div>
+
+                <!-- PW2 -->
+                <div>
+                    <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
+                    <span class="box int_pass_check">
+                        <input type="password" id="pswd2" class="int" maxlength="20" onchange="check_pw()">
+                        <span id="check"></span>
+                    </span>
+                </div>
+
+                <!-- NAME -->
+                <div>
+                    <h3 class="join_title"><label for="name">이름</label></h3>
+                    <span class="box int_name">
+                        <input type="text" th:text="${name}" id="name" name="name"
+                               class="int" maxlength="20"/>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- BIRTH -->
+                <div>
+                    <h3 class="join_title"><label for="birth">생년월일</label></h3>
+                    <span class="box int_bir">
+                        <input type="text" th:text="${birth}" id="birth" name="birth" class="int" maxlength="8"
+                               placeholder="예 : 2021년 8월 13일 -> 20210813"/>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- MOBILE -->
+                <div>
+                    <h3 class="join_title"><label for="phone">휴대전화</label></h3>
+                    <span class="box int_mobile">
+                        <input type="text" id="phone" name="phone" th:text="${phone}"
+                               class="int" maxlength="13" placeholder="전화번호 입력">
+                        <script src="assets/js/autoPhoneHypen.js"></script>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- ADDRESS -->
+                <div>
+                    <h3 class="join_title"><label for="postcode">주소</label></h3>
+                    <input type="text" id="postcode" name="postcode" placeholder="우편번호">
+                    <input type="button" onclick="sample6_execDaumPostcode()" style="height: 37.6px"
+                           value="우편번호 찾기"><br>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <div>
+        <span class="box int_address">
+            <input type="text" id="address1" name="address1" class="int" maxlength="100"
+                   placeholder="주소"/>
+        </span>
+                </div>
+
+                <div>
+        <span class="box int_Detailed_Address">
+            <input type="text" th:text="${address2}" id="address2" name="address2" class="int"
+                   maxlength="100"
+                   placeholder="상세주소"/>
+        </span>
+                </div>
+
+                <!-- JOIN BTN-->
+                <div class="btn_area">
+                    <button type="submit" id="btnJoin" onclick="javascript:addressInput()">가입하기
+                    </button>
+                </div>
+            </div>
+
+            <!-- content-->
+
+        </div>
+        <!-- wrapper -->
+    </th:block>
+</form>
+<script type="text/javascript">
+    function addressInput() {
+        document.getElementById('address').value = (document.getElementById('postcode').value.concat(" ", document.getElementById('address1').value));
+        return document.getElementById('address').value;
+    }
+</script>
+
+
+</body>
+
+</html>
