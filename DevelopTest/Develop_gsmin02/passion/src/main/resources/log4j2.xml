@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <Property name="layoutPattern">
+            %style{%d{yyyy-MM-dd HH:mm:ss:SSS}}{cyan} %highlight{[%-5p]}{FATAL=bg_red, ERROR=red, INFO=green, DEBUG=cyan} [%C{1.}] %style{[%t]}{yellow} - %m%n
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console_Appender" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false" pattern="${layoutPattern}"/>
+        </Console>
+        <RollingFile name="File_Appender" fileName="logs\app.log" filePattern="logs\%d{yyyy-MM-dd}_%i.log.zip">
+            <PatternLayout pattern="${layoutPattern}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10" fileIndex="min"/>
+        </RollingFile>
+        <Async name="Async_Console" includeLocation="true">
+            <AppenderRef ref="Console_Appender"/>
+        </Async>
+        <Async name="Async_File" includeLocation="true">
+            <AppenderRef ref="File_Appender"/>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Root level="info" additivity="false">
+            <AppenderRef ref="Async_Console"/>
+            <AppenderRef ref="File_Appender"/>
+        </Root>
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+            <AppenderRef ref="Async_Console"/>
+        </Logger>
+        <Logger name="org.hibernate.type" level="trace" additivity="false">
+            <AppenderRef ref="Async_Console"/>
+        </Logger>
+    </Loggers>
+</Configuration>
