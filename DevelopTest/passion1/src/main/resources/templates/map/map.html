@@ -53,7 +53,15 @@
     <!-- /헤더끝 -->
     <br><br><br>
 
-    <p style="text-align: center">제작 및 테스트중</p>
+    <p style="text-align: center"><nav class="main-menu">
+    <b style="color: #4b87c1; font-size: 25px"> 쓰레기처리 시설</b>
+    또는
+    <b style="color: #4b87c1; font-size: 25px">업사이클링</b>
+    시설이 어디있는지 궁금하다면?
+    </p>
+    <th:block th:replace="~{map/KakaoMapSearch.html}"></th:block>
+    <th:block th:replace="~{map/KakaoMap.html}"></th:block>
+</nav></p>
 
     <th:block th:replace="main/index-footer::footer"></th:block>
         <div class="bottom-footer">
