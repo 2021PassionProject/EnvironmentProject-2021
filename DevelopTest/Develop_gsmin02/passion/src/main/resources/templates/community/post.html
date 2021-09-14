@@ -60,8 +60,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div><!-- /.testimonials-one__icons -->
-                            <p>이...이게 뭐노</p>
-
+                            <p th:each="board : ${board}" th:if="${board.board_id} == ${max1}" th:text="${board.title}"></p>
                         </div><!-- /.swiper-slide-->
                         <div class="swiper-slide">
                             <div class="testimonials-one__icons">
@@ -71,7 +70,7 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div><!-- /.testimonials-one__icons -->
-                            <p>이...이게 뭐노</p>
+                            <p th:each="board : ${board}" th:if="${board.board_id} == ${max2}" th:text="${board.title}"></p>
                         </div><!-- /.swiper-slide-->
                         <div class="swiper-slide">
                             <div class="testimonials-one__icons">
@@ -81,46 +80,62 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div><!-- /.testimonials-one__icons -->
-                            <p>이...이게 뭐노</p>
+                            <p th:each="board : ${board}" th:if="${board.board_id} == ${max3}" th:text="${board.title}"></p>
                         </div><!-- /.swiper-slide -->
                     </div><!-- /.swiper-wrapper -->
                 </div><!-- /#testimonials-one__carousel -->
 
+                <div id="testimonials-one__meta" class="testimonials-one__carousel swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonials-one__meta">
+                                <button class="more" th:each="board : ${board}" th:if="${board.board_id} == ${max1}">
+                                    <a th:href="@{view(id=${board.board_id})}">자세히보기</a></button>
+                                <br><br>
+                                <h4 th:each="board : ${board}" th:if="${board.board_id} == ${max1}" th:text="${board.writer}"></h4>
+                                <span>Customer</span>
+                            </div><!-- /.testimonials-one__meta -->
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <div class="testimonials-one__meta">
+                                <button class="more" th:each="board : ${board}" th:if="${board.board_id} == ${max2}">
+                                    <a th:href="@{view(id=${board.board_id})}">자세히보기</a></button>
+                                <br><br>
+                                <h4 th:each="board : ${board}" th:if="${board.board_id} == ${max2}" th:text="${board.writer}"></h4>
+                                <span>Customer</span>
+                            </div><!-- /.testimonials-one__meta -->
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <div class="testimonials-one__meta">
+                                <button class="more" th:each="board : ${board}" th:if="${board.board_id} == ${max3}">
+                                    <a th:href="@{view(id=${board.board_id})}">자세히보기</a></button>
+                                <br><br>
+                                <h4 th:each="board : ${board}" th:if="${board.board_id} == ${max3}" th:text="${board.writer}"></h4>
+                                <span>Customer</span>
+                            </div><!-- /.testimonials-one__meta -->
+                        </div><!-- /.swiper-slide -->
+                    </div><!-- /.swiper-wrapper -->
+                </div><!-- /#testimonials-one__meta .swiper-container -->
+
                 <div id="testimonials-one__thumb" class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
+                            <div class="testimonials-one__meta">
+                            </div>
                         </div><!-- /.swiper-slide -->
                         <div class="swiper-slide">
-                            <button class="more">자세히보기</button>
+                            <div class="testimonials-one__meta">
+                            </div>
                         </div><!-- /.swiper-slide -->
                         <div class="swiper-slide">
+                            <div class="testimonials-one__meta">
+                            </div>
                         </div><!-- /.swiper-slide -->
                     </div><!-- /.swiper-wrapper -->
                 </div><!-- /#testimonials-one__thumb .swiper-container -->
             </div><!-- /.container -->
 
-            <div id="testimonials-one__meta" class="testimonials-one__carousel swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="testimonials-one__meta">
-                            <h4>Jessica Brown</h4>
-                            <span>Customer</span>
-                        </div><!-- /.testimonials-one__meta -->
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <div class="testimonials-one__meta">
-                            <h4>Caleb Hoffman</h4>
-                            <span>Customer</span>
-                        </div><!-- /.testimonials-one__meta -->
-                    </div><!-- /.swiper-slide -->
-                    <div class="swiper-slide">
-                        <div class="testimonials-one__meta">
-                            <h4>Bradley Kim</h4>
-                            <span>Customer</span>
-                        </div><!-- /.testimonials-one__meta -->
-                    </div><!-- /.swiper-slide -->
-                </div><!-- /.swiper-wrapper -->
-            </div><!-- /#testimonials-one__meta .swiper-container -->
+
             <div class="swiper-pagination" id="testimonials-one__swiper-pagination"></div>
         </section>
     </fieldset>
