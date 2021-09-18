@@ -440,6 +440,92 @@
             <div class="block-title text-center">
                 <div class="block-title__image"></div><!-- /.block-title__image -->
                 <p>Closed projects</p>
+                <h3>가장 가까운 환경 기념일</h3>
+            </div><!-- /.block-title -->
+            <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 0, "slidesPerView": 1, "loop": true, "slidesPerGroup": 1, "pagination": {
+            "el": "#projects-one__swiper-pagination",
+            "type": "bullets",
+            "clickable": true
+        },
+        "breakpoints": {
+            "0": {
+                "spaceBetween": 0,
+                "slidesPerView": 1,
+                "slidesPerGroup": 1
+            },
+        }}'>
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide" th:if="(${month} == 2 and ${day} == 2) or (${near_mon} == 2 and ${near_day} == 2)">
+                        <div class="projects-one__single">
+                            <img src="assets/images/projects/wetland.png" alt="">
+                            <div class="projects-one__content">
+                                <h3>세계 습지의날 </h3>
+                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                            </div><!-- /.projects-one__content -->
+                        </div><!-- /.projects-one__single -->
+                    </div><!-- /.swiper-slide -->
+
+                    <div class="swiper-slide" th:if="(${month} == 4 and ${day} == 5) or (${near_mon} == 4 and ${near_day} == 5)">
+                        <div class="projects-one__single">
+                            <img src="assets/images/projects/tree.png" alt="">
+                            <div class="projects-one__content">
+                                <h3>식목일</h3>
+                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                            </div><!-- /.projects-one__content -->
+                        </div><!-- /.projects-one__single -->
+                    </div><!-- /.swiper-slide -->
+
+                    <div class="swiper-slide" th:if="(${month} == 4 and ${day} == 22) or (${near_mon} == 4 and ${near_day} == 22)">
+                        <div class="projects-one__single">
+                            <img src="assets/images/projects/earth.png" alt="">
+                            <div class="projects-one__content">
+                                <h3>지구의 날</h3>
+                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                            </div><!-- /.projects-one__content -->
+                        </div><!-- /.projects-one__single -->
+                    </div><!-- /.swiper-slide -->
+
+                    <div class="swiper-slide" th:if="(${month} == 6 and ${day} == 17) or (${near_mon} == 6 and ${near_day} == 17)">
+                        <div class="projects-one__single">
+                            <img src="assets/images/projects/desert.png" alt="">
+                            <div class="projects-one__content">
+                                <h3>세계 사막화 방지의 날</h3>
+                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                            </div><!-- /.projects-one__content -->
+                        </div><!-- /.projects-one__single -->
+                    </div><!-- /.swiper-slide -->
+
+                    <div class="swiper-slide" th:if="(${month} == 5 and ${day} == 10) or (${near_mon} == 5 and ${near_day} == 10)">
+                        <div class="projects-one__single">
+                            <img src="assets/images/projects/sea.png" alt="">
+                            <div class="projects-one__content">
+                                <h3>바다 식목일</h3>
+                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                            </div><!-- /.projects-one__content -->
+                        </div><!-- /.projects-one__single -->
+                    </div><!-- /.swiper-slide -->
+
+                    <div class="swiper-slide" th:if="(${month} == 6 and ${day} == 5) or (${near_mon} == 6 and ${near_day} == 5)">
+                        <div class="projects-one__single">
+                            <img src="assets/images/projects/natural.png" alt="">
+                            <div class="projects-one__content">
+                                <h3>세계 환경의날</h3>
+                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                            </div><!-- /.projects-one__content -->
+                        </div><!-- /.projects-one__single -->
+                    </div><!-- /.swiper-slide -->
+
+                </div><!-- /.swiper-wrapper -->
+            </div><!-- /.swiper-container -->
+        </div><!-- /.container -->
+    </div><!-- /.projects-one -->
+
+    <div class="projects-one project-one__home-one">
+        <div class="container">
+            <div class="block-title text-center">
+                <div class="block-title__image"></div><!-- /.block-title__image -->
+                <p>Closed projects</p>
                 <h3>기념일로 보는 환경</h3>
             </div><!-- /.block-title -->
             <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 0, "slidesPerView": 1, "loop": true, "slidesPerGroup": 1, "pagination": {
@@ -519,6 +605,7 @@
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
+
                 </div><!-- /.swiper-wrapper -->
                 <div class="swiper-pagination" id="projects-one__swiper-pagination"></div>
             </div><!-- /.swiper-container -->
