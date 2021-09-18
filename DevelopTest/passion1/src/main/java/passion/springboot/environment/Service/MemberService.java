@@ -1,6 +1,7 @@
 package passion.springboot.environment.Service;
 
-import passion.springboot.environment.domain.Member;
+
+import passion.springboot.environment.domain.*;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface MemberService {
     int postMember(Member member);
     int putMember(Member member);
     int deleteMember(Member member);
+    int idCheck(String email);
 }

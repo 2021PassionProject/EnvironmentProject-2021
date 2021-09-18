@@ -46,9 +46,26 @@
                 <div class="main-header__info">
                     <a href="#" class="search-toggler main-header__search-btn"><i class="agrikon-icon-magnifying-glass"></i></a>
                     <a class="main-header__cart-btn" href="#"></a>
+                    <th:block>
                     <span class="main-header__info-phone-content">
-                                <a href="login" class=" thm-btn">로그인</a>
-                            </span><!-- /.main-header__info-phone-content -->
+                                <td th:if="${session.id == null && session.userEmail == null && session.currentAT == null && session.userInfo == null}">
+                                <a th:href="@{'./loginPage'}" class="thm-btn">로그인</a>
+                                </td>
+                               <td th:unless="${session.id} == null">
+                               <a th:href="@{'./logout'}" class="thm-btn">로그아웃</a>
+                              </td>
+                              <td th:unless="${session.userEmail} == null">
+                              <a th:href="@{'/logout2'}" class="thm-btn">로그아웃</a>
+                             </td>
+                             <td th:unless="${session.currentAT} == null">
+                              <a th:href="@{'./member/naverLogout'}" class="thm-btn">로그아웃</a>
+                              </td>
+                              <td th:unless="${session.userInfo} == null">
+                               <a th:href="@{'./member/google/revoke/token'}" class="thm-btn">로그아웃</a>
+                               </td>
+                        </span>
+                        </th:block>
+                            <!-- /.main-header__info-phone-content -->
                 </div><!-- /.main-header__info -->
             </div><!-- /.container -->
         </nav>
