@@ -1,4 +1,4 @@
-package passion.spring.env.model;
+package passion.spring.env.domain;
 
 import lombok.Builder;
 import lombok.Data;

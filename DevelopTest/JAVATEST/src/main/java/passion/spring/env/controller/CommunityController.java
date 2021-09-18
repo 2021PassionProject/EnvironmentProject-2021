@@ -78,6 +78,8 @@ public class CommunityController {
     @GetMapping("/post")
     public String post(@RequestParam("list") int list, Model model) {
         int num = 0;
+        final long[] max = {0, 0, 0}, max1 = {0}, max2 = {0}, max3 = {0};
+
         model.addAttribute("num", num);
         model.addAttribute("list", list);
         model.addAttribute("board", MemberRepositoryImpl.jdbcTemplate.query("SELECT * FROM board",
@@ -90,12 +92,38 @@ public class CommunityController {
                         board.setWrite_time(rs.getString("write_time"));
                         board.setViews(rs.getLong("views"));
 
+                        if(max[0] <= rs.getLong("views")) {
+                            max[2] = max[1]; max3[0] = max2[0];
+                            max[1] = max[0]; max2[0] = max1[0];
+
+                            max[0] = rs.getLong("views");
+                            max1[0] = rs.getLong("board_id");
+                        }
+                        else if (max[1] < rs.getLong("views")) {
+                            max[2] = max[1]; max3[0] = max2[0];
+
+                            max[1] = rs.getLong("views");
+                            max2[0] = rs.getLong("board_id");
+                        }
+                        else if(max[2] < rs.getLong("views")) {
+                            max[2] = rs.getLong("views");
+                            max3[0] = rs.getLong("board_id");
+                        }
                         return board;
                     }
                 }
                 )
         );
+
+        model.addAttribute("max1",max1[0]);
+        model.addAttribute("max2",max2[0]);
+        model.addAttribute("max3",max3[0]);
         return "community/post";
+    }
+
+    @GetMapping("/move_post")
+    public String move_post() {
+        return "community/move_post";
     }
 
     @GetMapping("/view")

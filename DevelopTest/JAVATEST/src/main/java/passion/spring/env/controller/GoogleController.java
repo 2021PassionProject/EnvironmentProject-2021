@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import passion.spring.env.model.GoogleOAuthRequest;
-import passion.spring.env.model.GoogleOAuthResponse;
+import passion.spring.env.domain.GoogleOAuthRequest;
+import passion.spring.env.domain.GoogleOAuthResponse;
 
 import javax.servlet.http.HttpSession;
 

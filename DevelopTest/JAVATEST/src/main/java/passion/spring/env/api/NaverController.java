@@ -1,4 +1,4 @@
-package passion.spring.env.controller;
+package passion.spring.env.api;
 
 import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.JSONParserTokenManager;
