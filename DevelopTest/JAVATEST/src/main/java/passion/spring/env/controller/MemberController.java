@@ -37,6 +37,12 @@ public class MemberController {
         this.memberService = memberService; // 오른쪽 memberService 객체는 등록된 객체를 주입
     }
 
+    // 마이 페이지
+    @GetMapping("/mypage")      // url에는 mypage라는 이름으로 접속
+    public String myPage() {
+        return "member/mypage";
+    }   // member 디렉토리에 있는 mypage 접근
+
     // 회원가입 페이지
     @GetMapping("/signupPage")      // url에는 signupPage 라는 이름으로 접속
     public String signupPage() {
@@ -69,7 +75,7 @@ public class MemberController {
     @GetMapping("/loginPage")   // url에는 loginPage 이라는 이름으로 접속
     public String loginPage() {
         return "member/loginPage";
-    } // member 디렉토리에 있는 loginPage 접근
+    }  // member 디렉토리에 있는 loginPage 접근
 
     // 로그인 처리
     @PostMapping("/login")  // 정보추가 : PostMapping(보안에 좋음), 수정 : PutMapping, 삭제 : DeleteMapping

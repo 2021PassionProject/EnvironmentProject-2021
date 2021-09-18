@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 import passion.spring.env.domain.Board;
 import passion.spring.env.domain.Comment;
 import passion.spring.env.domain.Member;
@@ -12,10 +11,8 @@ import passion.spring.env.domain.Member;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Repository
 public class BoardRepositoryImpl implements BoardRepository{
     public static JdbcTemplate jdbcTemplate;
-
     @Autowired
     public BoardRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);

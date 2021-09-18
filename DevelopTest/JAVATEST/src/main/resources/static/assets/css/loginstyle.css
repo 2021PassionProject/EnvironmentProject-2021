@@ -101,7 +101,8 @@ h3{
     opacity: 1;
 }
 .btn:nth-of-type(1){
-    background: #4285F4 url(../images/icons/google.png) no-repeat center left;
+    background: #fff url(../images/icons/google.jpg) no-repeat center left;
+    color:#222;
 }
 .btn:nth-of-type(2){
      background: #00C73C url(../images/icons/naver.png) no-repeat center left;

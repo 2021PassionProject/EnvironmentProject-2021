@@ -2,15 +2,10 @@ package passion.springboot.passion.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.GetMapping;
-
-=======
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Calendar;
->>>>>>> 31026187068a5b1543cc22fc67328a7f975dee86
 
 @RequiredArgsConstructor
 @Controller // Spring Web MVC 컨트롤러
@@ -19,9 +14,6 @@ import java.util.Calendar;
 public class HomeController {
 
     @GetMapping("") // url : http://<server_ip>:<port>/
-<<<<<<< HEAD
-    public String goHome() {
-=======
     public String goHome(Model model, String[] args) {
         Calendar cal = Calendar.getInstance();
 
@@ -57,7 +49,6 @@ public class HomeController {
 
         model.addAttribute("near_mon", near_mon);
         model.addAttribute("near_day", near_day);
->>>>>>> 31026187068a5b1543cc22fc67328a7f975dee86
 
         return "main/index";    // index.html 파일을 view or template으로 사용함
     }
