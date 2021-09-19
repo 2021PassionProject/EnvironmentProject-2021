@@ -32,14 +32,34 @@ public class AdminController {
     MemberService memberService;
 
     @Autowired  // Spring Framework 가 주입함
-    private KakaoService kakaoService;
-
     public AdminController(MemberService memberService) {
         this.memberService = memberService; // 오른쪽 memberService 객체는 등록된 객체를 주입
     }
     @RequestMapping("/ad-index")
-    public String adindex() {
+    public String adindex(Model model) {
+        List<Member> memberList = memberService.getMembers();
+        model.addAttribute("memberList", memberList);
         return "admin/ad-index"; //main 폼
+    }
+
+    @RequestMapping("/ad-event")
+    public String adevent() {
+        return "admin/ad-event";
+    }
+
+    @RequestMapping("/ad-upcycling")
+    public String adupcycling() {
+        return "admin/ad-upcycling";
+    }
+
+    @RequestMapping("/ad-charts")
+    public String adcharts() {
+        return "admin/ad-charts";
+    }
+
+    @GetMapping("/ad-upcycling_uploda")
+    public String adupcycling_uploda() {
+        return "admin/ad-upcycling_uploda"; //main 폼
     }
 
     @RequestMapping("/ad-member")
@@ -54,6 +74,7 @@ public class AdminController {
         model.addAttribute("member", member);
         return "admin/ad-mypage";
     }
+
 
     @DeleteMapping("/ad-mypage{id}")
     public String deleteMember(@Valid Member member, Model model) {
