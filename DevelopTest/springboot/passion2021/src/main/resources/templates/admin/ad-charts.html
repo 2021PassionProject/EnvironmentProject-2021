@@ -15,7 +15,10 @@
   <!-- Custom styles for this template-->
   <link href="assets/css/sb-admin.css" rel="stylesheet">
 </head>
-
+<script src="assets/js/count.js"></script>
+<style>
+  @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+</style>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <th:block th:replace="~{/admin/ad-head::header}"></th:block>
@@ -49,8 +52,31 @@
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
         </div>
-
+        <div class="col-lg-4">
+          <!-- Example Pie Chart Card-->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-pie-chart"></i>Refresh 통계</div>
+            <div class="card-body">
+              <div style="text-align:center">
+                <span style = " font-size:14.2em;  color: darkslateblue; font-family:'Hanna', fantasy;">
+              <SCRIPT LANGUAGE=JAVASCRIPT TYPE="TEXT/JAVASCRIPT">
+                 document.write(hitCt)
+              </SCRIPT>
+                  </span>
+                <br>
+                <span style = " font-size:2.2em;  color: black; font-family:'Hanna', fantasy;">
+                   <SCRIPT LANGUAGE=JAVASCRIPT TYPE="TEXT/JAVASCRIPT">
+                  document.write("새로고침으로 카운트")
+                   </SCRIPT>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
     <footer class="sticky-footer">
