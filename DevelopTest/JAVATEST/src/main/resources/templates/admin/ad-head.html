@@ -15,13 +15,13 @@
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="뉴스">
-                <a class="nav-link" th:href="@{'/ad-news'}">
+                <a class="nav-link" th:href="@{/ad-news(list=1)}">
                     <i class="fa fa-fw fa-wrench"></i>
-                    <span class="nav-link-text">뉴스</span>
+                    <span class="nav-link-text">기사</span>
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="방문자수">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" th:href="@{'/ad-charts'}">
                     <i class="fa fa-fw fa-area-chart"></i>
                     <span class="nav-link-text">방문자수</span>
                 </a>
@@ -32,10 +32,16 @@
                     <span class="nav-link-text">회원관리</span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="문의사항">
-                <a class="nav-link" href="cards.html">
-                    <i class="fa fa-fw fa-wrench"></i>
-                    <span class="nav-link-text">문의사항</span>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="업사이클링">
+                <a class="nav-link" th:href="@{'/ad-upcycling'}">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">업사이클링</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="행사">
+                <a class="nav-link" th:href="@{'/ad-event'}">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">행사</span>
                 </a>
             </li>
         </ul>

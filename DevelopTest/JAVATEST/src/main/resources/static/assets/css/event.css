@@ -1,0 +1,46 @@
+.post-btn{
+    width: 120px;
+    padding: 0 10px;
+    position: relative;
+    text-align: center;
+    border: 2px solid;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: capitalize;
+    font: 400 14px/46px 'Poppins', Arial, Helvetica, sans-serif;
+    color: black;
+    left: 135px;
+}
+.event_title{
+    margin-bottom: 10px;
+}
+.event_content{
+    width: 500px;
+    height: 515px;
+}
+.image_upload{
+    margin: 10px 0 10px 0 ;
+}
+.day_pick{
+    margin: 0 0 10px 0 ;
+    width: 165px;
+    height: 30px;
+}
+.write{
+    width: 615px;
+}
+.view_title{
+    margin-top: 50px;
+    border-bottom: 1px solid #999999;
+}
+.view_image{
+    margin-top: 10px;
+}
+.view_Explanation{
+    line-height: 1.8;
+}
+.upcycling{
+    margin: auto;
+    width: 500px;
+}

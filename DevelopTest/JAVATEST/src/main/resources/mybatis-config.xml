@@ -11,9 +11,9 @@
     </settings>
     <!-- 빈 객체 검색을 위한 패키지 정보 설정 -->
     <typeAliases>
-        <package name="passion.spring.env" />
+        <package name="passion.spring.env.domain" />
     </typeAliases>
-    <!--<mappers>
+    <mappers>
         <mapper resource="mappers/blogMapper.xml"/>
-    </mappers>-->
+    </mappers>
 </configuration>

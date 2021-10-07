@@ -1,6 +1,7 @@
 create sequence seq_member increment by 1 start with 1;
 create sequence seq_board increment by 1 start with 1;
 create sequence seq_comment increment by 1 start with 1;
+create sequence seq_news increment by 1 start with 1;
 
 create table member
 (
@@ -28,6 +29,15 @@ create table reply_comment
     member_name varchar(20),
     content     varchar2(500),
     write_time  varchar(20)
+);
+
+create table news
+(
+    newsId number(11) not null primary key,
+    newsDate date default SYSTEM_TIME,
+    reporter varchar(20),
+    filepath varchar2(200),
+    content varchar2(4000)
 );
 
 SELECT board_id, REGEXP_REPLACE(title, '<[^>]*>|\&([^;])*;', ''), REGEXP_REPLACE(content, '<[^>]*>|\&([^;])*;', '') FROM board;

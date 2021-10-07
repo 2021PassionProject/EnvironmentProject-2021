@@ -75,7 +75,6 @@ public class AdminController {
         return "admin/ad-mypage";
     }
 
-
     @DeleteMapping("/ad-mypage{id}")
     public String deleteMember(@Valid Member member, Model model) {
         if(memberService.deleteMember(member) > 0) {

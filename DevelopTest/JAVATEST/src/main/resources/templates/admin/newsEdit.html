@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns: lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin - Start Bootstrap Template</title>
+    <!-- Bootstrap core CSS-->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="assets/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/event.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>air datepicker</title>
+    <link rel="stylesheet" href="./air-datepicker/dist/css/datepicker.min.css">
+
+    <script src="assets/css/summernote-0.8.18-dist/summernote-lite.js"></script>
+    <script src="assets/css/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="assets/css/summernote-0.8.18-dist/summernote-lite.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .double div {
+            float: left;
+        }
+    </style>
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<th:block th:replace="~{/admin/ad-head::header}"></th:block>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{'/ad-news'}">news</a>
+            </li>
+            <li class="breadcrumb-item active">addition</li>
+        </ol>
+        <!-- Icon Cards-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 offset-3 mt-4">
+                    <form method="POST" th:action="@{/newsUpdate(newsId=${news.newsId})}" enctype="multipart/form-data">
+                        <input type="hidden" name="newsId" th:value="${news.newsId}" />
+                        <input type="hidden" name="_method" value="put" />
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Title</label>
+                                <input type="text" class="form-control" name="newsTitle" th:value="${news.newsTitle}"placeholder="Title" id="title" required data-validation-required-message="please">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group date" id="example1">
+                                <input type="text" name="newsDate" th:value="${news.newsDate}" class="form-control">
+                                <span class="input-group-addon">
+				            <span class="glyphicon glyphicon-calendar"></span>
+				        </span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>기자이름</label>
+                                <input type="text" class="form-control" name="reporter" th:value="${news.reporter}" placeholder="reporter" id="reporter" >
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>File</label>
+                                <input type="file" class="form-control" name="filepath" placeholder="File Path" id="filepath" required data-validation-required-message="Please enter your name.">
+                                <p class="help-block text-danger" th:text="${news.filepath}"></p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>본문</label>
+                                <textarea rows="5" class="form-control" name="content" th:value="${news.content}" placeholder="Content" id="content" required data-validation-required-message="Please enter a message.">[(${news.content})]
+                                </textarea>
+
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div id="success"></div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="sendMessageButton">수정하기</button>
+                            <a th:href="@{adNewsView(newsId=${news.newsId})}" class="post-btn"> 뒤로가기</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            $('.summernote').summernote({
+                height: 400,
+                lang: "ko-KR"
+            });
+        </script>
+
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Your Website 2017</small>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">현재 세션을 종료할 준비가 되었으면 아래에서 "로그아웃"을 선택하십시오.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JavaScript-->
+        <script src="assets/vendor/jquery/jquery.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="assets/vendor/chart.js/Chart.min.js"></script>
+        <script src="assets/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="assets/js/sb-admin.min.js"></script>
+        <!-- Custom scripts for this page-->
+        <script src="assets/js/sb-admin-datatables.min.js"></script>
+        <script src="assets/js/sb-admin-charts.min.js"></script>
+
+        <script src="assets/js/jqBootstrapValidation.js"></script>
+
+        <!-- Custom scripts for this template -->
+        <script src="assets/js/clean-blog.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script type="text/javascript">
+            $(function () {
+                $('#example1').datetimepicker( {
+                    format: 'YYYY-MM-DD HH:mm:ss'
+                });
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>

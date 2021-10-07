@@ -23,13 +23,42 @@ public class AdminController {
 
     MemberService memberService;
 
+    @Autowired
     public AdminController(MemberService memberService) {
         this.memberService = memberService;  // 오른쪽 memberService 객체는 등록된 객체를 주입
     }
 
     @RequestMapping("/ad-index")
-    public String adIndex() {
+    public String adIndex(Model model) {
+        List<Member> memberList = memberService.getMembers();
+        model.addAttribute("memberList",memberList);
         return "admin/ad-index";    // main 폼
+    }
+
+    @RequestMapping("/ad-event")
+    public String adEvent() {
+        return "admin/ad-event";
+    }
+
+    @RequestMapping("/ad-upCycling")
+    public String adUpcycling() {
+        return "admin/ad-upcycling";
+    }
+
+    @RequestMapping("/ad-charts")
+    public String adCharts() {
+        return "admin/ad-charts";
+    }
+
+    @GetMapping("/ad-event_upload")
+    public String adEvent_upload() {
+        return "admin/ad-event_upload"; //main 폼
+    }
+
+
+    @GetMapping("/ad-upcycling_upload")
+    public String adUpcycling_upload() {
+        return "admin/ad-upcycling_upload"; //main 폼
     }
 
     @RequestMapping("/ad-member")
@@ -56,8 +85,13 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/ad-news")
-    public String newsPage() {
-        return "admin/ad-news";
+//    @GetMapping("/ad-news")
+//    public String newsPage() {
+//        return "admin/ad-news";
+//    }
+
+    @GetMapping("/ad-news-create")
+    public String newsCreatePage() {
+        return "admin/news_create";
     }
 }

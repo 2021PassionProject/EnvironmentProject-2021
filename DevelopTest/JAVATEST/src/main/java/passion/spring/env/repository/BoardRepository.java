@@ -13,4 +13,5 @@ public interface BoardRepository {
     Board readByBoard_Id(Board board);
     int riseByView(Long id);
     List<Board> readBoards();
+
 }
