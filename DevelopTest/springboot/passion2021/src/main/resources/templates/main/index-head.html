@@ -10,25 +10,22 @@
                 </div><!-- /.logo-box -->
 
                 <ul class="main-menu__list">
-                    <li class="dropdown">
-                        <a href="projects">행사</a>
+                    <li class="dropdown"><a href="projects">행사</a>
                         <ul>
-                            <li>
-                                <a href="">기념일</a>
-                            </li>
-                            <li><a href="">봉사</a></li>
+                            <li><a th:href="@{'/'}">기념일</a></li>
+                            <li><a th:href="@{'/'}">봉사</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="blog">뉴스</a>
                     </li>
                     <li class="dropdown"><a href="services">분리수거</a>
                         <ul>
-                            <li><a href="">종이류</a></li>
-                            <li><a href="">캔류</a></li>
-                            <li><a href="">유리병류</a></li>
-                            <li><a href="">플라스틱류</a></li>
-                            <li><a href="">비닐류</a></li>
-                            <li><a href="">스티로폼</a></li>
+                            <li><a th:href="@{'/service-details'}">종이류</a></li>
+                            <li><a th:href="@{'/service-details2'}">캔류</a></li>
+                            <li><a th:href="@{'/service-details3'}">유리병류</a></li>
+                            <li><a th:href="@{'/service-details4'}">플라스틱류</a></li>
+                            <li><a th:href="@{'/service-details5'}">비닐류</a></li>
+                            <li><a th:href="@{'/service-details6'}">스티로폼</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

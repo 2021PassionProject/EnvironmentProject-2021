@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin - Start Bootstrap Template</title>
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/event.css">
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>air datepicker</title>
+    <link rel="stylesheet" href="./air-datepicker/dist/css/datepicker.min.css">
+    <script src="./jquery-3.1.1.min.js"></script>
+    <script src="./air-datepicker/dist/js/datepicker.min.js"></script>
+    <script src="./air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
+
+    <script src="css/summernote-0.8.18-dist/summernote-lite.js"></script>
+    <script src="css/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="css/summernote-0.8.18-dist/summernote-lite.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .double div {
+            float: left;
+        }
+    </style>
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<th:block th:replace="~{/admin/ad-head::header}"></th:block>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a th:href="@{'/news'}">news</a>
+            </li>
+            <li class="breadcrumb-item active">addition</li>
+        </ol>
+        <!-- Icon Cards-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 offset-3 mt-4">
+                    <div class="card-body write">
+                        <input type="text" class="form-control event_title" id="title" name="title" maxlength="100"
+                               placeholder="제목을 입력해 주세요.">
+                        <div class="event_content" style="width: 575px">
+                            <textarea class="summernote" name="editordata"></textarea>
+                        </div>
+                        <div class="post-btn-line">
+                            <a th:href="@{'/news'}" class="post-btn" style=:"margin-right:30px">올리기</a>
+                            <a th:href="@{'/news'}" class="post-btn">뒤로가기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            $('.summernote').summernote({
+                height: 400,
+                lang: "ko-KR"
+            });
+        </script>
+
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Your Website 2017</small>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        <th:block th:replace="~{/admin/ad-logout::ad-logout}"></th:block>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="vendor/chart.js/Chart.min.js"></script>
+        <script src="vendor/datatables/jquery.dataTables.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin.min.js"></script>
+        <!-- Custom scripts for this page-->
+        <script src="js/sb-admin-datatables.min.js"></script>
+        <script src="js/sb-admin-charts.min.js"></script>
+    </div>
+</div>
+</body>
+</html>

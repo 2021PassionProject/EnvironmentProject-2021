@@ -42,6 +42,11 @@ public class AdminController {
         return "admin/ad-index"; //main 폼
     }
 
+    @RequestMapping("/ad-event_uploda")
+    public String adeventuploda() {
+        return "admin/ad-event_uploda";
+    }
+
     @RequestMapping("/ad-event")
     public String adevent() {
         return "admin/ad-event";
@@ -74,6 +79,7 @@ public class AdminController {
         model.addAttribute("member", member);
         return "admin/ad-mypage";
     }
+
 
     @DeleteMapping("/ad-mypage{id}")
     public String deleteMember(@Valid Member member, Model model) {

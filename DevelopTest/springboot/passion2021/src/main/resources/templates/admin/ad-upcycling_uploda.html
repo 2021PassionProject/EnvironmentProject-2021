@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,13 +17,9 @@
     <link href="assets/css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/event.css">
 
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>air datepicker</title>
-    <link rel="stylesheet" href="./air-datepicker/dist/css/datepicker.min.css">
-    <script src="./jquery-3.1.1.min.js"></script>
-    <script src="./air-datepicker/dist/js/datepicker.min.js"></script>
-    <script src="./air-datepicker/dist/js/i18n/datepicker.ko.js"></script>
+    <link rel="stylesheet" href="assets/air-datepicker/dist/css/datepicker.min.css">
 
     <script src="assets/css/summernote-0.8.18-dist/summernote-lite.js"></script>
     <script src="assets/css/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
@@ -34,6 +29,7 @@
             margin: 0;
             padding: 0;
         }
+
         .double div {
             float: left;
         }
@@ -55,55 +51,104 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-7 offset-3 mt-4">
-                    <div class="card-body write">
-                        <input type="text" class="form-control event_title" id="title" name="title" maxlength="100"
-                               placeholder="제목을 입력해 주세요.">
-                        <div class="event_content">
-                            <textarea class="summernote" name="editordata"></textarea>
+                    <form method="POST">
+                        <input type="hidden" name="newsId"/>
+                        <input type="hidden" name="_method" value="put"/>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>제품 이름</label>
+                                <input type="text" class="form-control" name="newsTitle"
+                                       placeholder="Title" id="title" required
+                                       data-validation-required-message="please">
+                                <p class="help-block text-danger"></p>
+                            </div>
                         </div>
-                        <div class="post-btn-line">
-                            <input type="submit" value="올리기" class="post-btn" style=:"margin-right:30px">
-                            <a th:href="post" class="post-btn">뒤로가기</a>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>사진</label>
+                                <input type="file" class="form-control" name="filepath" placeholder="File Path" required
+                                       style="height: 40px"
+                                       data-validation-required-message="Please enter your name.">
+                                <p class="help-block text-danger"></p>
+                            </div>
                         </div>
-                    </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>제품 설명</label>
+                                <textarea rows="5" class="form-control" name="content"
+                                          placeholder="Content" style="height: 265px">
+                                </textarea>
+
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>링크</label>
+                                <input type="text" class="form-control"
+                                       placeholder="Link">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div id="success"></div>
+
+                        <div class="form-group">
+                            <button type="submit" class="post-btn" id="sendMessageButton">수정하기</button>
+                            <button type="submit" class="post-btn"> 뒤로가기</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <script>
-            $('.summernote').summernote({
-                height: 150,
-                lang: "ko-KR"
-            });
-        </script>
 
-    <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
-        <div class="container">
-            <div class="text-center">
-                <small>Copyright © Your Website 2017</small>
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Your Website 2017</small>
+                </div>
             </div>
-        </div>
-    </footer>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-angle-up"></i>
-    </a>
-    <!-- Logout Modal-->
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
         <th:block th:replace="~{/admin/ad-logout::ad-logout}"></th:block>
-    <!-- Bootstrap core JavaScript-->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Page level plugin JavaScript-->
-    <script src="assets/vendor/chart.js/Chart.min.js"></script>
-    <script src="assets/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="assets/vendor/datatables/dataTables.bootstrap4.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="assets/js/sb-admin.min.js"></script>
-    <!-- Custom scripts for this page-->
-    <script src="assets/js/sb-admin-datatables.min.js"></script>
-    <script src="assets/js/sb-admin-charts.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="assets/vendor/jquery/jquery.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="assets/vendor/chart.js/Chart.min.js"></script>
+        <script src="assets/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="assets/js/sb-admin.min.js"></script>
+        <!-- Custom scripts for this page-->
+        <script src="assets/js/sb-admin-datatables.min.js"></script>
+        <script src="assets/js/sb-admin-charts.min.js"></script>
+
+        <script src="assets/js/jqBootstrapValidation.js"></script>
+
+        <!-- Custom scripts for this template -->
+        <script src="assetsjs/clean-blog.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </div>
 </div>
 </body>
