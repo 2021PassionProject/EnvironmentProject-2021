@@ -90,8 +90,5 @@ public class AdminController {
 //        return "admin/ad-news";
 //    }
 
-    @GetMapping("/ad-news-create")
-    public String newsCreatePage() {
-        return "admin/news_create";
-    }
+
 }

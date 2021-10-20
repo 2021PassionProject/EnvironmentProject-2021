@@ -34,7 +34,6 @@
             float: left;
         }
     </style>
-    <script src="../../../../../../adNewsView/vendor/jquery-easing/jquery.easing.min.js"></script>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
@@ -53,12 +52,13 @@
                 <div class="board_view_wrap">
                     <div class="board_view">
                      <span th:each="news : ${news}">
+                         <dt>제목</dt>
                         <div class="title" th:text="${news.newsTitle}"></div>
                         <div class="info">
-                            <dl>
-                                <dt>투고일</dt>
-                                <dd th:text="${news.newsDate}"></dd>
-                            </dl>
+<!--                            <dl>-->
+<!--                                <dt>투고일</dt>-->
+<!--                                <dd th:text="${news.newsDate}"></dd>-->
+<!--                            </dl>-->
                             <dl>
                                 <dt>리포터</dt>
                                 <dd th:text="${news.reporter}"></dd>
@@ -68,7 +68,7 @@
                             </a>
                             <dl>
                                 <dt>기사 내용</dt>
-                                <dd th:text="${news.content}"></dd>
+                                <dd th:utext="${news.content}"></dd>
                             </dl>
                         </div>
                     </span>
@@ -139,20 +139,7 @@
 
         <script src="assets/js/jqBootstrapValidation.js"></script>
 
-        <!-- Custom scripts for this template -->
-        <script src="assets/js/clean-blog.min.js"></script>
 
-        <script src="https://code.jquery.com/jquery.min.js"></script>
-
-        <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script type="text/javascript">
             $(function () {
                 $('#example1').datetimepicker( {

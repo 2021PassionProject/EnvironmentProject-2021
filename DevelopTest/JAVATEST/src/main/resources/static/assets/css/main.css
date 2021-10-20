@@ -888,7 +888,7 @@
   transition: all 500ms ease;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  height: 294.6px;
+  height: auto;
 }
 
 @media (min-width: 768px) {

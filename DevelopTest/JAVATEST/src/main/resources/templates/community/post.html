@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Page || Agrikon || HTML Template For Agriculture Farm & Farmers</title>
+    <title>게시판 페이지</title>
     <!-- favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
@@ -49,7 +49,7 @@
         <br><br>
         <section class="testimonials-one testimonials-one__about">
             <div class="container">
-                <h2 class="testimonials-one__title">Testimonials</h2>
+                <h2 class="testimonials-one__title"> </h2>
                 <div id="testimonials-one__carousel" class="testimonials-one__carousel swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -90,37 +90,34 @@
                         <div class="swiper-slide">
                             <div class="testimonials-one__meta">
                                 <button class="more" th:each="board : ${board}" th:if="${board.board_id} == ${max1}">
-                                    <a th:href="@{view(id=${board.board_id})}">자세히보기</a>
-                                </button>
+                                    <a th:href="@{view(id=${board.board_id})}">자세히보기</a></button>
                                 <br><br>
                                 <h4 th:each="board : ${board}" th:if="${board.board_id} == ${max1}" th:text="${board.writer}"></h4>
-                                <span>Customer</span>
+                                <span> </span>
                             </div><!-- /.testimonials-one__meta -->
                         </div><!-- /.swiper-slide -->
                         <div class="swiper-slide">
                             <div class="testimonials-one__meta">
                                 <button class="more" th:each="board : ${board}" th:if="${board.board_id} == ${max2}">
-                                    <a th:href="@{view(id=${board.board_id})}">자세히보기</a>
-                                </button>
+                                    <a th:href="@{view(id=${board.board_id})}">자세히보기</a></button>
                                 <br><br>
-                                <h4 th:each="board : ${board}" th:if="${board.board_id}== ${max2}" th:text="${board.writer}"></h4>
-                                <span>Customer</span>
+                                <h4 th:each="board : ${board}" th:if="${board.board_id} == ${max2}" th:text="${board.writer}"></h4>
+                                <span> </span>
                             </div><!-- /.testimonials-one__meta -->
                         </div><!-- /.swiper-slide -->
                         <div class="swiper-slide">
                             <div class="testimonials-one__meta">
                                 <button class="more" th:each="board : ${board}" th:if="${board.board_id} == ${max3}">
-                                    <a th:href="@{view(id=${board.board_id})}">자세히보기</a>
-                                </button>
+                                    <a th:href="@{view(id=${board.board_id})}">자세히보기</a></button>
                                 <br><br>
                                 <h4 th:each="board : ${board}" th:if="${board.board_id} == ${max3}" th:text="${board.writer}"></h4>
-                                <span>Customer</span>
+                                <span> </span>
                             </div><!-- /.testimonials-one__meta -->
                         </div><!-- /.swiper-slide -->
                     </div><!-- /.swiper-wrapper -->
-                </div><!-- /.testimonials-one__meta .swiper-container -->
+                </div><!-- /#testimonials-one__meta .swiper-container -->
 
-                <div id="testimonials-one_thumb" class="swiper-container">
+                <div id="testimonials-one__thumb" class="swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="testimonials-one__meta">
@@ -134,9 +131,10 @@
                             <div class="testimonials-one__meta">
                             </div>
                         </div><!-- /.swiper-slide -->
-                    </div><!-- /.swiper-slide -->
+                    </div><!-- /.swiper-wrapper -->
                 </div><!-- /#testimonials-one__thumb .swiper-container -->
             </div><!-- /.container -->
+
 
             <div class="swiper-pagination" id="testimonials-one__swiper-pagination"></div>
         </section>
@@ -208,7 +206,7 @@
         <span class="mobile-nav__close mobile-nav__toggler"><i class="far fa-times"></i></span>
 
         <div class="logo-box">
-            <a href="../main/index.html" aria-label="logo image"><img src="assets/images/logo-light.png" width="155" alt=""/></a>
+            <a href="/" aria-label="logo image"><img src="assets/images/logo-light.png" width="155" alt=""/></a>
         </div>
         <!-- /.logo-box -->
         <div class="mobile-nav__container"></div>

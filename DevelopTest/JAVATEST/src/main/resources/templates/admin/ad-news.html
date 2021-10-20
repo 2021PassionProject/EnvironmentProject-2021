@@ -15,6 +15,7 @@
     <link href="assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/news.css">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -32,48 +33,55 @@
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-newspaper-o"></i> 기사 목록</div>
+                <i class="fa fa-newspaper-o"></i> 기사 목록
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
 
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"><a th:href="@{'./ad-news-create'}" class="btn btn-primary pull-right">기사작성</a></button>
-                        <!-- 뉴스 목록 -->
-                        <thead>
-                        <tr>
-                            <th>기사 번호</th>
-                            <th>제목</th>
-                            <th>기사날짜</th>
-                            <th>기자이름</th>
-                            <th>본문사진</th>
-                            <th>본문</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each = "news:${newsList}" th:if="(${news.newsId} >= 1 + (${list} - 1) * 10) and (${news.newsId} <= 10 * ${list})" >
-                                <td> <a th:href="@{/adNewsView(newsId=${news.newsId})}" th:text="${news.newsId}"></a></td>
+                        <table class="table table-bordered"  width="100%" cellspacing="0">
+                            <div><a th:href="@{'./newsCreate'}" class="btn btn-primary pull-right" style="margin: 20px; width: 116px; height: 44px;">기사작성</a></div>
+                            <!-- 뉴스 목록 -->
+                            <thead>
+                            <tr>
+                                <th>기사 번호</th>
+                                <th>제목</th>
+<!--                                <th>기사날짜</th>-->
+                                <th>기자이름</th>
+                                <th>본문사진</th>
+                                <th >본문</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="news:${newsList}"
+                                th:if="(${news.newsId} >= 1 + (${list} - 1) * 10) and (${news.newsId} <= 10 * ${list})">
+                                <td><a th:href="@{/adNewsView(newsId=${news.newsId})}" th:text="${news.newsId}"></a></td>
                                 <td th:text="${news.newsTitle}"></td>
-                                <td th:text="${news.newsDate}"></td>
+<!--                                <td th:text="${news.newsDate}"></td>-->
                                 <td th:text="${news.reporter}"></td>
                                 <td th:text="${news.filepath}"></td>
-                                <td th:text="${news.content}"></td>
+                                <td style="white-space: nowrap; overflow: hidden; max-width: 547px; text-overflow: ellipsis;" th:text="${news.content}"></td>
                             </tr>
-                        </tbody>
-                    </table> <!-- 뉴스 목록 끝-->
+                            </tbody>
+                        </table> <!-- 뉴스 목록 끝-->
+
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
-            <hr/>
+
             <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" th:if="${list} - 1 != 0" th:href="@{ad-news(list=${list} - 1)}"></a> </li>
+                <li class="page-item"><a class="page-link" th:if="${list} - 1 != 0"
+                                         th:href="@{ad-news(list=${list} - 1)}"></a></li>
                 <!-- DataBase에서 5단위로 끊어 목록 표시 -->
                 <li class="page-item" th:each="news : ${newsList}" th:if="(${news.newsId} % 10) == 1">
-                    <a class="page-link" th:href="@{ad-news(list=${num} + 1 + (${news.newsId} - 1) / 10)}" th:text="${num} + 1 + (${news.newsId} - 1) / 10"></a>
+                    <a class="page-link" th:href="@{ad-news(list=${num} + 1 + (${news.newsId} - 1) / 10)}"
+                       th:text="${num} + 1 + (${news.newsId} - 1) / 10"></a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" th:each="news : ${newsList}" th:if="${news.newsId} == (${list} * 10 + 1)" th:href="@{ad-news(list=${list} + 1)}"></a>
+                    <a class="page-link" th:each="news : ${newsList}" th:if="${news.newsId} == (${list} * 10 + 1)"
+                       th:href="@{ad-news(list=${list} + 1)}"></a>
                 </li>
             </ul>
         </div>
+    </div>
         <!-- /.container-fluid-->
         <!-- /.content-wrapper-->
 

@@ -23,8 +23,8 @@ public class BlogRepositoryImpl implements BlogRepository {
 
 	@Override
 	public int create(News news) {
-		String sql = "insert into news values(seq_news.nextval,?,?,?,?,?)";
-		Object[] params = new Object[]{news.getNewsTitle(), news.getNewsDate(), news.getReporter(),  news.getFilepath(), news.getContent()};
+		String sql = "insert into news values(seq_news.nextval,?,?,?,?)";
+		Object[] params = new Object[]{news.getNewsTitle(), news.getReporter(),  news.getFilepath(), news.getContent()};
 		return jdbcTemplate1.update(sql, params);
 	}
 

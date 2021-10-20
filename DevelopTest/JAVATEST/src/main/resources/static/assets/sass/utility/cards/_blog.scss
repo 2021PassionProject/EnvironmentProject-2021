@@ -316,17 +316,7 @@
   }
 }
 
-.blog-details__content {
-  p {
-    margin: 0;
-    + p {
-      margin-top: 10px;
-      @include laptop {
-        margin-top: 30px;
-      }
-    }
-  }
-}
+
 
 .blog-details__meta {
   display: flex;

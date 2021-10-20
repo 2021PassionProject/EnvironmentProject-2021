@@ -20,7 +20,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Page || Agrikon || HTML Template For Agriculture Farm & Farmers</title>
+    <title>게시글 작성 페이지</title>
     <!-- favicons Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
@@ -73,10 +73,10 @@
             <div class="card-body">
                 <label for="title"><div class="post-title">게시판 글쓰기</div></label>
                 <hr>
-                <form method="POST" th:action="@{'./upload'}">
-                    <input type="text" class="form-control" id="title" th:value="${title}" name="title" maxlength="100" placeholder="제목을 입력해 주세요.">
+                <form method="POST" th:action="@{upload}">
+                    <input type="text" class="form-control" id="title" name="title" maxlength="100" placeholder="제목을 입력해 주세요.">
                     <div class="form-group">
-                        <textarea class="form-control" th:value="${content}" name="content" id="summernote"></textarea>
+                        <textarea class="form-control" name="content" id="summernote"></textarea>
                     </div>
                     <div class="post-btn-line">
                         <input type="submit" value="올리기" class="post-btn" style=:"margin-right:30px" />

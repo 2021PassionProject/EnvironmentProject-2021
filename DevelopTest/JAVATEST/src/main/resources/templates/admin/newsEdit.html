@@ -18,7 +18,7 @@
     <link href="assets/css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/event.css">
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>air datepicker</title>
     <link rel="stylesheet" href="./air-datepicker/dist/css/datepicker.min.css">
 
@@ -30,12 +30,15 @@
             margin: 0;
             padding: 0;
         }
+
         .double div {
             float: left;
         }
     </style>
+
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
 <!-- Navigation-->
 <th:block th:replace="~{/admin/ad-head::header}"></th:block>
 <div class="content-wrapper">
@@ -45,48 +48,55 @@
             <li class="breadcrumb-item">
                 <a th:href="@{'/ad-news'}">news</a>
             </li>
-            <li class="breadcrumb-item active">addition</li>
+            <li class="breadcrumb-item active">edit</li>
         </ol>
         <!-- Icon Cards-->
         <div class="container">
             <div class="row">
                 <div class="col-md-7 offset-3 mt-4">
                     <form method="POST" th:action="@{/newsUpdate(newsId=${news.newsId})}" enctype="multipart/form-data">
-                        <input type="hidden" name="newsId" th:value="${news.newsId}" />
-                        <input type="hidden" name="_method" value="put" />
+                        <input type="hidden" name="newsId" th:value="${news.newsId}"/>
+                        <input type="hidden" name="_method" value="put"/>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
                                 <label>Title</label>
-                                <input type="text" class="form-control" name="newsTitle" th:value="${news.newsTitle}"placeholder="Title" id="title" required data-validation-required-message="please">
+                                <input type="text" class="form-control" name="newsTitle" th:value="${news.newsTitle}"
+                                       placeholder="Title" id="title" required
+                                       data-validation-required-message="please">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group date" id="example1">
-                                <input type="text" name="newsDate" th:value="${news.newsDate}" class="form-control">
-                                <span class="input-group-addon">
-				            <span class="glyphicon glyphicon-calendar"></span>
-				        </span>
-                            </div>
-                        </div>
+<!--                        <div class="form-group">-->
+<!--                            <div class="input-group date" id="example1">-->
+<!--                                <input type="text" name="newsDate" th:value="${news.newsDate}" class="form-control">-->
+<!--                                <span class="input-group-addon">-->
+<!--				                    <span class="glyphicon glyphicon-calendar"></span>-->
+<!--				                </span>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
                                 <label>기자이름</label>
-                                <input type="text" class="form-control" name="reporter" th:value="${news.reporter}" placeholder="reporter" id="reporter" >
+                                <input type="text" class="form-control" name="reporter" th:value="${news.reporter}"
+                                       placeholder="reporter" id="reporter">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
                                 <label>File</label>
-                                <input type="file" class="form-control" name="filepath" placeholder="File Path" id="filepath" required data-validation-required-message="Please enter your name.">
+                                <input type="file" class="form-control" name="filepath" th:placeholder="${news.filepath}"
+                                       id="filepath" required style="height: 40px" th:value="${news.filepath}"
+                                       data-validation-required-message="Please enter your file.">
                                 <p class="help-block text-danger" th:text="${news.filepath}"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
                                 <label>본문</label>
-                                <textarea rows="5" class="form-control" name="content" th:value="${news.content}" placeholder="Content" id="content" required data-validation-required-message="Please enter a message.">[(${news.content})]
+                                <textarea rows="5" class="form-control" name="content" th:utext="${news.content}"
+                                          placeholder="Content" id="content" required
+                                          data-validation-required-message="Please enter a message.">
                                 </textarea>
 
                                 <p class="help-block text-danger"></p>
@@ -98,7 +108,7 @@
                         <div id="success"></div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" id="sendMessageButton">수정하기</button>
+                            <button type="submit" class="post-btn" id="sendMessageButton">수정하기</button>
                             <a th:href="@{adNewsView(newsId=${news.newsId})}" class="post-btn"> 뒤로가기</a>
                         </div>
                     </form>
@@ -126,7 +136,8 @@
             <i class="fa fa-angle-up"></i>
         </a>
         <!-- Logout Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -143,6 +154,17 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            $(function() {
+                $('#example1').datetimepicker({
+                    locale: 'ko',
+                    format: 'YYYY-MM-DD',
+                    defaultDate: moment()
+                });
+            });
+        </script>
+
         <!-- Bootstrap core JavaScript-->
         <script src="assets/vendor/jquery/jquery.min.js"></script>
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -158,29 +180,14 @@
         <script src="assets/js/sb-admin-datatables.min.js"></script>
         <script src="assets/js/sb-admin-charts.min.js"></script>
 
-        <script src="assets/js/jqBootstrapValidation.js"></script>
+<!--        <script src="assets/js/jqBootstrapValidation.js"></script>-->
 
-        <!-- Custom scripts for this template -->
-        <script src="assets/js/clean-blog.min.js"></script>
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>-->
 
-        <script src="https://code.jquery.com/jquery.min.js"></script>
+<!--        <link rel="stylesheet"-->
+<!--              href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">-->
 
-        <script src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script type="text/javascript">
-            $(function () {
-                $('#example1').datetimepicker( {
-                    format: 'YYYY-MM-DD HH:mm:ss'
-                });
-            });
-        </script>
+<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     </div>
 </div>
 </body>

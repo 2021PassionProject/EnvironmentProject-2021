@@ -52,6 +52,11 @@ public class BlogController {
         return "admin/ad-news";
     }
 
+    @GetMapping("/newsCreate")
+    public String newsCreatePage() {
+        return "admin/newsCreate";
+    }
+
     @GetMapping("/adNewsView")
     public String getBlogsView(@RequestParam("newsId") Long id, Model model) {
 
@@ -89,7 +94,7 @@ public class BlogController {
             Model model) throws IllegalStateException, IOException {
             News news = new News();
             news.setNewsTitle(request.getParameter("newsTitle"));
-            news.setNewsDate(Timestamp.valueOf(request.getParameter("newsDate"))) ;
+//            news.setNewsDate(Timestamp.valueOf(request.getParameter("newsDate")));
             news.setReporter(request.getParameter("reporter"));
             MultipartFile file = request.getFile("filepath");
             news.setContent(request.getParameter("content"));
@@ -124,7 +129,7 @@ public class BlogController {
     public String putBlog(
             @RequestParam("newsId") long newsId,
             @RequestParam final String newsTitle,
-            @RequestParam Timestamp newsDate,
+//            @RequestParam Timestamp newsDate,
             @RequestParam final String reporter,
             @RequestParam("filepath") MultipartFile file,
             @RequestParam final String content,
@@ -132,7 +137,7 @@ public class BlogController {
         News news = new News();
         news.setNewsId(newsId);
         news.setNewsTitle(newsTitle);
-        news.setNewsDate(newsDate);
+//        news.setNewsDate(newsDate);
         news.setReporter(reporter);
         news.setContent(content);
 

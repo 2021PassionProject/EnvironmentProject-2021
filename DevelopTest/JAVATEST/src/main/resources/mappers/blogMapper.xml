@@ -5,13 +5,13 @@
 <mapper namespace="passion.spring.env.mapper.BlogMapper">
     <insert id="create">
         insert into news
-        values(seq_news.nextval, #{newsTitle}, #{newsDate}, #{reporter}, #{filepath}, #{content})</insert>
+        values(seq_news.nextval, #{newsTitle},  #{reporter}, #{filepath}, #{content})</insert>
 
     <select id="readList"
         resultType="passion.spring.env.domain.News">
         <![CDATA[
         select
-            newsId, newsTitle, newsDate, reporter, filepath, content
+            newsId, newsTitle,  reporter, filepath, content
         from
             news
         order by newsId asc
@@ -29,7 +29,7 @@
 
     <update id="update">
         update news
-        set newsTitle=#{newsTitle}, newsDate=#{newsDate}, reporter=#{reporter}, filepath=#{filepath}, content=#{content}
+        set newsTitle=#{newsTitle}, reporter=#{reporter}, filepath=#{filepath}, content=#{content}
         where newsId = #{newsId}
     </update>
 
