@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<!-- th:로 연결되는 것들을 쓰기 위한 thymeleaf 선언 -->
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passion</title>
     <!-- favicons Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/loader.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/loader.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/loader.png">
     <link rel="manifest" href="assets/images/favicons/site.webmanifest">
     <meta name="description" content="Agrikon HTML Template For Agriculture Farm & Farmers">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -52,8 +51,7 @@
 </div><!-- /.preloader -->
 <div class="page-wrapper">
 
-    <!-- main 디렉토리에 있는 index-head로 가서 fragment에 있는 header를 찾아 헤더 내용을 가져온다. -->
-    <th:block th:replace="main/index-head::header"></th:block>
+    <th:block th:replace="~{main/index-head::header}"></th:block>
     <!-- /헤더끝 -->
 
     <div class="stricky-header stricked-menu main-menu">
@@ -87,7 +85,7 @@
                                     생활화 합시다!</h2>
                                 <br>
 
-<!--                                <a href="upcycling" class=" thm-btn">up-cycling</a>-->
+                                <a th:href="@{'/up-cycling'}"  class=" thm-btn">up-cycling</a>
                                 <!-- /.thm-btn dynamic-radius -->
                             </div><!-- /.col-lg-7 text-right -->
                         </div><!-- /.row -->
@@ -101,7 +99,6 @@
             </div><!-- /.swiper-container thm-swiper__slider -->
         </div>
     </section><!-- /.main-slider -->
-
 
 
     <div class="projects-one project-one__home-one">
@@ -130,7 +127,7 @@
                             <img src="assets/images/projects/wetland.png" alt="">
                             <div class="projects-one__content">
                                 <h3>세계 습지의날 </h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details2" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -140,7 +137,7 @@
                             <img src="assets/images/projects/tree.png" alt="">
                             <div class="projects-one__content">
                                 <h3>식목일</h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details3" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -150,7 +147,7 @@
                             <img src="assets/images/projects/earth.png" alt="">
                             <div class="projects-one__content">
                                 <h3>지구의 날</h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details4" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -160,7 +157,7 @@
                             <img src="assets/images/projects/desert.png" alt="">
                             <div class="projects-one__content">
                                 <h3>세계 사막화 방지의 날</h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details7" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -170,7 +167,7 @@
                             <img src="assets/images/projects/sea.png" alt="">
                             <div class="projects-one__content">
                                 <h3>바다 식목일</h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details5" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -180,7 +177,7 @@
                             <img src="assets/images/projects/natural.png" alt="">
                             <div class="projects-one__content">
                                 <h3>세계 환경의날</h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details6" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -225,7 +222,7 @@
                             <img src="assets/images/projects/wetland.png" alt="">
                             <div class="projects-one__content">
                                 <h3>세계 습지의날 </h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details2" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -234,7 +231,7 @@
                             <img src="assets/images/projects/tree.png" alt="">
                             <div class="projects-one__content">
                                 <h3>식목일</h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details3" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -243,7 +240,7 @@
                             <img src="assets/images/projects/earth.png" alt="">
                             <div class="projects-one__content">
                                 <h3>지구의 날</h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details4" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -251,7 +248,7 @@
                         <div class="projects-one__single">
                             <img src="assets/images/projects/desert.png" alt="">
                             <div class="projects-one__content">
-                                <h3>세계 사막화 방지의 날</h3>
+                                <h3>세계 사막화 방지의 날7</h3>
                                 <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
@@ -261,7 +258,7 @@
                             <img src="assets/images/projects/sea.png" alt="">
                             <div class="projects-one__content">
                                 <h3>바다 식목일</h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details5" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -270,7 +267,7 @@
                             <img src="assets/images/projects/natural.png" alt="">
                             <div class="projects-one__content">
                                 <h3>세계 환경의날</h3>
-                                <a href="project-details" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
+                                <a href="project-details6" class="projects-one__button"><i class="agrikon-icon-right-arrow"></i></a><!-- /.projects-one__button -->
                             </div><!-- /.projects-one__content -->
                         </div><!-- /.projects-one__single -->
                     </div><!-- /.swiper-slide -->
@@ -280,6 +277,7 @@
             </div><!-- /.swiper-container -->
         </div><!-- /.container -->
     </div><!-- /.projects-one -->
+
 
     <th:block th:replace="main/index-footer::footer"></th:block>
     <div class="bottom-footer">
@@ -303,7 +301,7 @@
         <span class="mobile-nav__close mobile-nav__toggler"><i class="far fa-times"></i></span>
 
         <div class="logo-box">
-            <a href="index" aria-label="logo image"><img src="assets/images/logo-light.png" width="155" alt="" /></a>
+            <a th:href="@{'/'}" aria-label="logo image"><img src="assets/images/logo-light.png" width="155" alt="" /></a>
         </div>
         <!-- /.logo-box -->
         <div class="mobile-nav__container"></div>
