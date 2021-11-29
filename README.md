@@ -4,7 +4,11 @@
 **쓰레기 처리 웹**
   
 # 🌍page
-  * It's under construction...
+  * ![mainPage](https://user-images.githubusercontent.com/77195486/143795081-c80b5989-aeac-45e3-9116-ece03b77d75d.JPG)
+  * ![loginPage](https://user-images.githubusercontent.com/77195486/143795207-b1fca363-e6ea-46b7-b014-e72d8d578132.JPG)
+  * ![projectDetail](https://user-images.githubusercontent.com/77195486/143795236-991f2146-7992-4dc4-bfea-c3b9ee248d77.JPG)
+  * ![news](https://user-images.githubusercontent.com/77195486/143795299-f7f8cb81-56c7-4dc9-8e4a-5affa5d6de30.JPG)
+
   
 # 🛤개요
   * It's under construction...
@@ -12,8 +16,7 @@
 # 🏔주요기능
   
   🏜 메인화면
-  * ![mainPage](https://user-images.githubusercontent.com/77195486/143795081-c80b5989-aeac-45e3-9116-ece03b77d75d.JPG)
-
+  * 
 
   🏝 회원가입 및 로그인
   * 회원가입은 아이디, 비밀번호, 전화번호, 생일, 주소 등을 입력해야 하며, 아이디는 이메일로 가입하는 방식으로 구현함.
