@@ -16,6 +16,7 @@
   - Gradle 7.1.1
   - Spring Boot 2.5.3
   - ojdbc 8
+  - MyBatis, JdbcTemplate
   - IntelliJ IDEA
   
 
