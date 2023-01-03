@@ -8,7 +8,7 @@
    ![projectDetail](https://user-images.githubusercontent.com/77195486/143795236-991f2146-7992-4dc4-bfea-c3b9ee248d77.JPG)
    ![news](https://user-images.githubusercontent.com/77195486/143795299-f7f8cb81-56c7-4dc9-8e4a-5affa5d6de30.JPG)
  
-# ERD
+# 논리 ERD
   ![환경오픈사전](https://user-images.githubusercontent.com/77195486/192509222-d1259dae-9e83-41d1-a6b0-bb40e22a4224.png)
 
 # 개발 Tool
