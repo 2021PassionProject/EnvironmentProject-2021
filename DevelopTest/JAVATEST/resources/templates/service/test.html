@@ -1,0 +1,51 @@
+<html>
+<head>
+
+</head>
+
+<body>
+<input type="text" id="phoneNum" maxlength="13"/>
+<script>
+    var autoHypenPhone = function (str) {
+        str = str.replace(/[^0-9]/g, '');
+        var tmp = '';
+        if (str.length < 4) {
+            return str;
+        } else if (str.length < 7) {
+            tmp += str.substr(0, 3);
+            tmp += '-';
+            tmp += str.substr(3);
+            return tmp;
+        } else if (str.length < 11) {
+            tmp += str.substr(0, 3);
+            tmp += '-';
+            tmp += str.substr(3, 3);
+            tmp += '-';
+            tmp += str.substr(6);
+            return tmp;
+        } else {
+            tmp += str.substr(0,3);
+            tmp += '-';
+            tmp += str.substr(3,4);
+            tmp += '-';
+            tmp += str.substr(7);
+            return tmp;
+        }
+        return str;
+    }
+
+    var phoneNum = document.getElementById('phoneNum');
+
+    phoneNum.onkeyup = function () {
+        console.log(this.value);
+        this.value = autoHypenPhone(this.value);
+    }
+    if (phoneNum.length < 12) {
+        //  비밀번호의 길이가 6자 미만 또는 16자 초과 시
+        //  window.alert 메서드를 사용해 오류 메시지를 출력시키고 입력했던 pw를 초기화시킨다.
+        window.alert('비밀번호는 6글자 이상, 16글자 이하로 작성해주세요.');
+    }
+    // 출처 : https://juein.tistory.com/43
+</script>
+</body>
+</html>

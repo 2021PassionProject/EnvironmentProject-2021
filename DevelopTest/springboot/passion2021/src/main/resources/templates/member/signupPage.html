@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News Page || Agrikon || HTML Template For Agriculture Farm & Farmers</title>
+<!-- favicons Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
+<link rel="manifest" href="assets/images/favicons/site.webmanifest">
+<meta name="description" content="Agrikon HTML Template For Agriculture Farm & Farmers">
+
+<!-- fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Handlee&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="assets/css/swiper.min.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/css/odometer.min.css">
+<link rel="stylesheet" href="assets/css/jarallax.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="assets/css/agrikon-icons.css">
+<link rel="stylesheet" href="assets/css/nouislider.min.css">
+<link rel="stylesheet" href="assets/css/nouislider.pips.css">
+<Link rel="stylesheet" href="./assets/css/signup.css">
+<!-- template styles -->
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<script>
+    function check_pw(){ //비밀번호 체크하는 함수
+
+        var pw = document.getElementById('pw').value;
+        var SC = ["!","@","#","$","%"];
+        var check_SC = 0;
+
+        if(pw.length < 6 || pw.length>16){
+            //비밀번호의 길이가 6글자 미만 또는 16글자 초과 시 window.alert 메소드를 사용해 오류 메시지를 출력시키고 입력했던 pw를 초기화시킨다.
+            window.alert('비밀번호는 6글자 이상, 16글자 이하로 작성해주세요.');
+            document.getElementById('pw').value='';
+        }
+        for(var i=0;i<SC.length;i++){
+            // SC 배열의 모든 값을 pw와 비교한다.pw.indexOf('SC[i]')은 사용자가 입력한 비밀번호(pw)에 SC[i]가 있는지 확인하는 메소드이며 존재할 시 존재하는 위치를 반환하고 그렇지 않을 시 -1을 반환한다.
+            if(pw.indexOf(SC[i]) != -1){
+                check_SC = 1;
+            }
+        }
+        if(check_SC == 0){
+            // check_SC가 0일 경우 특수문자가 들어있지 않다는 메시지와 함께 입력했던 비밀번호를 초기화시킨다.
+            window.alert('특수문자를 포함해 주세요.(!,@,#,$,%)')
+            document.getElementById('pw').value='';
+        }
+        if(document.getElementById('pw').value !='' && document.getElementById('pswd2').value!=''){
+            if(document.getElementById('pw').value==document.getElementById('pswd2').value){
+                //pw의 value값과 pw2의 value값가 일치한다면
+                document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                //check 라는 id를 참조하여 그 안에 데이터를 넣는다.
+                document.getElementById('check').style.color='blue';
+            }
+            else{
+                document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                document.getElementById('check').style.color='red';
+            }
+        }
+    }
+</script>
+
+<body>
+<!-- header -->
+
+<div class="page-wrapper">
+    <header class="main-header">
+    </header>
+</div>
+<nav class="main-menu">
+    <th:block th:replace="~{main/index-head::header}"></th:block>
+    </div><!-- /.main-header__info -->
+    </div><!-- /.container -->
+</nav>
+
+<form role="form" name="form1" method="post" action="signup" th:action="${'/signup'}">
+    <th:block th:object="${member}">
+        <div id="wrapper" style="margin-bottom:150px;">
+            <!-- content-->
+            <div id="content">
+
+                <h1>
+                    <div class="logo-box">
+                        <br>
+                        <center>
+                            <a href="index" aria-label="logo image"><img src="assets/images/logo-dark.png" width="200"
+                                                                         alt=""></a>
+                        </center>
+                        <br>
+                    </div><!-- /.logo-box -->
+                </h1>
+                <!-- ID(EMAIL) -->
+                <div>
+                    <h3 class="join_title"><label for="email">
+                        아이디(이메일)
+                    </label>
+                    </h3>
+                    <span class="box int_email">
+                        <input type="text" th:text="${email}" id="email" name="email"
+                               class="int" maxlength="20"/>
+                    </span>
+                    <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
+                </div>
+
+
+                <!-- PW1 -->
+                <div>
+                    <h3 class="join_title"><label for="pw">비밀번호</label></h3>
+                    <span class="box int_pass">
+                        <input type="password" th:text="${pw}" id="pw" name="pw" onchange="check_pw()"
+                               class="int" maxlength="20"/>
+                    </span>
+                </div>
+
+                <!-- PW2 -->
+                <div>
+                    <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
+                    <span class="box int_pass_check">
+                        <input type="password" id="pswd2" class="int" maxlength="20" onchange="check_pw()">
+                        &nbsp;<span id="check"></span>
+                    </span>
+
+                </div>
+<br>
+
+                <div>
+                    <h3 class="join_title"><label for="name">이름</label></h3>
+                    <span class="box int_name">
+                        <input type="text" th:text="${name}" id="name" name="name"
+                               class="int" maxlength="20"/>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- BIRTH -->
+                <div>
+                    <h3 class="join_title"><label for="birth">생년월일</label></h3>
+                    <span class="box int_bir">
+                        <input type="text" th:text="${birth}" id="birth" name="birth" class="int" maxlength="20"
+                               placeholder="yyMMdd"/>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- MOBILE -->
+                <div>
+                    <h3 class="join_title"><label for="phone">휴대전화</label></h3>
+                    <span class="box int_mobile">
+                        <input type="tel" id="phone" name="phone" th:text="${phone}"
+                               class="int" maxlength="13" placeholder="전화번호 입력"/>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- ADDRESS -->
+                <div>
+                    <h3 class="join_title"><label for="placeholder">주소</label></h3>
+                    <input type="text" id="placeholder" name="placeholder" placeholder="우편번호">
+                    <input type="button" onclick="sample6_execDaumPostcode()" style="height: 37.6px"
+                           value="우편번호 찾기"><br>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <div>
+        <span class="box int_address">
+            <input type="text" th:text="${address}" id="address" name="address"  class="address" maxlength="25"
+                   placeholder="주소"/>
+        </span>
+                </div>
+
+                <div>
+        <span class="box int_Detailed_Address">
+            <input type="text" th:text="${address2}" id="address2" name="address2"  class="int" maxlength="25"
+                   placeholder="상세주소"/>
+        </span>
+                </div>
+
+                <!-- JOIN BTN-->
+                <div class="btn_area">
+                    <button type="submit" id="btnJoin">가입하기</button>
+                </div>
+            </div>
+            <!-- content-->
+
+        </div>
+        <!-- wrapper -->
+    </th:block>
+</form>
+</body>
+
+</html>

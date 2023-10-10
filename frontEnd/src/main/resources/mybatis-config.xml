@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 테이블 생성시 필드명에 밑줄을 카멜표기법으로 매칭 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="callSettersOnNulls" value="true"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	<!-- 빈 객체 검색을 위한 패키지 정보 설정 -->
+	<typeAliases>
+		<package name="passion.spring.environment" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="mappers/blogMapper.xml"/>
+	</mappers>
+</configuration>
